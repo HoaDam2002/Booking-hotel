@@ -13,6 +13,7 @@
     <link href="../assets_admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../assets_admin/css/style.css" rel="stylesheet">
 	<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
 
 </head>
 <body>
@@ -774,7 +775,8 @@
 
 	<!-- Dashboard 1 -->
 	<script src="../assets_admin/js/dashboard/dashboard-1.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@yield('js')
 
 </body>
 </html>
