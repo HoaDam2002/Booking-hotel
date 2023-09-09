@@ -17,18 +17,18 @@ use App\Http\Controllers\admin\BlogsController;
 |
 */
 
-/* Auth::routes();
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
- */
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::group([
     'prefix' => 'admin',
 ], function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/blogs', [BlogsController::class, 'index']);
 });
 
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

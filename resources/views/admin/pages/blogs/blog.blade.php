@@ -1,5 +1,5 @@
-@extends('admin.layout.Master_page')
-@section('noi_dung')
+@extends('admin.layout.app')
+@section('content')
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
