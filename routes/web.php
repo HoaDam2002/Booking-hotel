@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+///admin 
+// use App\Http\Controllers\admin\BlogController;
+use App\Http\Controllers\admin\BlogsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +23,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::group([
+    'prefix' => 'admin',
+], function () {
+    Route::get('/blogs', [BlogsController::class, 'index']);
+});
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
