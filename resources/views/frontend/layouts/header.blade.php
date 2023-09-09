@@ -121,6 +121,9 @@
                                 </li>
                                 <li><a href="./blog.html">News</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./contact.html">Login</a></li>
+                                <li><a href="./contact.html">Logout</a></li>
+                                <li><a style="display: none" href="./contact.html">Register</a></li>
                             </ul>
                         </nav>
                         <div class="nav-right search-switch">
