@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-///admin 
+///admin
 // use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BlogsController;
 
@@ -17,12 +17,12 @@ use App\Http\Controllers\admin\BlogsController;
 |
 */
 
-Auth::routes();
+/* Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+ */
 Route::group([
     'prefix' => 'admin',
 ], function () {
