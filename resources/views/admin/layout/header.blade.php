@@ -1,8 +1,8 @@
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
-        <img class="logo-abbr" src="../assets_admin/images/logo.png" alt="">
-        <img class="logo-compact" src="../assets_admin/images/logo-text.png" alt="">
-        <img class="brand-title" src="../assets_admin/images/logo-text.png" alt="">
+        <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png')}}">
+        <img class="logo-compact" src="{{ asset('/assets_admin/images/logo-text.png') }}">
+        <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}" >
     </a>
 
     <div class="nav-control">
@@ -795,10 +795,11 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li><a class="" href="{{ route('admin.typeroom') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">Dashboard</span>
+                    <span class="nav-text">Loại phòng</span>
                 </a>
+<<<<<<< HEAD
                 {{-- <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="doctors.html">Doctors</a></li>
@@ -944,14 +945,38 @@
                     <li><a href="../assets_admin/page-lock-screen.html">Lock Screen</a></li>
                 </ul>
             </li>
+=======
+            </li>
+            <li><a class="" href="{{ route('admin.room') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Phòng</span>
+                </a>
+            </li>
+            <li><a class="" href="{{ route('admin.booking') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Booking</span>
+                </a>
+            </li>
+            <li><a class="" href="{{ route('admin.service') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Dịch vụ</span>
+                </a>
+            </li>
+            <li><a class="" href="{{ route('admin.blogs') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Blog</span>
+                </a>
+            </li>
+            <li><a class="" href="{{ route('admin.review') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Đánh giá</span>
+                </a>
+            </li>
+
+>>>>>>> 31df111077d8670273ff16baba8755a9cfad6f51
         </ul>
 
-        <div class="plus-box">
-            <p>Create new appointment</p>
-        </div>
-        <div class="copyright">
-            <p><strong>Mediqu Hospital Admin Dashboard</strong> © 2020 All Rights Reserved</p>
-            <p>Made with <i class="fa fa-heart"></i> by DexignZone</p>
-        </div>
+
+
     </div>
 </div>

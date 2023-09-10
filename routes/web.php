@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\Admincontroller;
 use Illuminate\Support\Facades\Route;
 
 ///admin
@@ -10,6 +11,7 @@ use App\Http\Controllers\admin\reviewroomcontroller;
 use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\TyperoomController;
+
 use App\Models\Service;
 
 /*
@@ -28,27 +30,32 @@ use App\Models\Service;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/', [Admincontroller::class, 'index']);
 
 Route::group([
     'prefix' => 'admin',
 ], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+<<<<<<< HEAD
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
     
     Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
+=======
+    Route::get('/blogs', [BlogsController::class, 'index'])->name('admin.blogs');
+>>>>>>> 31df111077d8670273ff16baba8755a9cfad6f51
 
-    Route::get('/room', [RoomController::class, 'index']);
+    Route::get('/room', [RoomController::class, 'index'])->name('admin.room');
 
-    Route::get('/typeroom', [TyperoomController::class, 'index']);
+    Route::get('/typeroom', [TyperoomController::class, 'index'])->name('admin.typeroom');
 
-    Route::get('/booking', [BookingController::class, 'index']);
+    Route::get('/booking', [BookingController::class, 'index'])->name('admin.booking');
 
-    Route::get('/service', [ServiceController::class, 'index']);
+    Route::get('/service', [ServiceController::class, 'index'])->name('admin.service');
 
-    Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
+    Route::get('/reviewroom', [reviewroomcontroller::class, 'index'])->name('admin.review');
 
 });
 
