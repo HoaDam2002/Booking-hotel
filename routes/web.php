@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 ///admin
 // use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BlogsController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::group([
     'prefix' => 'admin',
 ], function () {
     Route::get('/blogs', [BlogsController::class, 'index']);
+    Route::get('/room', [RoomController::class, 'index']);
 });
 
 

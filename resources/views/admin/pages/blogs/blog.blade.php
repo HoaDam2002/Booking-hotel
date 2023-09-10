@@ -153,10 +153,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card-footer text-center">
-                                                    <button type="button"
-                                                        class="btn btn-rounded btn-outline-info btn-lg ">Update</button>
-                                                </div>
                                             </form>
                                         </div>
                                     </div>
