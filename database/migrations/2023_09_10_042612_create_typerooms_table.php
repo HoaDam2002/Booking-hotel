@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('typerooms', function (Blueprint $table) {
             $table->id();
+            $table->string('typeName');
             $table->timestamps();
         });
     }
