@@ -37,15 +37,12 @@ Route::group([
 ], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-<<<<<<< HEAD
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
     
     Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
-=======
-    Route::get('/blogs', [BlogsController::class, 'index'])->name('admin.blogs');
->>>>>>> 31df111077d8670273ff16baba8755a9cfad6f51
+
 
     Route::get('/room', [RoomController::class, 'index'])->name('admin.room');
 
