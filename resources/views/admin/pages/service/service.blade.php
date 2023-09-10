@@ -3,28 +3,15 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">THÊM BLOG</h4>
+                <h4 class="card-title">THÊM PHÒNG</h4>
             </div>
             <div class="card-body">
                 <form action="#" id="step-form-horizontal" class="step-form-horizontal">
                     <div class="row">
-                        <div class="col-lg-6 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Tên blog</label>
-                                <input type="text" name="firstName" class="form-control" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Slug blog</label>
-                                <input type="text" name="lastName" class="form-control" required="">
-                            </div>
-                        </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Hình ảnh</label>
-                                <input type="email" class="form-control" id="inputGroupPrepend2"
-                                    aria-describedby="inputGroupPrepend2" required="">
+                                <label class="text-label">Tên dịch vụ</label>
+                                <input type="text" name="firstName" class="form-control" required="">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
@@ -33,13 +20,10 @@
                                 <textarea class="form-control" id="editor" name="editor"></textarea>
                             </div>
                         </div>
-                        <div class="col-lg-12 mb-3">
+                        <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label>Tình Trạng</label>
-                                <select name="trang_thai" class="form-control">
-                                    <option value="1">Hiển Thị</option>
-                                    <option value="0">Tạm Tắt</option>
-                                </select>
+                                <label class="text-label">Hình ảnh</label>
+                                <input type="text" name="phoneNumber" class="form-control" required="">
                             </div>
                         </div>
                     </div>
@@ -60,12 +44,10 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Name</strong></th>
-                                    <th><strong>Picture</strong></th>
-                                    <th><strong>Tittle</strong></th>
-                                    <th><strong>Content</strong></th>
-                                    <th><strong>Action</strong></th>
-                                    <th><strong>Status</strong></th>
+                                    <th><strong>Tên dịch vụ</strong></th>
+                                    <th><strong>Nội dung</strong></th>
+                                    <th><strong>Hình ảnh</strong></th>
+                                    <th><strong>Tùy chọn</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,12 +58,9 @@
                                                 class="rounded-lg mr-2" width="24" alt=""> <span
                                                 class="w-space-no">Dr. Jackson</span></div>
                                     </td>
-                                    <td>example@example.com </td>
+
                                     <td>01 August 2020</td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
-                                            Canceled</div>
-                                    </td>
+
                                     <td>
                                         <div class="d-flex">
                                             <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
@@ -106,7 +85,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Modal title</h5>
+                                        <h5 class="modal-title">Cập nhật</h5>
                                         <button type="button" class="close" data-dismiss="modal"><span>×</span>
                                         </button>
                                     </div>
@@ -114,26 +93,11 @@
                                         <div class="card-body">
                                             <form action="#" id="step-form-horizontal" class="step-form-horizontal">
                                                 <div class="row">
-                                                    <div class="col-lg-6 mb-2">
-                                                        <div class="form-group">
-                                                            <label class="text-label">Tên blog</label>
-                                                            <input type="text" name="firstName" class="form-control"
-                                                                required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 mb-2">
-                                                        <div class="form-group">
-                                                            <label class="text-label">Slug blog</label>
-                                                            <input type="text" name="lastName" class="form-control"
-                                                                required="">
-                                                        </div>
-                                                    </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Hình ảnh</label>
-                                                            <input type="email" class="form-control"
-                                                                id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2" required="">
+                                                            <label class="text-label">Tên dịch vụ</label>
+                                                            <input type="text" name="firstName" class="form-control"
+                                                                required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
@@ -142,13 +106,11 @@
                                                             <textarea class="form-control" id="editor" name="editor"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12 mb-3">
+                                                    <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label>Tình Trạng</label>
-                                                            <select name="trang_thai" class="form-control">
-                                                                <option value="1">Hiển Thị</option>
-                                                                <option value="0">Tạm Tắt</option>
-                                                            </select>
+                                                            <label class="text-label">Hình ảnh</label>
+                                                            <input type="text" name="phoneNumber" class="form-control"
+                                                                required="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,26 +132,26 @@
     </div>
 @endsection
 @section('js')
-<script>
-    document.getElementById("deleteButton").addEventListener("click", function () {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-          // Thêm mã xử lý xóa tại đây
-        }
-      });
-    });
+    <script>
+        document.getElementById("deleteButton").addEventListener("click", function() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    // Thêm mã xử lý xóa tại đây
+                }
+            });
+        });
     </script>
 @endsection

@@ -5,15 +5,16 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RoomController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.pages.room.room');
+      return view('admin.pages.service.service');
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -29,5 +30,9 @@ class RoomController extends Controller
     {
         //
     }
+
+    /**
+     * Display the specified resource.
+     */
 
 }

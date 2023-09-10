@@ -776,7 +776,7 @@
 	<!-- Dashboard 1 -->
 	<script src="../assets_admin/js/dashboard/dashboard-1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-@yield('js')
+    @yield('js')
 
 </body>
 </html>

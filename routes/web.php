@@ -5,7 +5,12 @@ use Illuminate\Support\Facades\Route;
 ///admin
 // use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BlogsController;
-use App\Http\Controllers\RoomController;
+use App\Http\Controllers\admin\BookingController;
+use App\Http\Controllers\admin\reviewroomcontroller;
+use App\Http\Controllers\admin\RoomController;
+use App\Http\Controllers\admin\ServiceController;
+use App\Http\Controllers\admin\TyperoomController;
+use App\Models\Service;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +23,7 @@ use App\Http\Controllers\RoomController;
 |
 */
 
-Auth::routes();
+/* Auth::routes(); */
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -28,8 +33,19 @@ Route::group([
     'prefix' => 'admin',
 ], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::get('/blogs', [BlogsController::class, 'index']);
+
     Route::get('/room', [RoomController::class, 'index']);
+
+    Route::get('/typeroom', [TyperoomController::class, 'index']);
+
+    Route::get('/booking', [BookingController::class, 'index']);
+
+    Route::get('/service', [ServiceController::class, 'index']);
+
+    Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
+
 });
 
 

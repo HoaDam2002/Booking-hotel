@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="../assets_admin/vendor/chartist/css/chartist.min.css">
     <link href="../assets_admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../assets_admin/css/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
 	<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
 
 </head>
@@ -43,5 +44,15 @@
 
 	<!-- Dashboard 1 -->
 	<script src="../assets_admin/js/dashboard/dashboard-1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+        </script>
+    @yield('js')
 </body>
 </html>

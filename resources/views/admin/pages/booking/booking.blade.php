@@ -1,58 +1,10 @@
 @extends('admin.layout.app')
 @section('content')
     <div class="container-fluid">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">THÊM BLOG</h4>
-            </div>
-            <div class="card-body">
-                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
-                    <div class="row">
-                        <div class="col-lg-6 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Tên blog</label>
-                                <input type="text" name="firstName" class="form-control" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Slug blog</label>
-                                <input type="text" name="lastName" class="form-control" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Hình ảnh</label>
-                                <input type="email" class="form-control" id="inputGroupPrepend2"
-                                    aria-describedby="inputGroupPrepend2" required="">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 mb-2">
-                            <div class="form-group">
-                                <label class="text-label">Nội dung</label>
-                                <textarea class="form-control" id="editor" name="editor"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 mb-3">
-                            <div class="form-group">
-                                <label>Tình Trạng</label>
-                                <select name="trang_thai" class="form-control">
-                                    <option value="1">Hiển Thị</option>
-                                    <option value="0">Tạm Tắt</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center">
-                        <button type="button" class="btn btn-rounded btn-outline-info btn-lg">Add</button>
-                    </div>
-                </form>
-            </div>
-        </div>
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Exam Toppers</h4>
+                    <h4 class="card-title">Booking</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -60,12 +12,13 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Name</strong></th>
-                                    <th><strong>Picture</strong></th>
-                                    <th><strong>Tittle</strong></th>
-                                    <th><strong>Content</strong></th>
-                                    <th><strong>Action</strong></th>
-                                    <th><strong>Status</strong></th>
+                                    <th><strong>Tên khách hàng</strong></th>
+                                    <th><strong>Số điện thoại</strong></th>
+                                    <th><strong>Email</strong></th>
+                                    <th><strong>Checkin</strong></th>
+                                    <th><strong>Checkout</strong></th>
+                                    <th><strong>Hinh Ảnh</strong></th>
+                                    <th><strong>Tùy chọn</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +29,7 @@
                                                 class="rounded-lg mr-2" width="24" alt=""> <span
                                                 class="w-space-no">Dr. Jackson</span></div>
                                     </td>
+                                    <td>example@example.com </td>
                                     <td>example@example.com </td>
                                     <td>01 August 2020</td>
                                     <td>
@@ -116,42 +70,43 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Tên blog</label>
-                                                            <input type="text" name="firstName" class="form-control"
-                                                                required="">
+                                                            <label class="text-label">Tên khách hàng</label>
+                                                            <input type="text" name="firstName" class="form-control" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Slug blog</label>
-                                                            <input type="text" name="lastName" class="form-control"
-                                                                required="">
+                                                            <label class="text-label">Số điện thoại</label>
+                                                            <input type="text" name="lastName" class="form-control" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="text-label">Email</label>
+                                                            <input type="email" class="form-control" id="inputGroupPrepend2"
+                                                                aria-describedby="inputGroupPrepend2" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-2">
+                                                        <div class="form-group">
+                                                            <label class="text-label">Chekin</label>
+                                                            <input type="date"  class="form-control" required="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-3">
+                                                        <div class="form-group">
+                                                            <label>Chekout</label>
+                                                            <input type="date"  class="form-control" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Hình ảnh</label>
-                                                            <input type="email" class="form-control"
-                                                                id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2" required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 mb-2">
-                                                        <div class="form-group">
-                                                            <label class="text-label">Nội dung</label>
-                                                            <textarea class="form-control" id="editor" name="editor"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-12 mb-3">
-                                                        <div class="form-group">
-                                                            <label>Tình Trạng</label>
-                                                            <select name="trang_thai" class="form-control">
-                                                                <option value="1">Hiển Thị</option>
-                                                                <option value="0">Tạm Tắt</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </form>
                                         </div>
                                     </div>
