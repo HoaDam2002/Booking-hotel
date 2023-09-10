@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    
     <title>Mediqu - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets_admin/images/favicon.png">
@@ -14,6 +16,9 @@
     <link href="../assets_admin/css/style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
 	<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+    {{-- Phân trang --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+
 
 </head>
 <body>
@@ -46,6 +51,8 @@
 	<script src="../assets_admin/js/dashboard/dashboard-1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
+    {{-- jquery --}}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.pack.js"></script>
     <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Blogs;
+use App\Http\Requests\BlogsRequest;
+
 class BlogsController extends Controller
 {
     /**
@@ -12,12 +15,44 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.blogs.blog');
+        $data = Blogs::all()->toArray();
+
+        $data = Blogs::paginate(10);
+        return view('admin.pages.blogs.blog', compact('data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
+    public function insert(Request $request, BlogsRequest $BlogsRequest) {
+        $data = $request->all();
+
+        // dd($request->all());
+        $file = $request->image;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = strtotime(date('Y-m-d H:i:s'));
+        if(!empty($file)) {
+            $data['image'] = $date.'_'.$file->getClientOriginalName();
+        }
+
+        if(Blogs::create($data)) {
+            if(!empty($file)) {
+                $file->move('upload/admin/blogs', $date.'_'.$file->getClientOriginalName());
+            }
+            return redirect()->back()->with('success', __('Add Blog Success'));
+        }else {
+            return redirect()->back()->withErrors('Add Blog Fail');
+        }
+        
+    }
+
+
+    public function edit(Request $request) {
+        $data = $request->all();
+        dd($data);
+    }
+
     public function create()
     {
         //
@@ -42,10 +77,10 @@ class BlogsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    // public function edit(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.

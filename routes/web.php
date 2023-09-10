@@ -35,6 +35,10 @@ Route::group([
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('/blogs', [BlogsController::class, 'index']);
+    Route::post('/blogs', [BlogsController::class, 'insert']);
+    
+    Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
+    Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
 
     Route::get('/room', [RoomController::class, 'index']);
 
