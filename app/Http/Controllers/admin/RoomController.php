@@ -19,7 +19,7 @@ class RoomController extends Controller
         $typeroom = Typeroom::all()->toArray();
         $rooms = Room::all()->toArray();
         // dd($rooms);
-        return view('admin.pages.room.room',compact('typeroom','rooms'));
+        return view('admin.pages.room.room',compact('typeroom','rooms',));
     }
     /**
      * Show the form for creating a new resource.

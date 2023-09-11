@@ -39,7 +39,7 @@ Route::group([
 
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
-    
+
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/update/', [BlogsController::class, 'update']);
     // Route::get('/blogs/edit', [BlogsController::class, 'edit']);
