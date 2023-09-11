@@ -50,8 +50,30 @@ class BlogsController extends Controller
 
     public function edit(Request $request) {
         $data = $request->all();
-        dd($data);
+        // $data = $data['id'];
+        $dataBlog = Blogs::where('id',$data['id'])->get()->toArray();
+        return $dataBlog;
     }
+
+    public function update(Request $request, string $id)
+    {   
+        
+        $data = $request->all();
+        $file = $request->image;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = strtotime(date('Y-m-d H:i:s'));
+        if(!empty($file)) {
+            $data['image'] = $date.'_'.$file->getClientOriginalName();
+        }
+
+        if(Blogs::update($data)) {
+            return redirect()->back()->with('success', __('Update blog success'));
+        }else {
+            return redirect()->back()->withErrors('Update blog fail');
+        }
+        
+    }
+
 
     public function create()
     {
@@ -85,10 +107,7 @@ class BlogsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.

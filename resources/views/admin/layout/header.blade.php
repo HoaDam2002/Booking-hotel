@@ -799,7 +799,6 @@
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Loại phòng</span>
                 </a>
-<<<<<<< HEAD
                 {{-- <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="doctors.html">Doctors</a></li>
@@ -962,7 +961,7 @@
                     <span class="nav-text">Dịch vụ</span>
                 </a>
             </li>
-            <li><a class="" href="{{ route('admin.blogs') }}" aria-expanded="false">
+            <li><a class="" href="{{url('admin/blogs')}}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Blog</span>
                 </a>

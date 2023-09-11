@@ -40,8 +40,9 @@ Route::group([
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
     
-    Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
+    Route::post('/blogs/update/', [BlogsController::class, 'update']);
+    // Route::get('/blogs/edit', [BlogsController::class, 'edit']);
 
 
     Route::get('/room', [RoomController::class, 'index'])->name('admin.room');

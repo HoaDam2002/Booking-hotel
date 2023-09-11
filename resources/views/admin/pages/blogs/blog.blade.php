@@ -134,38 +134,31 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="card-body">
-                                            <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                                            <form action="{{url('admin/blogs/update')}}" method="POST" id="step-form-horizontal" class="step-form-horizontal" >
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Tên blog</label>
-                                                            <input type="text" name="firstName" class="form-control"
-                                                                required="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 mb-2">
-                                                        <div class="form-group">
-                                                            <label class="text-label">Slug blog</label>
-                                                            <input type="text" name="lastName" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="title" class="form-control editNameBlog"
+                                                                7>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Hình ảnh</label>
-                                                            <input type="email" class="form-control"
+                                                            <input type="file" name="image" class="form-control"
                                                                 id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2" required="">
+                                                                aria-describedby="inputGroupPrepend2">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <textarea class="form-control" id="editor" name="editor"></textarea>
+                                                            <textarea class="form-control editDescriptionBlog" id="editor" name="editor"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-12 mb-3">
+                                                    {{-- <div class="col-lg-12 mb-3">
                                                         <div class="form-group">
                                                             <label>Tình Trạng</label>
                                                             <select name="trang_thai" class="form-control">
@@ -173,15 +166,15 @@
                                                                 <option value="0">Tạm Tắt</option>
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light"
-                                            data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -225,15 +218,17 @@
 
             $('button#editButton').click(function () {
                 let id = $(this).parent('div.actionButton').attr('data-id');
-                console.log(id);
+                // console.log(id);
                 $.ajax({
-                    url: '/admin/blogs',
+                    url: '/admin/blogs/edit',
                     type: 'POST',
                     data: {
                         id: id
                     },
                     success: function (data) {
                         console.log(data);
+                        $('input.editNameBlog').val(data[0].title);
+                        $('textarea.editDescriptionBlog').val(data[0].description);
                     },
                     error: function (e) {
                         console.log(e.message);
