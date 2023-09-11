@@ -30,6 +30,7 @@ class BlogsController extends Controller
 
         // dd($request->all());
         $file = $request->image;
+        // dd($file);   
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date = strtotime(date('Y-m-d H:i:s'));
         if(!empty($file)) {
@@ -55,25 +56,52 @@ class BlogsController extends Controller
         return $dataBlog;
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {   
         
         $data = $request->all();
+        $file = $request->image;
+        $blog = Blogs::findOrFail($data['id']);
+
+        $imageOld = $blog->image;
+
+        // return $data;
         $file = $request->image;
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date = strtotime(date('Y-m-d H:i:s'));
         if(!empty($file)) {
             $data['image'] = $date.'_'.$file->getClientOriginalName();
+        }else {
+            $data['image'] = $imageOld;
         }
 
-        if(Blogs::update($data)) {
-            return redirect()->back()->with('success', __('Update blog success'));
+        if($blog->update($data)) {
+            
+            if(!empty($file)){
+                unlink('upload/admin/blogs/'.$imageOld);
+                $file->move('upload/admin/blogs', $date.'_'.$file->getClientOriginalName());
+            }
+
+            return $data;
         }else {
             return redirect()->back()->withErrors('Update blog fail');
         }
         
     }
 
+
+    public function delete(Request $request) {
+        $data = $request->all();
+        $blog = Blogs::findOrFail($data['id']);
+        // $dataBlog = Blogs::where('id',$data['id'])->get()->toArray();
+        if(Blogs::where('id', $data['id'])->delete()) {
+            unlink('upload/admin/blogs/'.$blog->image);
+            return redirect()->back()->with('success',__('Delete Blog success'));
+        }else {
+            return redirect()->back()->withErrors('Delete Blog Error');
+        }
+
+    }
 
     public function create()
     {

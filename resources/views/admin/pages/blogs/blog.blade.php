@@ -92,14 +92,14 @@
                                     foreach ($data as $key => $value) {
                                 @endphp
                                 <tr>
-                                    <td><strong>{{$value['id']}}</strong></td>
-                                    <td>{!!Str::limit($value['title'], 25, '...')!!}</td>
+                                    <td ><strong class="idBlogs">{{$value['id']}}</strong></td>
+                                    <td class="titleBlogs">{!!Str::limit($value['title'], 25, '...')!!}</td>
                                     <td>
                                         <div class="d-flex align-items-center"><img src={{"/upload/admin/blogs/".$value['image']}}
-                                                class="rounded-lg mr-2" width="24" alt=""></div>
+                                                class="rounded-lg mr-2 imgBlogs" width="24" alt=""></div>
                                     </td>
                                     
-                                    <td>{!!Str::limit($value['description'], 40, '...')!!}</td>
+                                    <td class="descBlogs">{!!Str::limit($value['description'], 40, '...')!!}</td>
                                     <td>
                                         <div class="d-flex actionButton" data-id={{$value['id']}} >
                                             <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="card-body">
-                                            <form action="{{url('admin/blogs/update')}}" method="POST" id="step-form-horizontal" class="step-form-horizontal" >
+                                            <form method="POST" id="step-form-horizontal" class="step-form-horizontal form-edit" enctype="multipart/form-datas" >
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
@@ -147,9 +147,10 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Hình ảnh</label>
-                                                            <input type="file" name="image" class="form-control"
+                                                            <input type="file" name="image" class="form-control editImageBlog"
                                                                 id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2">
+                                                                aria-describedby="inputGroupPrepend2"
+                                                                >
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
@@ -169,9 +170,9 @@
                                                     </div> --}}
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger light"
+                                                    <button type="submit" class="btn btn-danger light"
                                                         data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="button" class="btn btn-primary saveUpdateButton" data-id=''>Save changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -187,26 +188,51 @@
 @endsection
 @section('js')
     <script>
-        document.getElementById("deleteButton").addEventListener("click", function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                    // Thêm mã xử lý xóa tại đây
-                }
+        $("button#deleteButton").click(function() {
+            //gọi thèn cha
+            let _this = $(this).closest('tr');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let id = $('button#deleteButton').parent('div.actionButton').attr('data-id');
+
+                        $.ajax({
+                            url: '/admin/blogs/delete',
+                            type: 'POST',
+                            data: {
+                                id: id,
+                            },
+                            success: function (data) {
+                                //xóa thèn cha
+                                _this.remove();
+                            },
+                            error: function (e) {
+                                console.log(e.message);
+                            }
+                        })
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                        // Thêm mã xử lý xóa tại đây
+                    }else {
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while deleting the file.',
+                            'error'
+                        );
+                    }
+                });
             });
-        });
+        
 
 
         $(document).ready(function() {
@@ -218,23 +244,81 @@
 
             $('button#editButton').click(function () {
                 let id = $(this).parent('div.actionButton').attr('data-id');
-                // console.log(id);
+                //ajax add blogs
                 $.ajax({
                     url: '/admin/blogs/edit',
                     type: 'POST',
                     data: {
-                        id: id
+                        id: id,
+                        
                     },
                     success: function (data) {
-                        console.log(data);
+                        // console.log(data);
                         $('input.editNameBlog').val(data[0].title);
                         $('textarea.editDescriptionBlog').val(data[0].description);
+                        $('button.saveUpdateButton').attr('data-id', data[0].id);
                     },
                     error: function (e) {
                         console.log(e.message);
                     }
                 })
+                //gọi tới thẻ button editbutton rồi gọi đến thẻ cha tr để render sau khi update
+                let _this = $(this).closest('tr');
+            
+                ///////click save update
+                $('button.saveUpdateButton').click(function () {
+                    let image = $('input.editImageBlog')[0].files[0] || '';
+                    let id = $(this).attr('data-id');
+                    let title = $('input.editNameBlog').val();
+                    let description = $('textarea.editDescriptionBlog').val();
+
+                    let form = new FormData();
+                    form.append('image', image);
+                    form.append('title', title);
+                    form.append('id', id);
+                    form.append('description', description);
+
+                    $.ajax({
+                        url: '/admin/blogs/update',
+                        type: 'POST',
+                        processData: false,
+                        mimeType: "multipart/form-data",
+                        contentType: false,
+                        data: form,
+                        success: function (data) {
+                            data = JSON.parse(data);
+
+                            //render khi update
+                            _this.find('.idBlogs').text(data.id);
+                            _this.find('.titleBlogs').text(data.title);
+                            _this.find('.descBlogs').text(data.description);
+                            _this.find('.imgBlogs').attr('src', `/upload/admin/blogs/${data.image}`);
+                        },
+                        error: function (e) {
+                            console.log(e.message);
+                        }
+                    })
+                })
             })
+
+            //delete button 
+            // $('button#deleteButton').click(function () {
+            //     let id = $(this).parent('div.actionButton').attr('data-id');
+                // $.ajax({
+                //     url: '/admin/blogs/delete',
+                //     type: 'POST',
+                //     data: {
+                //         id: id,
+                //     },
+                //     success: function (data) {
+                //         console.log(data);
+                        
+                //     },
+                //     error: function (e) {
+                //         console.log(e.message);
+                //     }
+                // })
+            // })
         })
     </script>
 @endsection
