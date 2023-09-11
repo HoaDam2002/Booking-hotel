@@ -799,7 +799,7 @@
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Loại phòng</span>
                 </a>
-<<<<<<< HEAD
+
                 {{-- <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="doctors.html">Doctors</a></li>

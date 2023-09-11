@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Typeroom extends Model
 {
     use HasFactory;
+
+    protected $table = 'typerooms';
+
+    protected $fillable = [
+        'typeName',
+    ];
 }

@@ -5,51 +5,78 @@
             <div class="card-header">
                 <h4 class="card-title">THÊM PHÒNG</h4>
             </div>
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissble">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissble">
+                    <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card-body">
-                <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                <form action="#" method="post" id="step-form-horizontal" class="step-form-horizontal"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Tên phòng</label>
-                                <input type="text" name="firstName" class="form-control" required="">
+                                <input type="text" name="nameRoom" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Giá phòng</label>
-                                <input type="text" name="firstName" class="form-control" required="">
+                                <input type="text" name="price" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Diện tích</label>
-                                <input type="text" name="phoneNumber" class="form-control" required="">
+                                <label class="text-label">Số người</label>
+                                <input type="text" name="Capacity" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Nội dung</label>
-                                <textarea class="form-control" id="editor" name="editor"></textarea>
+                                <textarea class="form-control" id="editor" name="description"></textarea>
                             </div>
                         </div>
+
+
                         <div class="col-lg-12 mb-3">
                             <div class="form-group">
                                 <label>Loại phòng</label>
-                                <select name="trang_thai" class="form-control">
-                                    <option value="1">Vip</option>
-                                    <option value="0">Cui</option>
+                                <select class="form-control" name="roomTypeId">
+                                    <option value=""></option>
+                                    @if (isset($typeroom))
+                                        @foreach ($typeroom as $item)
+                                            <option value="{{ $item['id'] }}">{{ $item['typeName'] }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Hình ảnh</label>
-                                <input type="text" name="phoneNumber" class="form-control" required="">
+                                <input type="file" name="image" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button type="button" class="btn btn-rounded btn-outline-info btn-lg">Add</button>
+                        <button type="submit" class="btn btn-rounded btn-outline-info btn-lg">Add</button>
                     </div>
                 </form>
             </div>
@@ -65,44 +92,50 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Name</strong></th>
-                                    <th><strong>Picture</strong></th>
-                                    <th><strong>Tittle</strong></th>
-                                    <th><strong>Content</strong></th>
-                                    <th><strong>Action</strong></th>
-                                    <th><strong>Status</strong></th>
+                                    <th><strong>Tên phòng</strong></th>
+                                    <th><strong>Hình ảnh</strong></th>
+                                    <th><strong>Số người</strong></th>
+                                    <th><strong>Loại phòng</strong></th>
+                                    <th><strong>Giá</strong></th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><strong>542</strong></td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><img src="/assets_admin/images/avatar/2.jpg"
-                                                class="rounded-lg mr-2" width="24" alt=""> <span
-                                                class="w-space-no">Dr. Jackson</span></div>
-                                    </td>
-                                    <td>example@example.com </td>
-                                    <td>01 August 2020</td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
-                                            Canceled</div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                                data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button
-                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                id="deleteButton">
-                                                <i class="fa fa-trash">
+                                @if (isset($rooms))
+                                    @foreach ($rooms as $item)
+                                        <tr>
+                                            <td><strong>{{ $item['nameRoom'] }}</strong></td>
+                                            <td>
+                                                <div class="d-flex align-items-center"><img
+                                                        src=" {{ asset('upload/admin/room/' . $item['image']) }}"
+                                                        class="rounded-lg mr-2" width="24" alt=""> <span
+                                                        class="w-space-no"></span></div>
+                                            </td>
+                                            <td>{{ $item['Capacity'] }} </td>
+                                            <td>{{ $item['roomTypeId'] }}</td>
+                                            <td>
+                                                {{-- <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
+                                            Canceled</div> --}}
+                                                {{ $item['price'] }}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
+                                                        data-toggle="modal" data-target=".bd-example-modal-lg" id="{{ $item['id'] }}">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                    <button
+                                                        class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                        id="deleteButton">
+                                                        <i class="fa fa-trash">
 
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                         {{-- modal --}}
@@ -117,50 +150,54 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="card-body">
-                                            <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+
+                                            <form action="#" id="step-form-horizontal" class="step-form-horizontal"
+                                                enctype="multipart/form-data">
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Tên phòng</label>
-                                                            <input type="text" name="firstName" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="nameRoom" class="form-control"
+                                                                value="">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Giá phòng</label>
-                                                            <input type="text" name="firstName" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="price" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Diện tích</label>
-                                                            <input type="text" name="phoneNumber" class="form-control"
-                                                                required="">
+                                                            <label class="text-label">Số người</label>
+                                                            <input type="text" name="Capacity" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <input type="text" name="phoneNumber" class="form-control"
-                                                                required="">
+                                                            <input type="text" name="description"
+                                                                class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <div class="form-group">
                                                             <label>Loại phòng</label>
-                                                            <select name="trang_thai" class="form-control">
-                                                                <option value="1">Vip</option>
-                                                                <option value="0">Cui</option>
+                                                            <select name="roomTypeId" class="form-control">
+                                                                <option value=""></option>
+                                                                @if (isset($typeroom))
+                                                                    @foreach ($typeroom as $item)
+                                                                        <option value="{{ $item['id'] }}">
+                                                                            {{ $item['typeName'] }}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Hình ảnh</label>
-                                                            <input type="text" name="phoneNumber" class="form-control"
-                                                                required="">
+                                                            <input type="file" name="image" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -170,7 +207,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -203,5 +240,11 @@
                 }
             });
         });
+
+
+
+
+
+
     </script>
 @endsection
