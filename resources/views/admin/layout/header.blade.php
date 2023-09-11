@@ -806,6 +806,7 @@
                     <li><a href="doctors-review.html">Doctors Review</a></li>
                     <li><a href="patient-details.html">Patient Details</a></li>
                 </ul> --}}
+<<<<<<< HEAD
 
             </li>
             <li><a class="has-arrow ai-icon" href="{{url('/admin/blogs')}}" aria-expanded="false">
@@ -944,6 +945,8 @@
                     <li><a href="../assets_admin/page-lock-screen.html">Lock Screen</a></li>
                 </ul>
             </li>
+=======
+>>>>>>> a36c7caf83d907c49a91762a47853447255b78b6
             </li>
             <li><a class="" href="{{ route('admin.room') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
@@ -970,6 +973,7 @@
                     <span class="nav-text">Đánh giá</span>
                 </a>
             </li>
+
         </ul>
 
 
