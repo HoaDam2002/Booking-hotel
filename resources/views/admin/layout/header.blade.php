@@ -799,6 +799,10 @@
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Loại phòng</span>
                 </a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ff2b597508b4a6416e971af5fcba16ecf222f571
                 {{-- <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="doctors.html">Doctors</a></li>

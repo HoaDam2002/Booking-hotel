@@ -3,20 +3,40 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">THÊM PHÒNG</h4>
+            <h4 class="card-title">THÊM LOẠI PHÒNG</h4>
         </div>
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissble">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <h4><i class="icon fa fa-check">Thông báo</i></h4>
+            {{session('success')}}
+        </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissble">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="card-body">
-            <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+            <form action="" method="POST" id="step-form-horizontal" class="step-form-horizontal">
+                @csrf
                 <div class="row">
                     <div class="col-lg-12 mb-2">
                         <div class="form-group">
                             <label class="text-label">Tên loại phòng</label>
-                            <input type="text" name="phoneNumber" class="form-control" required="">
+                            <input type="text" name="typeName" class="form-control" required="">
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" class="btn btn-rounded btn-outline-info btn-lg">Add</button>
+                    <button type="submit" class="btn btn-rounded btn-outline-info btn-lg">Add</button>
                 </div>
             </form>
         </div>
