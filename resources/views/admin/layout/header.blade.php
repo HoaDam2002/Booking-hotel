@@ -799,15 +799,6 @@
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Loại phòng</span>
                 </a>
-
-                {{-- <ul aria-expanded="false">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="doctors.html">Doctors</a></li>
-                    <li><a href="doctors-details.html">Doctors Details</a></li>
-                    <li><a href="doctors-review.html">Doctors Review</a></li>
-                    <li><a href="patient-details.html">Patient Details</a></li>
-                </ul> --}}
-
             </li>
             <li><a class="has-arrow ai-icon" href="{{url('/admin/blogs')}}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
