@@ -795,14 +795,11 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="" href="{{ route('admin.typeroom') }}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/typeroom') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Loại phòng</span>
                 </a>
-<<<<<<< HEAD
-=======
 
->>>>>>> ff2b597508b4a6416e971af5fcba16ecf222f571
                 {{-- <ul aria-expanded="false">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="doctors.html">Doctors</a></li>
@@ -948,35 +945,34 @@
                     <li><a href="../assets_admin/page-lock-screen.html">Lock Screen</a></li>
                 </ul>
             </li>
-=======
+
             </li>
-            <li><a class="" href="{{ route('admin.room') }}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/room') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Phòng</span>
                 </a>
             </li>
-            <li><a class="" href="{{ route('admin.booking') }}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/booking') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Booking</span>
                 </a>
             </li>
-            <li><a class="" href="{{ route('admin.service') }}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Dịch vụ</span>
                 </a>
             </li>
-            <li><a class="" href="{{url('admin/blogs')}}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/blogs') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Blog</span>
                 </a>
             </li>
-            <li><a class="" href="{{ route('admin.review') }}" aria-expanded="false">
+            <li><a class="" href="{{ url('admin/review') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Đánh giá</span>
                 </a>
             </li>
 
->>>>>>> 31df111077d8670273ff16baba8755a9cfad6f51
         </ul>
 
 

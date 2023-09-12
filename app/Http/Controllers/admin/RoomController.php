@@ -25,30 +25,30 @@ class RoomController extends Controller
      * Show the form for creating a new resource.
      */
 
-    public function EditImage($array = [])
-    {
-        $id_user = \Auth::user()->id;
-        date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $date = strtotime(date('Y-m-d H:i:s'));
-        foreach($array as $image)
-            {
-                $name = $date."_".$image->getClientOriginalName();
-                $name_2 = "hinh85".$date."_".$image->getClientOriginalName();
-                $name_3 = "hinh329".$date."_".$image->getClientOriginalName();
-                  //$image->move('upload/product/', $name);
-                $path = public_path('upload/product/'.$id_user.'/' . $name);
-                $path2 = public_path('upload/product/'.$id_user.'/' . $name_2);
-                $path3 = public_path('upload/product/'.$id_user.'/' . $name_3);
+    // public function EditImage($array = [])
+    // {
+    //     $id_user = \Auth::user()->id;
+    //     date_default_timezone_set('Asia/Ho_Chi_Minh');
+    //     $date = strtotime(date('Y-m-d H:i:s'));
+    //     foreach($array as $image)
+    //         {
+    //             $name = $date."_".$image->getClientOriginalName();
+    //             $name_2 = "hinh85".$date."_".$image->getClientOriginalName();
+    //             $name_3 = "hinh329".$date."_".$image->getClientOriginalName();
+    //               //$image->move('upload/product/', $name);
+    //             $path = public_path('upload/product/'.$id_user.'/' . $name);
+    //             $path2 = public_path('upload/product/'.$id_user.'/' . $name_2);
+    //             $path3 = public_path('upload/product/'.$id_user.'/' . $name_3);
 
-                Image::make($image->getRealPath())->save($path);
-                Image::make($image->getRealPath())->resize(85, 84)->save($path2);
-                Image::make($image->getRealPath())->resize(329, 380)->save($path3);
+    //             Image::make($image->getRealPath())->save($path);
+    //             Image::make($image->getRealPath())->resize(85, 84)->save($path2);
+    //             Image::make($image->getRealPath())->resize(329, 380)->save($path3);
 
-                $data[] = $name;
-            }
+    //             $data[] = $name;
+    //         }
 
-        return $data;
-     }
+    //     return $data;
+    //  }
 
     public function create(RoomRequest $request)
     {
@@ -89,7 +89,9 @@ class RoomController extends Controller
     public function edit(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+        // $data = $data['id'];
+        $dataRoom = Room::where('id',$data['id'])->get()->toArray();
+        return $dataRoom;
     }
 
 }

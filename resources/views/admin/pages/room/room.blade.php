@@ -119,9 +119,10 @@
                                                 {{ $item['price'] }}
                                             </td>
                                             <td>
-                                                <div class="d-flex">
+                                                <div class="d-flex actionButton" data-id={{ $item['id'] }}>
                                                     <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                                        data-toggle="modal" data-target=".bd-example-modal-lg" id="{{ $item['id'] }}">
+                                                        data-toggle="modal" data-target=".bd-example-modal-lg"
+                                                        id="editButton">
                                                         <i class="fa fa-pencil"></i>
                                                     </button>
                                                     <button
@@ -158,26 +159,31 @@
                                                         <div class="form-group">
                                                             <label class="text-label">Tên phòng</label>
                                                             <input type="text" name="nameRoom" class="form-control"
-                                                                value="">
+                                                                value="" id="nameRoom">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Giá phòng</label>
-                                                            <input type="text" name="price" class="form-control">
+                                                            <input type="text" name="price" class="form-control"
+                                                                id="price">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Số người</label>
-                                                            <input type="text" name="Capacity" class="form-control">
+                                                            <input type="text" name="Capacity" class="form-control"
+                                                                id="Capacity">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <input type="text" name="description"
-                                                                class="form-control">
+                                                            <input class="form-control" id="description"
+                                                                name="description" />
+
+                                                            {{-- <input type="text" name="description"
+                                                                class="form-control" id="description"> --}}
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
@@ -220,31 +226,78 @@
 @endsection
 @section('js')
     <script>
-        document.getElementById("deleteButton").addEventListener("click", function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                    // Thêm mã xử lý xóa tại đây
+        // document.getElementById("button#deleteButton").addEventListener("click", function() {
+
+        //     Swal.fire({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to revert this!",
+        //         icon: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonColor: '#3085d6',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonText: 'Yes, delete it!'
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             Swal.fire(
+        //                 'Deleted!',
+        //                 'Your file has been deleted.',
+        //                 'success'
+        //             )
+        //             // Thêm mã xử lý xóa tại đây
+        //         }
+        //     });
+        // });
+
+        $(document).ready(function() {
+
+            $("button#deleteButton").click(function() {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        );
+                        // Thêm mã xử lý xóa tại đây
+                    }
+                });
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        });
 
-
-
-
-
-
+            $('button#editButton').click(function() {
+                let id = $(this).parent('div.actionButton').attr('data-id');
+                // console.log(id);
+                $.ajax({
+                    url: '/admin/room/edit',
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        console.log(data[0]);
+                        $('input#nameRoom').val(data[0].nameRoom);
+                        $('input#price').val(data[0].price);
+                        $('input#Capacity').val(data[0].Capacity);
+                        $('input#description').val(data[0].description);
+                    },
+                    error: function(e) {
+                        console.log(e.message);
+                    }
+                })
+            })
+        })
     </script>
 @endsection

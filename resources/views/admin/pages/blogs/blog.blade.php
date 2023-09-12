@@ -98,7 +98,7 @@
                                         <div class="d-flex align-items-center"><img src={{"/upload/admin/blogs/".$value['image']}}
                                                 class="rounded-lg mr-2" width="24" alt=""></div>
                                     </td>
-                                    
+
                                     <td>{!!Str::limit($value['description'], 40, '...')!!}</td>
                                     <td>
                                         <div class="d-flex actionButton" data-id={{$value['id']}} >

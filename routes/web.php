@@ -39,21 +39,27 @@ Route::group([
 
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
-    
+
+    Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
-    Route::post('/blogs/update/', [BlogsController::class, 'update']);
-    // Route::get('/blogs/edit', [BlogsController::class, 'edit']);
+
+    Route::get('/blogs', [BlogsController::class, 'index'])->name('admin.blogs');
 
 
-    Route::get('/room', [RoomController::class, 'index'])->name('admin.room');
+    Route::get('/room', [RoomController::class, 'index']);
+    Route::post('/room', [RoomController::class, 'create']);
 
-    Route::get('/typeroom', [TyperoomController::class, 'index'])->name('admin.typeroom');
+    Route::get('/room/edit/', [RoomController::class, 'edit']);
+    Route::post('/room/edit/', [RoomController::class, 'edit']);
 
-    Route::get('/booking', [BookingController::class, 'index'])->name('admin.booking');
 
-    Route::get('/service', [ServiceController::class, 'index'])->name('admin.service');
+    Route::get('/typeroom', [TyperoomController::class, 'index']);
 
-    Route::get('/reviewroom', [reviewroomcontroller::class, 'index'])->name('admin.review');
+    Route::get('/booking', [BookingController::class, 'index']);
+
+    Route::get('/service', [ServiceController::class, 'index']);
+
+    Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
 
 });
 
