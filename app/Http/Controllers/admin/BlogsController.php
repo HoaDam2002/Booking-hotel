@@ -30,7 +30,7 @@ class BlogsController extends Controller
 
         // dd($request->all());
         $file = $request->image;
-        // dd($file);   
+        // dd($file);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $date = strtotime(date('Y-m-d H:i:s'));
         if(!empty($file)) {
@@ -45,7 +45,7 @@ class BlogsController extends Controller
         }else {
             return redirect()->back()->withErrors('Add Blog Fail');
         }
-        
+
     }
 
 
@@ -57,8 +57,8 @@ class BlogsController extends Controller
     }
 
     public function update(Request $request)
-    {   
-        
+    {
+
         $data = $request->all();
         $file = $request->image;
         $blog = Blogs::findOrFail($data['id']);
@@ -76,7 +76,7 @@ class BlogsController extends Controller
         }
 
         if($blog->update($data)) {
-            
+
             if(!empty($file)){
                 unlink('upload/admin/blogs/'.$imageOld);
                 $file->move('upload/admin/blogs', $date.'_'.$file->getClientOriginalName());
@@ -86,7 +86,7 @@ class BlogsController extends Controller
         }else {
             return redirect()->back()->withErrors('Update blog fail');
         }
-        
+
     }
 
 
@@ -135,7 +135,7 @@ class BlogsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    
+
 
     /**
      * Remove the specified resource from storage.

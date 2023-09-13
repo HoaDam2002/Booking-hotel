@@ -14,7 +14,13 @@ class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      */
+    public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $typeroom = Typeroom::all()->toArray();
@@ -82,6 +88,10 @@ class RoomController extends Controller
         // dd($data['id']);
         $flag = 1;
         $roomFind = Room::findOrFail($data['id']);
+
+        // $item = $roomFind->with('typeRoom')->get()->toArray();
+        // dd($item);
+        // dd($roomFind);
         $oldImage = $roomFind->image;
         // dd($roomFind->image);
         if($request->hasfile('image')){
@@ -114,7 +124,12 @@ class RoomController extends Controller
         }
 
         if($flag == 2){
-            return response()->json(['data' => json_encode($data)]);
+            $item = Room::findOrFail($data['id'])->with('typeRoom')->get()->toArray();
+
+            $itemCon = $item[0]['type_room']['typeName'];
+
+
+            return response()->json(['data' => json_encode($data),'room' => $itemCon]);
         }else{
             return response()->json(['errors' => 'lỗi']);
         }
