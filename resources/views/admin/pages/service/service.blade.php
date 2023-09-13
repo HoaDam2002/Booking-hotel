@@ -103,7 +103,7 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <textarea class="form-control" id="editor" name="editor"></textarea>
+                                                            <textarea class="form-control" id="editor1" name="editor"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
