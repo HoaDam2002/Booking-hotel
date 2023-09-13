@@ -48,8 +48,14 @@ Route::group([
 
 
 
+
     //////
-    Route::get('/room', [RoomController::class, 'index'])->name('admin.room');
+    Route::get('/room', [RoomController::class, 'index']);
+    Route::post('/room', [RoomController::class, 'create']);
+    Route::get('/room/edit/', [RoomController::class, 'edit']);
+    Route::post('/room/edit/', [RoomController::class, 'edit']);
+    Route::post('/room/edit/update', [RoomController::class, 'update']);
+    Route::post('/room/delete', [RoomController::class, 'delete']);
 
     Route::get('/typeroom', [TyperoomController::class, 'index'])->name('admin.typeroom');
 
