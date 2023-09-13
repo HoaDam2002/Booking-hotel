@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{csrf_token()}}">
-    
+
     <title>Mediqu - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href=" {{ asset('assets_admin/images/favicon.png') }}">
@@ -60,6 +60,13 @@
                 console.error( error );
             } );
         </script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor1' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+            </script>
     @yield('js')
 </body>
 </html>

@@ -179,11 +179,7 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <input class="form-control" id="description"
-                                                                name="description" />
-
-                                                            {{-- <input type="text" name="description"
-                                                                class="form-control" id="description"> --}}
+                                                            <textarea class="form-control" id="editor1" name="description"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
@@ -191,7 +187,7 @@
                                                             <label>Loại phòng</label>
                                                             <select name="roomTypeId" class="form-control"
                                                                 id="roomTypeId">
-                                                                <option value=""></option>
+
                                                                 @if (isset($typeroom))
                                                                     @foreach ($typeroom as $item)
                                                                         <option value="{{ $item['id'] }}">
@@ -217,7 +213,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" id="updateButton" data-id="{{ $item['id'] }}"
+                                        <button type="submit" id="updateButton" data-id=""
                                             class="btn btn-primary">Save
                                             changes</button>
                                     </div>
@@ -272,85 +268,6 @@
                 });
             });
 
-            $("button#updateButton").click(function() {
-                var nameRoom = $(this).closest('.modal-content').find('input#nameRoom').val()
-                var price = $(this).closest('.modal-content').find('input#price').val()
-                var Capacity = $(this).closest('.modal-content').find('input#Capacity').val()
-                var description = $(this).closest('.modal-content').find('input#description').val()
-                var roomTypeId = $(this).closest('.modal-content').find('select#roomTypeId').val()
-                var image = $(this).closest('.modal-content').find('input.editImageRoom')[0].files[0] || '';
-                var id = $(this).closest('.modal-content').find('input#nameRoom').attr('data-id');
-                let form = new FormData();
-                form.append('nameRoom', nameRoom);
-                form.append('price', price);
-                form.append('Capacity', Capacity);
-                form.append('description', description);
-                form.append('roomTypeId', roomTypeId);
-                form.append('image', image);
-                form.append('id', id);
-
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Got it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: "{{ url('admin/room/edit/update') }}",
-                            type: 'POST',
-                            processData: false,
-                            mimeType: "multipart/form-data",
-                            contentType: false,
-                            dataType: 'json',
-                            data: form,
-                            success: function(response) {
-                                if (response) {
-                                    let items = JSON.parse(response.data);
-                                    console.log(items)
-                                    $('strong#nameRoom').text(items['nameRoom']);
-                                    $('td#Capacity').text(items['Capacity']);
-                                    $('td#roomTypeId').text(items['roomTypeId']);
-                                    $('td#price').text(items['price']);
-
-                                    let image = items['image'];
-
-                                    let url = "{{ asset('upload/admin/room') }}/" +image;
-
-                                    console.log(url)
-
-                                    $('img#renderimg').attr('src', url)
-
-                                    Swal.fire(
-                                        'Thành công',
-                                        'Phòng của bạn đã được cập nhật.',
-                                        'success'
-                                    );
-                                } else {
-                                    // console.log(res)
-
-                                    Swal.fire(
-                                        'Lỗi',
-                                        'Phòng của bạn chưa cập nhật.',
-                                        'error'
-                                    );
-                                }
-                            }
-                        })
-
-                    }
-                });
-
-
-
-                // if (flag) {
-                //
-                // }
-            });
-
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -381,6 +298,108 @@
                         console.log(e.message);
                     }
                 })
+
+
+
+                let __this = $(this).closest('tr')
+
+                $("button#updateButton").click(function() {
+                    var nameRoom = $(this).closest('.modal-content').find('input#nameRoom').val()
+                    var price = $(this).closest('.modal-content').find('input#price').val()
+                    var Capacity = $(this).closest('.modal-content').find('input#Capacity').val()
+                    var description = $(this).closest('.modal-content').find('input#description')
+                        .val()
+                    var roomTypeId = $(this).closest('.modal-content').find('select#roomTypeId')
+                        .val()
+                    var image = $(this).closest('.modal-content').find('input.editImageRoom')[0]
+                        .files[0] || '';
+                    var id = $(this).closest('.modal-content').find('input#nameRoom').attr(
+                        'data-id');
+                    let form = new FormData();
+                    form.append('nameRoom', nameRoom);
+                    form.append('price', price);
+                    form.append('Capacity', Capacity);
+                    form.append('description', description);
+                    form.append('roomTypeId', roomTypeId);
+                    form.append('image', image);
+                    form.append('id', id);
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Got it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: "{{ url('admin/room/edit/update') }}",
+                                type: 'POST',
+                                processData: false,
+                                mimeType: "multipart/form-data",
+                                contentType: false,
+                                dataType: 'json',
+                                data: form,
+                                success: function(response) {
+                                    if (response) {
+                                        let items = JSON.parse(response.data);
+                                        let type = response.room
+                                        console.log(items)
+                                        __this.find('strong#nameRoom')
+                                            .text(items['nameRoom']);
+                                        __this.find('td#Capacity').text(items[
+                                            'Capacity']);
+
+
+                                        __this.find('td#roomTypeId').text(type)
+
+                                        // __this.find('td#roomTypeId').val(items[
+                                        //     'roomTypeId']);
+                                        // _this.find('td#roomTypeId option:selected').text()
+
+                                        __this.find('td#price').text(items[
+                                            'price']);
+
+                                        let image = items['image'];
+
+                                        let url =
+                                            "{{ asset('upload/admin/room') }}/" +
+                                            image;
+
+                                        // console.log(url)
+
+                                        __this.find('img#renderimg').attr('src',
+                                            url)
+
+                                        Swal.fire(
+                                            'Thành công',
+                                            'Phòng của bạn đã được cập nhật.',
+                                            'success'
+                                        );
+                                    } else {
+                                        // console.log(res)
+
+                                        Swal.fire(
+                                            'Lỗi',
+                                            'Phòng của bạn chưa cập nhật.',
+                                            'error'
+                                        );
+                                    }
+                                }
+                            })
+
+                        }
+                    });
+
+
+
+                    // if (flag) {
+                    //
+                    // }
+                });
+
             })
 
 
