@@ -12,6 +12,7 @@ class Room extends Model
     protected $table = 'rooms';
 
     protected $fillable = [
+        'id',
         'nameRoom',
         'price',
         'Capacity',
@@ -20,4 +21,8 @@ class Room extends Model
         'image',
         'idHotel'
     ];
+
+    public function typeRoom(){
+        return $this->belongsto('App\Models\Typeroom','roomTypeId');
+    }
 }
