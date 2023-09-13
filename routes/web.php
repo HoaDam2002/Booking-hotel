@@ -44,14 +44,18 @@ Route::group([
     Route::get('/blogs/edit/', [BlogsController::class, 'edit']);
     Route::post('/blogs/edit/', [BlogsController::class, 'edit']);
 
-    Route::get('/blogs', [BlogsController::class, 'index'])->name('admin.blogs');
 
 
+    Route::get('/blogs', [BlogsController::class, 'index']);
+
+    //rooms
     Route::get('/room', [RoomController::class, 'index']);
     Route::post('/room', [RoomController::class, 'create']);
-
     Route::get('/room/edit/', [RoomController::class, 'edit']);
     Route::post('/room/edit/', [RoomController::class, 'edit']);
+    Route::post('/room/edit/update', [RoomController::class, 'update']);
+    Route::post('/room/delete', [RoomController::class, 'delete']);
+
 
 
     Route::get('/typeroom', [TyperoomController::class, 'index']);

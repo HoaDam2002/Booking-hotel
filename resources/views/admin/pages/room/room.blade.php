@@ -104,16 +104,16 @@
                                 @if (isset($rooms))
                                     @foreach ($rooms as $item)
                                         <tr>
-                                            <td><strong>{{ $item['nameRoom'] }}</strong></td>
+                                            <td><strong id="nameRoom">{{ $item['nameRoom'] }}</strong></td>
                                             <td>
                                                 <div class="d-flex align-items-center"><img
                                                         src=" {{ asset('upload/admin/room/' . $item['image']) }}"
-                                                        class="rounded-lg mr-2" width="24" alt=""> <span
-                                                        class="w-space-no"></span></div>
+                                                        class="rounded-lg mr-2" width="24" alt=""
+                                                        id="renderimg"> <span class="w-space-no"></span></div>
                                             </td>
-                                            <td>{{ $item['Capacity'] }} </td>
-                                            <td>{{ $item['roomTypeId'] }}</td>
-                                            <td>
+                                            <td id="Capacity">{{ $item['Capacity'] }} </td>
+                                            <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
+                                            <td id="price">
                                                 {{-- <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
                                             Canceled</div> --}}
                                                 {{ $item['price'] }}
@@ -127,7 +127,7 @@
                                                     </button>
                                                     <button
                                                         class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                        id="deleteButton">
+                                                        id="deleteButton" data-id={{ $item['id'] }}>
                                                         <i class="fa fa-trash">
 
                                                         </i>
@@ -152,8 +152,8 @@
                                     <div class="modal-body">
                                         <div class="card-body">
 
-                                            <form action="#" id="step-form-horizontal" class="step-form-horizontal"
-                                                enctype="multipart/form-data">
+                                            <form action="#" id="step-form-horizontal"
+                                                class="step-form-horizontal form-edit" enctype="multipart/form-data">
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
@@ -189,7 +189,8 @@
                                                     <div class="col-lg-12 mb-3">
                                                         <div class="form-group">
                                                             <label>Loại phòng</label>
-                                                            <select name="roomTypeId" class="form-control">
+                                                            <select name="roomTypeId" class="form-control"
+                                                                id="roomTypeId">
                                                                 <option value=""></option>
                                                                 @if (isset($typeroom))
                                                                     @foreach ($typeroom as $item)
@@ -203,7 +204,10 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Hình ảnh</label>
-                                                            <input type="file" name="image" class="form-control">
+
+                                                            <input type="file" name="image"
+                                                                class="form-control editImageRoom" id="inputGroupPrepend2"
+                                                                aria-describedby="inputGroupPrepend2">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -213,7 +217,9 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger light"
                                             data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" id="updateButton" data-id="{{ $item['id'] }}"
+                                            class="btn btn-primary">Save
+                                            changes</button>
                                     </div>
                                 </div>
                             </div>
@@ -226,31 +232,12 @@
 @endsection
 @section('js')
     <script>
-        // document.getElementById("button#deleteButton").addEventListener("click", function() {
-
-        //     Swal.fire({
-        //         title: 'Are you sure?',
-        //         text: "You won't be able to revert this!",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#3085d6',
-        //         cancelButtonColor: '#d33',
-        //         confirmButtonText: 'Yes, delete it!'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             Swal.fire(
-        //                 'Deleted!',
-        //                 'Your file has been deleted.',
-        //                 'success'
-        //             )
-        //             // Thêm mã xử lý xóa tại đây
-        //         }
-        //     });
-        // });
-
         $(document).ready(function() {
 
             $("button#deleteButton").click(function() {
+
+                var id = $(this).attr('data-id');
+
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -261,14 +248,107 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        );
-                        // Thêm mã xử lý xóa tại đây
+                        $(this).closest('tr').remove()
+                        $.ajax({
+                            url: "{{ url('admin/room/delete') }}",
+                            method: "POST",
+                            data: {
+                                id: id
+                            },
+                            success: function(data) {
+                                if (data) {
+
+                                    Swal.fire(
+                                        'Xóa thành công!',
+                                        'Phòng của bạn đã được xóa',
+                                        'success'
+                                    );
+
+
+                                }
+                            }
+                        })
                     }
                 });
+            });
+
+            $("button#updateButton").click(function() {
+                var nameRoom = $(this).closest('.modal-content').find('input#nameRoom').val()
+                var price = $(this).closest('.modal-content').find('input#price').val()
+                var Capacity = $(this).closest('.modal-content').find('input#Capacity').val()
+                var description = $(this).closest('.modal-content').find('input#description').val()
+                var roomTypeId = $(this).closest('.modal-content').find('select#roomTypeId').val()
+                var image = $(this).closest('.modal-content').find('input.editImageRoom')[0].files[0] || '';
+                var id = $(this).closest('.modal-content').find('input#nameRoom').attr('data-id');
+                let form = new FormData();
+                form.append('nameRoom', nameRoom);
+                form.append('price', price);
+                form.append('Capacity', Capacity);
+                form.append('description', description);
+                form.append('roomTypeId', roomTypeId);
+                form.append('image', image);
+                form.append('id', id);
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Got it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "{{ url('admin/room/edit/update') }}",
+                            type: 'POST',
+                            processData: false,
+                            mimeType: "multipart/form-data",
+                            contentType: false,
+                            dataType: 'json',
+                            data: form,
+                            success: function(response) {
+                                if (response) {
+                                    let items = JSON.parse(response.data);
+                                    console.log(items)
+                                    $('strong#nameRoom').text(items['nameRoom']);
+                                    $('td#Capacity').text(items['Capacity']);
+                                    $('td#roomTypeId').text(items['roomTypeId']);
+                                    $('td#price').text(items['price']);
+
+                                    let image = items['image'];
+
+                                    let url = "{{ asset('upload/admin/room') }}/" +image;
+
+                                    console.log(url)
+
+                                    $('img#renderimg').attr('src', url)
+
+                                    Swal.fire(
+                                        'Thành công',
+                                        'Phòng của bạn đã được cập nhật.',
+                                        'success'
+                                    );
+                                } else {
+                                    // console.log(res)
+
+                                    Swal.fire(
+                                        'Lỗi',
+                                        'Phòng của bạn chưa cập nhật.',
+                                        'error'
+                                    );
+                                }
+                            }
+                        })
+
+                    }
+                });
+
+
+
+                // if (flag) {
+                //
+                // }
             });
 
             $.ajaxSetup({
@@ -279,25 +359,32 @@
 
             $('button#editButton').click(function() {
                 let id = $(this).parent('div.actionButton').attr('data-id');
-                // console.log(id);
+                console.log(id);
                 $.ajax({
-                    url: '/admin/room/edit',
+                    url: '/admin/room/edit/',
                     type: 'POST',
                     data: {
                         id: id
                     },
                     success: function(data) {
-                        console.log(data[0]);
+                        // console.log(data[0]);
+
                         $('input#nameRoom').val(data[0].nameRoom);
                         $('input#price').val(data[0].price);
                         $('input#Capacity').val(data[0].Capacity);
                         $('input#description').val(data[0].description);
+                        $('select#roomTypeId').val(data[0].roomTypeId);
+                        $('input#nameRoom').attr('data-id', data[0].id);
+
                     },
                     error: function(e) {
                         console.log(e.message);
                     }
                 })
             })
+
+
+
         })
     </script>
 @endsection

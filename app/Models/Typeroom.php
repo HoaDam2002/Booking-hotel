@@ -14,4 +14,8 @@ class Typeroom extends Model
     protected $fillable = [
         'typeName',
     ];
+
+    public function room(){
+        return $this->hasMany('App\Models\Room','roomTypeId');
+    }
 }

@@ -98,13 +98,8 @@
                                         <div class="d-flex align-items-center"><img src={{"/upload/admin/blogs/".$value['image']}}
                                                 class="rounded-lg mr-2 imgBlogs" width="24" alt=""></div>
                                     </td>
-<<<<<<< HEAD
 
-                                    <td>{!!Str::limit($value['description'], 40, '...')!!}</td>
-=======
-                                    
                                     <td class="descBlogs">{!!Str::limit($value['description'], 40, '...')!!}</td>
->>>>>>> 4e4bdfca2e1be93562508eeb2bd86a88e351b1fa
                                     <td>
                                         <div class="d-flex actionButton" data-id={{$value['id']}} >
                                             <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
@@ -237,7 +232,7 @@
                     }
                 });
             });
-        
+
 
 
         $(document).ready(function() {
@@ -255,7 +250,7 @@
                     type: 'POST',
                     data: {
                         id: id,
-                        
+
                     },
                     success: function (data) {
                         // console.log(data);
@@ -269,7 +264,7 @@
                 })
                 //gọi tới thẻ button editbutton rồi gọi đến thẻ cha tr để render sau khi update
                 let _this = $(this).closest('tr');
-            
+
                 ///////click save update
                 $('button.saveUpdateButton').click(function () {
                     let image = $('input.editImageBlog')[0].files[0] || '';
@@ -306,7 +301,7 @@
                 })
             })
 
-            //delete button 
+            //delete button
             // $('button#deleteButton').click(function () {
             //     let id = $(this).parent('div.actionButton').attr('data-id');
                 // $.ajax({
@@ -317,7 +312,7 @@
                 //     },
                 //     success: function (data) {
                 //         console.log(data);
-                        
+
                 //     },
                 //     error: function (e) {
                 //         console.log(e.message);
