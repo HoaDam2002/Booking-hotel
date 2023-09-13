@@ -159,15 +159,6 @@
                                                             <textarea class="form-control editDescriptionBlog" id="editor" name="editor"></textarea>
                                                         </div>
                                                     </div>
-                                                    {{-- <div class="col-lg-12 mb-3">
-                                                        <div class="form-group">
-                                                            <label>Tình Trạng</label>
-                                                            <select name="trang_thai" class="form-control">
-                                                                <option value="1">Hiển Thị</option>
-                                                                <option value="0">Tạm Tắt</option>
-                                                            </select>
-                                                        </div>
-                                                    </div> --}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-danger light"
@@ -223,12 +214,6 @@
                             'success'
                         );
                         // Thêm mã xử lý xóa tại đây
-                    }else {
-                        Swal.fire(
-                            'Error!',
-                            'An error occurred while deleting the file.',
-                            'error'
-                        );
                     }
                 });
             });
@@ -267,58 +252,60 @@
 
                 ///////click save update
                 $('button.saveUpdateButton').click(function () {
-                    let image = $('input.editImageBlog')[0].files[0] || '';
-                    let id = $(this).attr('data-id');
-                    let title = $('input.editNameBlog').val();
-                    let description = $('textarea.editDescriptionBlog').val();
+                    Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Update it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let image = $('input.editImageBlog')[0].files[0] || '';
+                            let id = $(this).attr('data-id');
+                            let title = $('input.editNameBlog').val();
+                            let description = $('textarea.editDescriptionBlog').val();
 
-                    let form = new FormData();
-                    form.append('image', image);
-                    form.append('title', title);
-                    form.append('id', id);
-                    form.append('description', description);
+                                    let form = new FormData();
+                            form.append('image', image);
+                            form.append('title', title);
+                            form.append('id', id);
+                            form.append('description', description);
 
-                    $.ajax({
-                        url: '/admin/blogs/update',
-                        type: 'POST',
-                        processData: false,
-                        mimeType: "multipart/form-data",
-                        contentType: false,
-                        data: form,
-                        success: function (data) {
-                            data = JSON.parse(data);
+                            $.ajax({
+                                url: '/admin/blogs/update',
+                                type: 'POST',
+                                processData: false,
+                                mimeType: "multipart/form-data",
+                                contentType: false,
+                                data: form,
+                                success: function (data) {
+                                    data = JSON.parse(data);
 
-                            //render khi update
-                            _this.find('.idBlogs').text(data.id);
-                            _this.find('.titleBlogs').text(data.title);
-                            _this.find('.descBlogs').text(data.description);
-                            _this.find('.imgBlogs').attr('src', `/upload/admin/blogs/${data.image}`);
-                        },
-                        error: function (e) {
-                            console.log(e.message);
+                                    //render khi update
+                                    _this.find('.idBlogs').text(data.id);
+                                    _this.find('.titleBlogs').text(data.title);
+                                    _this.find('.descBlogs').text(data.description);
+                                    _this.find('.imgBlogs').attr('src', `/upload/admin/blogs/${data.image}`);
+                                },
+                                error: function (e) {
+                                    console.log(e.message);
+                                }
+                            })
+
+                            Swal.fire(
+                                'Update!',
+                                'Your file has been Update.',
+                                'success'
+                            );
                         }
                     })
+                    
+
+                    
                 })
             })
-
-            //delete button
-            // $('button#deleteButton').click(function () {
-            //     let id = $(this).parent('div.actionButton').attr('data-id');
-                // $.ajax({
-                //     url: '/admin/blogs/delete',
-                //     type: 'POST',
-                //     data: {
-                //         id: id,
-                //     },
-                //     success: function (data) {
-                //         console.log(data);
-
-                //     },
-                //     error: function (e) {
-                //         console.log(e.message);
-                //     }
-                // })
-            // })
         })
     </script>
 @endsection
