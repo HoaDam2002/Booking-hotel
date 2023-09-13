@@ -301,7 +301,7 @@
                                     </g>
                                 </svg></a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View
+                                <li  class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View
                                     profile</li>
                                 <li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i> Add to close
                                     friends</li>
@@ -751,7 +751,7 @@
                             <img src="/assets_admin/images/profile/pic1.jpg" width="20" alt="" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="../assets_admin_admin/app-profile.html" class="dropdown-item ai-icon">
+                            <a href="{{ url('admin/profile') }}" class="dropdown-item ai-icon">
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"

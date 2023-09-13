@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\TyperoomController;
 use App\Http\Controllers\admin\LogoutController;
+use App\Http\Controllers\admin\profilecontroller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Service;
@@ -64,6 +65,10 @@ Route::group([
     Route::get('/service', [ServiceController::class, 'index'])->name('admin.service');
 
     Route::get('/reviewroom', [reviewroomcontroller::class, 'index'])->name('admin.review');
+
+    Route::get('/profile', [profilecontroller::class, 'index']);
+
+
 
     Route::get('/logout', [LogoutController::class, 'logout']);
 
