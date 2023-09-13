@@ -1,8 +1,8 @@
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
-        <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png')}}">
+        <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png') }}">
         <img class="logo-compact" src="{{ asset('/assets_admin/images/logo-text.png') }}">
-        <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}" >
+        <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}">
     </a>
 
     <div class="nav-control">
@@ -68,8 +68,7 @@
                             <li class="active dz-chat-user">
                                 <div class="d-flex bd-highlight">
                                     <div class="img_cont">
-                                        <img src="images/avatar/1.jpg" class="rounded-circle user_img"
-                                            alt="" />
+                                        <img src="images/avatar/1.jpg" class="rounded-circle user_img" alt="" />
                                         <span class="online_icon"></span>
                                     </div>
                                     <div class="user_info">
@@ -301,7 +300,7 @@
                                     </g>
                                 </svg></a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li  class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View
+                                <li class="dropdown-item"><i class="fa fa-user-circle text-primary mr-2"></i> View
                                     profile</li>
                                 <li class="dropdown-item"><i class="fa fa-users text-primary mr-2"></i> Add to close
                                     friends</li>
@@ -811,6 +810,11 @@
                     <span class="nav-text">Booking</span>
                 </a>
             </li>
+            <li><a class="" href="{{ url('admin/user') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Khách hàng</span>
+                </a>
+            </li>
             <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Dịch vụ</span>
@@ -826,6 +830,7 @@
                     <span class="nav-text">Đánh giá</span>
                 </a>
             </li>
+
 
         </ul>
 
