@@ -96,6 +96,7 @@
                                     <th><strong>Hình ảnh</strong></th>
                                     <th><strong>Số người</strong></th>
                                     <th><strong>Loại phòng</strong></th>
+                                    <th><strong>Nội dung</strong></th>
                                     <th><strong>Giá</strong></th>
 
                                 </tr>
@@ -113,11 +114,15 @@
                                             </td>
                                             <td id="Capacity">{{ $item['Capacity'] }} </td>
                                             <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
+                                            <td>{{ $item['description'] }}</td>
+
                                             <td id="price">
                                                 {{-- <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
                                             Canceled</div> --}}
                                                 {{ $item['price'] }}
                                             </td>
+
+
                                             <td>
                                                 <div class="d-flex actionButton" data-id={{ $item['id'] }}>
                                                     <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"

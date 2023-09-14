@@ -48,9 +48,9 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="{{asset('frontend/img/hero/hero-1.jpg')}}"></div>
-            <div class="hs-item set-bg" data-setbg="{{asset('frontend/img/hero/hero-2.jpg')}}"></div>
-            <div class="hs-item set-bg" data-setbg="{{asset('frontend/img/hero/hero-3.jpg')}}"></div>
+            <div class="hs-item set-bg" data-setbg="{{ asset('frontend/img/hero/hero-1.jpg') }}"></div>
+            <div class="hs-item set-bg" data-setbg="{{ asset('frontend/img/hero/hero-2.jpg') }}"></div>
+            <div class="hs-item set-bg" data-setbg="{{ asset('frontend/img/hero/hero-3.jpg') }}"></div>
         </div>
     </section>
     <!-- Hero Section End -->
@@ -77,10 +77,10 @@
                     <div class="about-pic">
                         <div class="row">
                             <div class="col-sm-6">
-                                <img src="{{asset('frontend/img/about/about-1.jpg')}}" alt="">
+                                <img src="{{ asset('frontend/img/about/about-1.jpg') }}" alt="">
                             </div>
                             <div class="col-sm-6">
-                                <img src="{{asset('frontend/img/about/about-2.jpg')}}" alt="">
+                                <img src="{{ asset('frontend/img/about/about-2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -98,13 +98,17 @@
                     <div class="section-title">
                         <span>What We Do</span>
                         <h2>Discover Our Services</h2>
+
+
                     </div>
                 </div>
             </div>
             <div class="row">
+
                 <div class="col-lg-4 col-sm-6">
                     <div class="service-item">
                         <i class="flaticon-036-parking"></i>
+
                         <h4>Travel Plan</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna.</p>
@@ -160,37 +164,39 @@
         <div class="container-fluid">
             <div class="hp-room-items">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{asset('frontend/img/room/room-b1.jpg')}}">
-                            <div class="hr-text">
-                                <h3>Double Room</h3>
-                                <h2>199$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
+                    @if (isset($rooms))
+                        @foreach ($rooms as $item)
+                            <div class="col-lg-3 col-md-6">
+                                <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b1.jpg') }}">
+                                    <div class="hr-text">
+                                        <h3>{{ $item['description'] }}</h3>
+                                        <h2>{{ $item['price'] }} VND<span>/Pernight</span></h2>
+                                        <table>
+                                            <tbody>
+
+                                                <tr>
+                                                    <td class="r-o">Capacity:</td>
+                                                    <td>Max persion {{ $item['Capacity'] }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="r-o">Kiểu phòng</td>
+                                                    <td>{{ $item['type_room']['typeName'] }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="r-o">Services:</td>
+                                                    <td>Wifi, Television, Bathroom,...</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <a href="#" class="primary-btn">More Details</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                     <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{asset('frontend/img/room/room-b2.jpg')}}">
+                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b2.jpg') }}">
                             <div class="hr-text">
                                 <h3>Premium King Room</h3>
                                 <h2>159$<span>/Pernight</span></h2>
@@ -219,7 +225,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{asset('frontend/img/room/room-b3.jpg')}}">
+                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b3.jpg') }}">
                             <div class="hr-text">
                                 <h3>Deluxe Room</h3>
                                 <h2>198$<span>/Pernight</span></h2>
@@ -248,7 +254,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{asset('frontend/img/room/room-b4.jpg')}}">
+                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b4.jpg') }}">
                             <div class="hr-text">
                                 <h3>Family Room</h3>
                                 <h2>299$<span>/Pernight</span></h2>
@@ -312,7 +318,7 @@
                                 </div>
                                 <h5> - Alexander Vasquez</h5>
                             </div>
-                            <img src="{{asset('frontend/img/testimonial-logo.png')}}" alt="">
+                            <img src="{{ asset('frontend/img/testimonial-logo.png') }}" alt="">
                         </div>
                         <div class="ts-item">
                             <p>After a construction project took longer than expected, my husband, my daughter and I
@@ -329,7 +335,7 @@
                                 </div>
                                 <h5> - Alexander Vasquez</h5>
                             </div>
-                            <img src="{{asset('frontend/img/testimonial-logo.png')}}" alt="">
+                            <img src="{{ asset('frontend/img/testimonial-logo.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -351,7 +357,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="blog-item set-bg" data-setbg="{{asset('frontend/img/blog/blog-1.jpg')}}">
+                    <div class="blog-item set-bg" data-setbg="{{ asset('frontend/img/blog/blog-1.jpg') }}">
                         <div class="bi-text">
                             <span class="b-tag">Travel Trip</span>
                             <h4><a href="#">Tremblant In Canada</a></h4>
@@ -360,7 +366,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="blog-item set-bg" data-setbg="{{asset('frontend/img/blog/blog-2.jpg')}}">
+                    <div class="blog-item set-bg" data-setbg="{{ asset('frontend/img/blog/blog-2.jpg') }}">
                         <div class="bi-text">
                             <span class="b-tag">Camping</span>
                             <h4><a href="#">Choosing A Static Caravan</a></h4>
@@ -369,7 +375,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="blog-item set-bg" data-setbg="{{asset('frontend/img/blog/blog-3.jpg')}}">
+                    <div class="blog-item set-bg" data-setbg="{{ asset('frontend/img/blog/blog-3.jpg') }}">
                         <div class="bi-text">
                             <span class="b-tag">Event</span>
                             <h4><a href="#">Copper Canyon</a></h4>
@@ -378,7 +384,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="blog-item small-size set-bg" data-setbg="{{asset('frontend/img/blog/blog-wide.jpg')}}">
+                    <div class="blog-item small-size set-bg" data-setbg="{{ asset('frontend/img/blog/blog-wide.jpg') }}">
                         <div class="bi-text">
                             <span class="b-tag">Event</span>
                             <h4><a href="#">Trip To Iqaluit In Nunavut A Canadian Arctic City</a></h4>
@@ -387,7 +393,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="blog-item small-size set-bg" data-setbg="{{asset('frontend/img/blog/blog-10.jpg')}}">
+                    <div class="blog-item small-size set-bg" data-setbg="{{ asset('frontend/img/blog/blog-10.jpg') }}">
                         <div class="bi-text">
                             <span class="b-tag">Travel</span>
                             <h4><a href="#">Traveling To Barcelona</a></h4>
