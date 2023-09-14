@@ -12,6 +12,8 @@ use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\TyperoomController;
 use App\Http\Controllers\admin\LogoutController;
+use App\Http\Controllers\admin\profilecontroller;
+use App\Http\Controllers\admin\usercontroller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Service;
@@ -64,12 +66,21 @@ Route::group([
     Route::post('/room/delete', [RoomController::class, 'delete']);
 
     Route::get('/typeroom', [TyperoomController::class, 'index']);
+    Route::post('/typeroom', [TyperoomController::class, 'create']);
+    Route::post('/typeroom/delete', [TyperoomController::class, 'delete']);
+
 
     Route::get('/booking', [BookingController::class, 'index']);
 
     Route::get('/service', [ServiceController::class, 'index']);
 
     Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
+
+    Route::get('/profile', [profilecontroller::class, 'index']);
+
+    Route::get('/user', [usercontroller::class, 'index']);
+
+
 
     Route::get('/logout', [LogoutController::class, 'logout']);
 

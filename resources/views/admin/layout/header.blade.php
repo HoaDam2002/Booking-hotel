@@ -1,8 +1,8 @@
 <div class="nav-header">
     <a href="index.html" class="brand-logo">
-        <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png')}}">
+        <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png') }}">
         <img class="logo-compact" src="{{ asset('/assets_admin/images/logo-text.png') }}">
-        <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}" >
+        <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}">
     </a>
 
     <div class="nav-control">
@@ -68,8 +68,7 @@
                             <li class="active dz-chat-user">
                                 <div class="d-flex bd-highlight">
                                     <div class="img_cont">
-                                        <img src="images/avatar/1.jpg" class="rounded-circle user_img"
-                                            alt="" />
+                                        <img src="images/avatar/1.jpg" class="rounded-circle user_img" alt="" />
                                         <span class="online_icon"></span>
                                     </div>
                                     <div class="user_info">
@@ -751,7 +750,7 @@
                             <img src="/assets_admin/images/profile/pic1.jpg" width="20" alt="" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="../assets_admin_admin/app-profile.html" class="dropdown-item ai-icon">
+                            <a href="{{ url('admin/profile') }}" class="dropdown-item ai-icon">
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -811,6 +810,11 @@
                     <span class="nav-text">Booking</span>
                 </a>
             </li>
+            <li><a class="" href="{{ url('admin/user') }}" aria-expanded="false">
+                    <i class="flaticon-381-networking"></i>
+                    <span class="nav-text">Khách hàng</span>
+                </a>
+            </li>
             <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">Dịch vụ</span>
@@ -826,6 +830,7 @@
                     <span class="nav-text">Đánh giá</span>
                 </a>
             </li>
+
 
         </ul>
 

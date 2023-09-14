@@ -23,7 +23,9 @@ class TyperoomController extends Controller
 
     public function index()
     {
-        return view('admin.pages.typeroom.typeroom');
+        $data = Typeroom::all()->toArray();
+        // dd($data);
+        return view('admin.pages.typeroom.typeroom', compact('data'));
     }
 
     /**
@@ -32,11 +34,21 @@ class TyperoomController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
-        // dd($data);
+
         if(Typeroom::create($data)){
             return redirect()->back()->with('success',__('Update profile success.'));
         }else{
             return redirect()->back()->withErrors('Update profile error');
+        }
+    }
+
+    public function delete(Request $request) {
+        $data = $request->all();
+
+        if(Typeroom::where('id', $data['id'])->delete()) {
+            return redirect()->back()->with('success',__('Delete Blog success'));
+        }else {
+            return redirect()->back()->withErrors('Delete Blog Error');
         }
     }
 
