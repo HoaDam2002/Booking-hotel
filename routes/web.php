@@ -57,7 +57,10 @@ Route::group([
     Route::post('/room/edit/update', [RoomController::class, 'update']);
     Route::post('/room/delete', [RoomController::class, 'delete']);
 
-    Route::get('/typeroom', [TyperoomController::class, 'index'])->name('admin.typeroom');
+    Route::get('/typeroom', [TyperoomController::class, 'index']);
+    Route::post('/typeroom', [TyperoomController::class, 'create']);
+    Route::post('/typeroom/delete', [TyperoomController::class, 'delete']);
+
 
     Route::get('/booking', [BookingController::class, 'index'])->name('admin.booking');
 

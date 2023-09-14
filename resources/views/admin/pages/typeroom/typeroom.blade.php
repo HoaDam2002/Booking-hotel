@@ -51,34 +51,32 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
-
+                                <th><strong>ID</strong></th>
                                 <th><strong>Tên loại phòng</strong></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><strong>542</strong></td>
+                            @foreach ($data as $value)
+                                <tr>
+                                    <td><strong>{{$value['id']}}</strong></td>
+                                    <td><strong>{{$value['typeName']}}</strong></td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <button
+                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                id="deleteButton" data-id={{$value['id']}}>
+                                                <i class="fa fa-trash">
 
-                                <td>
-                                    <div class="d-flex">
-                                        <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                            data-toggle="modal" data-target=".bd-example-modal-lg">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                        <button
-                                            class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                            id="deleteButton">
-                                            <i class="fa fa-trash">
-
-                                            </i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                                                </i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     {{-- modal --}}
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" style="display: none;"
+                    {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" style="display: none;"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -109,7 +107,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -118,25 +116,48 @@
 @endsection
 @section('js')
 <script>
-    document.getElementById("deleteButton").addEventListener("click", function () {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-          // Thêm mã xử lý xóa tại đây
-        }
-      });
-    });
+     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $("button#deleteButton").click(function() {
+            let _this = $(this).closest('tr');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let id = $('button#deleteButton').attr('data-id');
+
+                    $.ajax({
+                        url: '/admin/typeroom/delete',
+                        type: 'POST',
+                        data: {id: id},
+                        success: function(data) {
+                            _this.remove()
+                        },
+                        error: function (e) {
+                            console.log(e.message)
+                        }
+                    })
+
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                
+                }
+            });
+        });
+     })
     </script>
 @endsection
