@@ -10,6 +10,8 @@
     <title>Mediqu - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href=" {{ asset('assets_admin/images/favicon.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <link href=" {{ asset('assets_admin/vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href=" {{ asset('assets_admin/vendor/chartist/css/chartist.min.css') }}">
     <link href=" {{ asset('assets_admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">

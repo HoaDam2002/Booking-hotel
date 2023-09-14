@@ -135,7 +135,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    let id = $('button#deleteButton').attr('data-id');
+                    let id = $(this).attr('data-id');
 
                     $.ajax({
                         url: '/admin/typeroom/delete',
