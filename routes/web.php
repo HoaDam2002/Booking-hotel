@@ -17,6 +17,12 @@ use App\Http\Controllers\admin\usercontroller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Service;
+use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\RoomFEController;
+use App\Http\Controllers\frontend\BlogFEController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,11 +70,11 @@ Route::group([
     Route::post('/typeroom/delete', [TyperoomController::class, 'delete']);
 
 
-    Route::get('/booking', [BookingController::class, 'index'])->name('admin.booking');
+    Route::get('/booking', [BookingController::class, 'index']);
 
-    Route::get('/service', [ServiceController::class, 'index'])->name('admin.service');
+    Route::get('/service', [ServiceController::class, 'index']);
 
-    Route::get('/reviewroom', [reviewroomcontroller::class, 'index'])->name('admin.review');
+    Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
 
     Route::get('/profile', [profilecontroller::class, 'index']);
 
@@ -80,5 +86,14 @@ Route::group([
 
 
 });
+
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('room', [RoomFEController::class, 'index']);
+
+Route::get('blog', [BlogFEController::class, 'index']);
+
+
+
 
 
