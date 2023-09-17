@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\accoutuesrcontroller;
 use App\Http\Controllers\admin\Admincontroller;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,8 @@ use App\Models\Service;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\RoomFEController;
 use App\Http\Controllers\frontend\BlogFEController;
-
-
-
+use App\Http\Controllers\loginusercontroller;
+use App\Http\Controllers\registrationcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +81,6 @@ Route::group([
     Route::get('/user', [usercontroller::class, 'index']);
 
 
-
     Route::get('/logout', [LogoutController::class, 'logout']);
 
 
@@ -92,6 +91,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('room', [RoomFEController::class, 'index']);
 
 Route::get('blog', [BlogFEController::class, 'index']);
+Route::get('/login/user', [loginusercontroller::class, 'index']);
+
+Route::get('/register/user', [registrationcontroller::class, 'index']);
+
+
+
+
 
 
 
