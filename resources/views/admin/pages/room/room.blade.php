@@ -50,7 +50,9 @@
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Nội dung</label>
-                                <textarea class="form-control" id="editor" name="description"></textarea>
+
+                                <textarea class="form-control" name="description"></textarea>
+
                             </div>
                         </div>
 
@@ -114,7 +116,7 @@
                                             </td>
                                             <td id="Capacity">{{ $item['Capacity'] }} </td>
                                             <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
-                                            <td>{{ $item['description'] }}</td>
+                                            <td id="description">{{ $item['description'] }}</td>
 
                                             <td id="price">
                                                 {{-- <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
@@ -184,7 +186,10 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <textarea class="form-control" id="editor1" name="description"></textarea>
+
+                                                            <textarea class="form-control description" id="" name="description"></textarea>
+
+
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
@@ -289,12 +294,12 @@
                         id: id
                     },
                     success: function(data) {
-                        // console.log(data[0]);
+                        console.log(data);
 
                         $('input#nameRoom').val(data[0].nameRoom);
                         $('input#price').val(data[0].price);
                         $('input#Capacity').val(data[0].Capacity);
-                        $('input#description').val(data[0].description);
+                        $('textarea.description').val(data[0].description);
                         $('select#roomTypeId').val(data[0].roomTypeId);
                         $('input#nameRoom').attr('data-id', data[0].id);
 
@@ -312,7 +317,7 @@
                     var nameRoom = $(this).closest('.modal-content').find('input#nameRoom').val()
                     var price = $(this).closest('.modal-content').find('input#price').val()
                     var Capacity = $(this).closest('.modal-content').find('input#Capacity').val()
-                    var description = $(this).closest('.modal-content').find('input#description')
+                    var description = $(this).closest('.modal-content').find('textarea.description')
                         .val()
                     var roomTypeId = $(this).closest('.modal-content').find('select#roomTypeId')
                         .val()
@@ -359,6 +364,11 @@
 
 
                                         __this.find('td#roomTypeId').text(type)
+                                        __this.find('td#description').text(
+                                            items[
+                                                'description'])
+
+                                        console.log(items)
 
                                         // __this.find('td#roomTypeId').val(items[
                                         //     'roomTypeId']);
