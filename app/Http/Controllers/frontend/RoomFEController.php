@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Typeroom;
 
 
 class RoomFEController extends Controller
@@ -14,15 +15,18 @@ class RoomFEController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.rooms.room');
+        $rooms = Room::with('typeRoom')->paginate(6);
+        return view('frontend.pages.rooms.room',compact('rooms'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function RenderBlogDetail(string $id)
     {
-        //
+        $roomDetail = Room::with('typeRoom')->where('id',$id)->get();
+
+        return view('frontend.pages.rooms.room-details',compact('roomDetail'));
     }
 
     /**

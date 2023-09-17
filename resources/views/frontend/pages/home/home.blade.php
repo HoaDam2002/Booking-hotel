@@ -165,11 +165,12 @@
             <div class="hp-room-items">
                 <div class="row">
                     @if (isset($rooms))
+
                         @foreach ($rooms as $item)
                             <div class="col-lg-3 col-md-6">
-                                <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b1.jpg') }}">
+                                <div class="hp-room-item set-bg" data-setbg="{{ asset('upload/admin/room/' . $item['image']) }}">
                                     <div class="hr-text">
-                                        <h3>{{ $item['description'] }}</h3>
+                                        <h3>{{ $item['nameRoom'] }}</h3>
                                         <h2>{{ $item['price'] }} VND<span>/Pernight</span></h2>
                                         <table>
                                             <tbody>
@@ -183,8 +184,11 @@
                                                     <td>{{ $item['type_room']['typeName'] }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="r-o">Services:</td>
-                                                    <td>Wifi, Television, Bathroom,...</td>
+                                                    <td class="r-o">Mô tả</td>
+                                                    <td>
+                                                        {!! Str::limit($item['description'], '200') !!}
+                                                    </td>
+
                                                 </tr>
 
                                             </tbody>
@@ -195,94 +199,6 @@
                             </div>
                         @endforeach
                     @endif
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b2.jpg') }}">
-                            <div class="hr-text">
-                                <h3>Premium King Room</h3>
-                                <h2>159$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b3.jpg') }}">
-                            <div class="hr-text">
-                                <h3>Deluxe Room</h3>
-                                <h2>198$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="hp-room-item set-bg" data-setbg="{{ asset('frontend/img/room/room-b4.jpg') }}">
-                            <div class="hr-text">
-                                <h3>Family Room</h3>
-                                <h2>299$<span>/Pernight</span></h2>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td class="r-o">Size:</td>
-                                            <td>30 ft</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Capacity:</td>
-                                            <td>Max persion 5</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Bed:</td>
-                                            <td>King Beds</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="r-o">Services:</td>
-                                            <td>Wifi, Television, Bathroom,...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <a href="#" class="primary-btn">More Details</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

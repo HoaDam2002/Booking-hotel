@@ -62,7 +62,7 @@ class RoomController extends Controller
         // dd($data);
         if(Room::create($data)){
             Image::make($image->getRealPath())->save($path);
-            Image::make($image->getRealPath())->resize(360, 234)->save($path2);
+            Image::make($image->getRealPath())->resize(360, 460)->save($path2);
             Image::make($image->getRealPath())->resize(750, 429)->save($path3);
             return redirect('admin/room')->with('success',__('Thêm phòng thành công.'));
         }else{

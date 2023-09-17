@@ -26,7 +26,7 @@ class RoomRequest extends FormRequest
             'price' => 'required|integer',
             'Capacity' => 'required',
             'roomTypeId' => 'required',
-            'description' => 'required',
+            'description' => 'required|min:100',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -40,6 +40,7 @@ class RoomRequest extends FormRequest
             'max' => '- dung lượng :attribute quá lớn',
             'integer' => '- :attribute phải là kiểu số',
             'unique' => '- :attribute đã tồn tại',
+            'min' => '- :attribute phải trên 200 ký tự'
         ];
     }
 

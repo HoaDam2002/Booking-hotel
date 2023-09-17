@@ -87,12 +87,17 @@ Route::group([
 
 
 });
-
+//home
 Route::get('/', [HomeController::class, 'index']);
 
+//room
 Route::get('room', [RoomFEController::class, 'index']);
+Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
 
+
+//blog
 Route::get('blog', [BlogFEController::class, 'index']);
+
 
 
 

@@ -116,7 +116,9 @@
                                             </td>
                                             <td id="Capacity">{{ $item['Capacity'] }} </td>
                                             <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
-                                            <td id="description">{{ $item['description'] }}</td>
+                                            <td id="description">
+                                                {{ $item['description'] }}
+                                            </td>
 
                                             <td id="price">
                                                 {{-- <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
