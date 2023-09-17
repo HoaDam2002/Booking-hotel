@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\TyperoomController;
 use App\Http\Controllers\admin\LogoutController;
 use App\Http\Controllers\admin\profilecontroller;
 use App\Http\Controllers\admin\usercontroller;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Service;
