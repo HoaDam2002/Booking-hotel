@@ -17,7 +17,7 @@
     </div>
     <div class="header-configure-area">
         <div class="language-option">
-            <img src="{{asset('frontend/img/flag.jpg')}}" alt="">
+            <img src="{{ asset('frontend/img/flag.jpg') }}" alt="">
             <span>EN <i class="fa fa-angle-down"></i></span>
             <div class="flag-dropdown">
                 <ul>
@@ -73,14 +73,13 @@
                 <div class="col-lg-6">
                     <div class="tn-right">
                         <div class="top-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
+
                             <a href="#"><i class="fa fa-tripadvisor"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+
                         </div>
                         <a href="#" class="bk-btn">Booking Now</a>
                         <div class="language-option">
-                            <img src="{{asset('frontend/img/flag.jpg')}}" alt="">
+                            <img src="{{ asset('frontend/img/flag.jpg') }}" alt="">
                             <span>EN <i class="fa fa-angle-down"></i></span>
                             <div class="flag-dropdown">
                                 <ul>
@@ -100,7 +99,7 @@
                 <div class="col-lg-2">
                     <div class="logo">
                         <a href="./index.html">
-                            <img src="{{asset('frontend/img/logo.png')}}" alt="">
+                            <img src="{{ asset('frontend/img/logo.png') }}" alt="">
                         </a>
                     </div>
                 </div>
@@ -121,9 +120,12 @@
                                 </li>
                                 <li><a href="{{ url('/blog') }}">Blogs</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
-                                <li><a href="./contact.html">Login</a></li>
-                                <li><a href="./contact.html">Logout</a></li>
-                                <li><a style="display: none" href="./contact.html">Register</a></li>
+                                <li><a href="{{ url('/login/user') }}">Login</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{ url('/register/user') }}">Register</a></li>
+                                </li>
+                            </ul>
+                            <li><a href="./contact.html">Logout</a></li>
                             </ul>
                         </nav>
                         <div class="nav-right search-switch">
