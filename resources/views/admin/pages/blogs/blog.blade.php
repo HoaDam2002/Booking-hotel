@@ -50,7 +50,7 @@
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Nội dung</label>
-                                <textarea class="form-control" id="editor" name="description"></textarea>
+                                <textarea class="form-control" id="" name="description"></textarea>
                             </div>
                         </div>
                         {{-- <div class="col-lg-12 mb-3">
@@ -156,7 +156,7 @@
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Nội dung</label>
-                                                            <textarea class="form-control editDescriptionBlog" id="editor1" name="editor"></textarea>
+                                                            <textarea class="form-control editDescriptionBlog" id="" name="editor"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
