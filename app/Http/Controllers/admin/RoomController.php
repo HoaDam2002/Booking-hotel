@@ -78,6 +78,7 @@ class RoomController extends Controller
         $data = $request->all();
         // $data = $data['id'];
         $dataRoom = Room::where('id',$data['id'])->get()->toArray();
+        // dd($dataRoom);
         return $dataRoom;
     }
 

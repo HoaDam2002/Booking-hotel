@@ -36,9 +36,9 @@ class TyperoomController extends Controller
         $data = $request->all();
 
         if(Typeroom::create($data)){
-            return redirect()->back()->with('success',__('Update profile success.'));
+            return redirect()->back()->with('success',__('Update Type Room success.'));
         }else{
-            return redirect()->back()->withErrors('Update profile error');
+            return redirect()->back()->withErrors('Update Type Room error');
         }
     }
 
@@ -46,9 +46,9 @@ class TyperoomController extends Controller
         $data = $request->all();
 
         if(Typeroom::where('id', $data['id'])->delete()) {
-            return redirect()->back()->with('success',__('Delete Blog success'));
+            return redirect()->back()->with('success',__('Delete Type Room success'));
         }else {
-            return redirect()->back()->withErrors('Delete Blog Error');
+            return redirect()->back()->withErrors('Delete Type Room Error');
         }
     }
 
