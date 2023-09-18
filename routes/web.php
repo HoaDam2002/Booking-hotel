@@ -22,8 +22,10 @@ use App\Models\Service;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\RoomFEController;
 use App\Http\Controllers\frontend\BlogFEController;
-use App\Http\Controllers\loginusercontroller;
-use App\Http\Controllers\registrationcontroller;
+use App\Http\Controllers\frontend\LoginFEController;
+use App\Http\Controllers\frontend\LogoutFEController;
+
+// use App\Http\Controllers\frontend\registrationcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,9 +98,15 @@ Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
 
 //blog
 Route::get('blog', [BlogFEController::class, 'index']);
-Route::get('/login/user', [loginusercontroller::class, 'index']);
 
-Route::get('/register/user', [registrationcontroller::class, 'index']);
+
+//login/logout
+Route::get('/login/user', [LoginFEController::class, 'index']);
+Route::post('/login/user', [LoginFEController::class, 'login']);
+Route::get('/logout/user', [LogoutFEController::class, 'logout']);
+
+// register
+Route::get('/register/user', [LoginFEController::class, 'register']);
 
 
 

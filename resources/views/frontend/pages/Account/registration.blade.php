@@ -23,14 +23,14 @@
 							<label for="">Username:</label>
 							<div class="form-holder">
 								<i class="zmdi zmdi-account-o"></i>
-								<input type="text" class="form-control">
+								<input type="text" name="name" class="form-control">
 							</div>
 						</div>
 						<div class="form-wrapper">
 							<label for="">Email:</label>
 							<div class="form-holder">
 								<i style="font-style: normal; font-size: 15px;">@</i>
-								<input type="text" class="form-control">
+								<input type="text" name="email" class="form-control">
 							</div>
 						</div>
 					</div>
@@ -39,14 +39,14 @@
 							<label for="">Password:</label>
 							<div class="form-holder">
 								<i class="zmdi zmdi-lock-outline"></i>
-								<input type="password" class="form-control" placeholder="********">
+								<input type="password" name="password" class="form-control" placeholder="********">
 							</div>
 						</div>
 						<div class="form-wrapper">
 							<label for="">Repeat Password:</label>
 							<div class="form-holder">
 								<i class="zmdi zmdi-lock-outline"></i>
-								<input type="password" class="form-control" placeholder="********">
+								<input type="password" name="password_comfirm" class="form-control" placeholder="********">
 							</div>
 						</div>
 					</div>

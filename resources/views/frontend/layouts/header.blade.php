@@ -120,12 +120,16 @@
                                 </li>
                                 <li><a href="{{ url('/blog') }}">Blogs</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
-                                <li><a href="{{ url('/login/user') }}">Login</a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{ url('/register/user') }}">Register</a></li>
-                                </li>
-                            </ul>
-                            <li><a href="./contact.html">Logout</a></li>
+                                @if (Auth::check())
+                                    <li><a href="{{ url('/logout/user') }}">Logout</a></li>
+                                @else
+                                    <li>
+                                        <a href="{{ url('/register/user') }}">Register</a>
+                                    </li>
+                                    <li><a href="{{ url('/login/user') }}">Login</a></li>
+                                @endif
+
+
                             </ul>
                         </nav>
                         <div class="nav-right search-switch">
