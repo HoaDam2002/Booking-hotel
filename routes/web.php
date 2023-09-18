@@ -110,6 +110,7 @@ Route::get('/logout/user', [LogoutFEController::class, 'logout']);
 
 // register
 Route::get('/register/user', [LoginFEController::class, 'register']);
+Route::post('/register/user', [LoginFEController::class, 'registration']);
 
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginMemberRequest;
 use \Auth;
+use App\Http\Requests\RegisterFERequest;
 
 class LoginFEController extends Controller
 {
@@ -44,7 +45,7 @@ class LoginFEController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function register(Request $request)
+    public function register()
     {
         return view('frontend.pages.Account.registration');
     }
@@ -52,9 +53,13 @@ class LoginFEController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function registration(RegisterFERequest $request)
     {
-        //
+        $data = $request->all();
+
+        $data['level'] = 0;
+
+
     }
 
     /**

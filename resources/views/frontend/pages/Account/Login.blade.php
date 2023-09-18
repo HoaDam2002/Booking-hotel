@@ -18,29 +18,29 @@
 
     <div class="wrapper" style="background-image: url('/asset_accout/images/1.jpg')">
         <div class="inner">
-            @if (session('success'))
-                <div class="alert alert-success alert-dismissble">
-                    {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
-                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class="alert alert-danger alert-dismissble">
-                    {{-- <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
-                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <div class="button-holder">
                 <a href="{{ url('/') }}" class="button-holder">Trang Chủ</a>
             </div>
             <form action="" method="POST">
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissble">
+                        {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                        <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissble">
+                        {{-- <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                        <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @csrf
                 <h3>Đăng Nhập</h3>
                 <div class="form-group">

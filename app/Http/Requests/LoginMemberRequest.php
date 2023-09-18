@@ -29,8 +29,8 @@ class LoginMemberRequest extends FormRequest
 
     public function messages() {
         return [
-            'required' => '- :attribute không được để trống',
-            'email' => '- :attribute sai định dạng'
+            'required' => ':attribute không được để trống',
+            'email' => ':attribute sai định dạng'
         ];
     }
 
