@@ -76,6 +76,9 @@ Route::group([
     Route::get('/booking', [BookingController::class, 'index']);
 
     Route::get('/service', [ServiceController::class, 'index']);
+    Route::post('/service', [ServiceController::class, 'insert']);
+    Route::post('/service/delete', [ServiceController::class, 'delete']);
+
 
     Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
 
