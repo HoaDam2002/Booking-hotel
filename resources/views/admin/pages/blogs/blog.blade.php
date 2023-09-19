@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="card-body">
-                                            <form method="POST" id="step-form-horizontal" class="step-form-horizontal form-edit" enctype="multipart/form-datas" >
+                                            <form method="POST" id="step-form-horizontal" class="step-form-horizontal form-edit" enctype="multipart/form-data" >
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
