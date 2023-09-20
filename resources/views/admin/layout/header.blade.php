@@ -802,27 +802,32 @@
             </li>
             </li>
             <li><a class="" href="{{ url('admin/room') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-solid fa-bed"></i>
                     <span class="nav-text">Phòng</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/booking') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-solid fa-calendar-days"></i>
                     <span class="nav-text">Booking</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/user') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-solid fa-user"></i>
                     <span class="nav-text">Khách hàng</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-solid fa-utensils"></i>
                     <span class="nav-text">Dịch vụ</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/blogs') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-brands fa-blogger-b"></i>
                     <span class="nav-text">Blog</span>
                 </a>
             </li>
