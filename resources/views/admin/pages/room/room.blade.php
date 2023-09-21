@@ -115,7 +115,9 @@
                                                         id="renderimg"> <span class="w-space-no"></span></div>
                                             </td>
                                             <td id="Capacity">{{ $item['Capacity'] }} </td>
-                                            <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
+                                            @if ($item['type_room'])
+                                                <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
+                                            @endif
                                             <td id="description">
                                                 {{ $item['description'] }}
                                             </td>

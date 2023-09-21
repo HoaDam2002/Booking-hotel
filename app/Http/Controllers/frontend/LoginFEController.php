@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginMemberRequest;
 use \Auth;
 use App\Http\Requests\RegisterFERequest;
+use App\Models\User;
 
 class LoginFEController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginFEController extends Controller
         $login = [
             'email' => $request->email,
             'password' => $request->password,
-            'level' => 1
+            'level' => 0
         ];
 
         $remember = false;
@@ -35,7 +36,7 @@ class LoginFEController extends Controller
             $remember = true;
         }
 
-        if(Auth::attempt($login, $remember)){
+        if(Auth::attempt($login,$remember)){
             return redirect('/');
         }else{
             return redirect()->back()->withErrors('Sai Email hoặc Mật khẩu');
@@ -59,6 +60,30 @@ class LoginFEController extends Controller
 
         $data['level'] = 0;
 
+        $avatar = $request->avatar;
+
+        $data['avatar'] = $avatar->getClientOriginalName();
+
+        $data['password'] = bcrypt($data['password']);
+
+        unset($data['password_comfirm']);
+
+        // dd($data);
+
+        if(!is_dir('upload/user/')){
+            mkdir('upload/user/');
+        }
+
+        if(!is_dir('upload/user/avatar/')){
+            mkdir('upload/user/avatar/');
+        }
+
+        if(User::create($data)){
+            $avatar->move('upload/user/avatar',$avatar->getClientOriginalName());
+            return redirect('login/user')->with('success',__('Đăng ký thành công.'));
+        }else{
+            return redirect()->back()->withErrors('Đăng ký thất bại');
+        }
 
     }
 

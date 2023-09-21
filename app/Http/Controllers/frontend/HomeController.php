@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
+use \Auth;
 
 
 
@@ -15,8 +16,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::check() && Auth::user()->level == 1){
+            Auth::logout();
+        }
         $rooms = Room::with('typeRoom')->get()->toArray();
-        // dd($rooms);
+        // dd(Auth::user());
 
         return view('frontend.pages.home.home',compact('rooms'));
     }

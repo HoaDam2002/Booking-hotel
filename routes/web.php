@@ -37,6 +37,36 @@ use App\Http\Controllers\frontend\LogoutFEController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group([
+    'namespace' => 'Frontend',
+], function () {
+
+    Route::get('/', [HomeController::class, 'index']);
+
+    //room
+    Route::get('room', [RoomFEController::class, 'index']);
+    Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
+
+    //blog
+    Route::get('blog', [BlogFEController::class, 'index']);
+
+    //login
+    Route::get('/login/user', [LoginFEController::class, 'index']);
+    Route::post('/login/user', [LoginFEController::class, 'login']);
+
+    //register
+    Route::get('/register/user', [LoginFEController::class, 'register']);
+    Route::post('/register/user', [LoginFEController::class, 'registration']);
+
+    Route::group(['middleware' => 'member'], function () {
+        //cái gì yêu cầu đăng nhập thì bỏ vô đây
+
+    });
+
+   // logout
+   Route::get('/logout/user', [LogoutFEController::class, 'logout']);
+});
+//home
 
 Auth::routes();
 
@@ -46,11 +76,20 @@ Auth::routes();
 
 Route::group([
     'prefix' => 'admin',
+    'namespace' => 'Auth'
+], function () {
+    Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin/login');
+    Route::post('/login',[LoginController::class, 'login']);
+    Route::get('/logout', [LogoutController::class, 'logout']);
+});
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => ['admin']
 ], function () {
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm')->name('admin/login');
     Route::get('/home', [Admincontroller::class, 'index']);
-
     //Blogs
 
     Route::get('/blogs', [BlogsController::class, 'index']);
@@ -86,33 +125,7 @@ Route::group([
 
     Route::get('/user', [usercontroller::class, 'index']);
 
-
-    Route::get('/logout', [LogoutController::class, 'logout']);
-
-
 });
-//home
-Route::get('/', [HomeController::class, 'index']);
-
-//room
-Route::get('room', [RoomFEController::class, 'index']);
-Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
-
-
-//blog
-Route::get('blog', [BlogFEController::class, 'index']);
-
-
-//login/logout
-Route::get('/login/user', [LoginFEController::class, 'index']);
-Route::post('/login/user', [LoginFEController::class, 'login']);
-Route::get('/logout/user', [LogoutFEController::class, 'logout']);
-
-// register
-Route::get('/register/user', [LoginFEController::class, 'register']);
-Route::post('/register/user', [LoginFEController::class, 'registration']);
-
-
 
 
 

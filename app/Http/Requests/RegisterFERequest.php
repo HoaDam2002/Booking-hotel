@@ -23,7 +23,7 @@ class RegisterFERequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email ' => 'required|email|unique:users,email',
+            'email' => 'required|unique:users,email',
             'password' => 'required|min:6',
             'password_comfirm' => 'required_with:password|same:password|min:6',
             'street' => 'required',
@@ -41,7 +41,6 @@ class RegisterFERequest extends FormRequest
             'image' => ':attribute phải là ảnh',
             'max' => 'dung lượng :attribute quá lớn',
             'unique' => ':attribute đã tồn tại',
-            'email' => ':attribute sai kiểu',
             'mimes' => ':attribute sai kiểu ảnh (jpeg,png,jpg,gif)',
         ];
     }

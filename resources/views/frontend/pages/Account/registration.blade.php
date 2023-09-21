@@ -88,7 +88,7 @@
                         <div class="form-holder select">
                             <select name="gender" class="form-control">
                                 <option value="male">Male</option>
-                                <option value="femal">Female</option>
+                                <option value="female">Female</option>
                                 <option value="other">Other</option>
                             </select>
                             <i class="zmdi zmdi-face"></i>
@@ -99,8 +99,15 @@
                     <div class="form-wrapper">
                         <label for="">Avatar:</label>
                         <div class="form-holder">
-                            <i class="zmdi zmdi-lock-outline"></i>
+                            {{-- <i class="zmdi zmdi-lock-outline"></i> --}}
                             <input type="file" name="avatar" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+                        <label for="">Phone:</label>
+                        <div class="form-holder">
+                            {{-- <i class="zmdi zmdi-lock-outline"></i> --}}
+                            <input type="text" name="phone" class="form-control">
                         </div>
                     </div>
                 </div>
