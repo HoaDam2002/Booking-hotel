@@ -13,8 +13,8 @@ use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\TyperoomController;
 use App\Http\Controllers\admin\LogoutController;
-use App\Http\Controllers\admin\profilecontroller;
-use App\Http\Controllers\admin\usercontroller;
+use App\Http\Controllers\admin\ProfileController;
+use App\Http\Controllers\admin\UserController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
@@ -121,9 +121,10 @@ Route::group([
 
     Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
 
-    Route::get('/profile', [profilecontroller::class, 'index']);
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::post('/profile', [ProfileController::class, 'update']);
 
-    Route::get('/user', [usercontroller::class, 'index']);
+    Route::get('/user', [UserController::class, 'index']);
 
 });
 

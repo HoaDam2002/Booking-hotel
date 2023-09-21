@@ -7,9 +7,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{csrf_token()}}">
 
-    <title>Mediqu - Bootstrap Admin Dashboard </title>
+    <title>Sona</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href=" {{ asset('assets_admin/images/favicon.png') }}">
+    {{-- <link rel="icon" type="image/png" sizes="16x16" href=" {{ asset('frontend/img/icon/favicon-16x16.png') }}"> --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/img/icon//apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('frontend/img/icon//favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('frontend/img/icon//favicon-16x16.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <link href=" {{ asset('assets_admin/vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet">
@@ -18,6 +22,9 @@
     <link href=" {{ asset('assets_admin/css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
 	<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     {{-- Phân trang --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
