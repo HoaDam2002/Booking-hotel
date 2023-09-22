@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\BlogsController;
 use App\Http\Controllers\admin\BookingController;
+use App\Http\Controllers\admin\Chartcontroller;
 use App\Http\Controllers\admin\reviewroomcontroller;
 use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\admin\ServiceController;
@@ -98,6 +99,9 @@ Route::group([
     Route::post('/blogs/edit', [BlogsController::class, 'edit']);
     Route::post('/blogs/update', [BlogsController::class, 'update']);
     Route::post('/blogs/delete', [BlogsController::class, 'delete']);
+
+    //chart
+    Route::get('/chart', [Chartcontroller::class, 'index']);
 
     //room
     Route::get('/room', [RoomController::class, 'index']);

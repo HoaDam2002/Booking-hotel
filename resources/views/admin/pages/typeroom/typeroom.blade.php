@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">THÊM LOẠI PHÒNG</h4>
+            <h4 class="card-title">ADD TYPE ROOM</h4>
         </div>
         @if (session('success'))
         <div class="alert alert-success alert-dismissble">
@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class="col-lg-12 mb-2">
                         <div class="form-group">
-                            <label class="text-label">Tên loại phòng</label>
+                            <label class="text-label">Name</label>
                             <input type="text" name="typeName" class="form-control" required="">
                         </div>
                     </div>
@@ -44,7 +44,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Loại phòng</h4>
+                <h4 class="card-title">Type room</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -52,7 +52,7 @@
                         <thead>
                             <tr>
                                 <th><strong>ID</strong></th>
-                                <th><strong>Tên loại phòng</strong></th>
+                                <th><strong>Name</strong></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -154,7 +154,7 @@
                         'Your file has been deleted.',
                         'success'
                     )
-                
+
                 }
             });
         });
