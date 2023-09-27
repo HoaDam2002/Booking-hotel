@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">THÊM SERVICE</h4>
+                <h4 class="card-title">ADD SERVICE</h4>
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Tên dịch vụ</label>
+                                <label class="text-label">Name service</label>
                                 <input type="text" name="name" class="form-control" required="">
                             </div>
                         </div>
@@ -52,8 +52,8 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Tên dịch vụ</strong></th>
-                                    <th><strong>Tùy chọn</strong></th>
+                                    <th><strong>Name service</strong></th>
+                                    <th><strong>Action</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,5 +146,9 @@
                 })
             })
         });
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc7046b6625bf9f8a1e00d4794de2d19b51c763c
     </script>
 @endsection

@@ -107,10 +107,18 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
+<<<<<<< HEAD
                                 <li class="active"><a href="./">Home</a></li>
                                 <li ><a href="{{ url('./room') }}">Rooms</a></li>
                                 <li><a href="./about-us.html">About Us</a></li>
                                 <li><a href="#" disabled>Pages</a>
+=======
+                                <li class="{{ session('module_active') == 'home' ? 'active' : '' }}"><a href="/">Home</a></li>
+
+                                <li  class="{{ session('module_active') == 'room' ? 'active' : '' }}"><a href="{{ url('/room') }}">Rooms</a></li>
+                                <li  class="{{ session('module_active') == 'about_us' ? 'active' : '' }}"><a href="./about-us.html">About Us</a></li>
+                                <li ><a href="#" disabled>Pages</a>
+>>>>>>> dc7046b6625bf9f8a1e00d4794de2d19b51c763c
                                     <ul class="dropdown">
                                         {{-- <li><a href="./room-details.html">Room Details</a></li> --}}
                                         {{-- <li><a href="./blog-details.html">Blog Details</a></li> --}}
@@ -118,7 +126,7 @@
                                         <li><a href="#">Premium Room</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('/blog') }}">Blogs</a></li>
+                                <li  class="{{ session('module_active') == 'blog' ? 'active' : '' }}"><a href="{{ url('/blog') }}">Blogs</a></li>
                                 <li><a href="./contact.html">Contact</a></li>
                                 @if (Auth::check())
                                     <li><a href="{{ url('/logout/user') }}">Logout</a></li>

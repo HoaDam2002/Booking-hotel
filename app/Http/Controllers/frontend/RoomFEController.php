@@ -10,6 +10,15 @@ use App\Models\Service;
 
 class RoomFEController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            session(['module_active' => 'room']);
+            return $next($request);
+        });
+    }
+
     /**
      * Display a listing of the resource.
      */
