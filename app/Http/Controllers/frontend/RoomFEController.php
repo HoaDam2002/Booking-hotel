@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Typeroom;
-
+use App\Models\Service;
 
 class RoomFEController extends Controller
 {
@@ -16,7 +16,8 @@ class RoomFEController extends Controller
     public function index()
     {
         $rooms = Room::with('typeRoom')->paginate(6);
-        return view('frontend.pages.rooms.room',compact('rooms'));
+        $service = Service::all()->toArray();
+        return view('frontend.pages.rooms.room',compact('rooms','service'));
     }
 
     /**
@@ -24,9 +25,9 @@ class RoomFEController extends Controller
      */
     public function RenderBlogDetail(string $id)
     {
-        $roomDetail = Room::with('typeRoom')->where('id',$id)->get();
-
-        return view('frontend.pages.rooms.room-details',compact('roomDetail'));
+        $roomDetail = Room::with('typeRoom')->where('id',$id)->get()->toArray();
+        $service = Service::all()->toArray();
+        return view('frontend.pages.rooms.room-details',compact('roomDetail','service'));
     }
 
     /**

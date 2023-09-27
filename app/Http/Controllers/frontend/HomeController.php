@@ -5,6 +5,8 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Service;
+
 use \Auth;
 
 
@@ -21,8 +23,9 @@ class HomeController extends Controller
         }
         $rooms = Room::with('typeRoom')->get()->toArray();
         // dd(Auth::user());
+        $service = Service::all()->toArray();
 
-        return view('frontend.pages.home.home',compact('rooms'));
+        return view('frontend.pages.home.home',compact('rooms','service'));
     }
 
     /**

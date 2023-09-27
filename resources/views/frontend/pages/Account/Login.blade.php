@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
     <div class="wrapper" style="background-image: url('/asset_accout/images/1.jpg')">
         <div class="inner">
             <div class="button-holder">
@@ -67,7 +66,7 @@
                         </label>
                     </div>
                     <div class="button-holder">
-                        <button type="submit">Login now</button>
+                        <button type="submit">Login</button>
                     </div>
 
                 </div>

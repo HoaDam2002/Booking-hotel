@@ -58,20 +58,20 @@
                             </thead>
                             <tbody>
                                 @foreach ($data as $key => $value)
-                                <tr >
-                                    <td><strong></strong>{{$value['name']}}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button
-                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                id="deleteButton" data-id={{$value['id']}}>
-                                                <i class="fa fa-trash">
+                                    <tr>
+                                        <td><strong></strong>{{ $value['name'] }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button
+                                                    class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                    id="deleteButton" data-id={{ $value['id'] }}>
+                                                    <i class="fa fa-trash">
 
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -111,11 +111,11 @@
                             data: {
                                 id: id,
                             },
-                            success: function (data) {
+                            success: function(data) {
                                 //xóa thèn cha
                                 _this.remove();
                             },
-                            error: function (e) {
+                            error: function(e) {
                                 console.log(e.message);
                             }
                         })
@@ -129,23 +129,22 @@
                         // Thêm mã xử lý xóa tại đây
                     }
                 });
-            
+
             });
 
 
-            $('button#btn-submit').click(function () {
+            $('button#btn-submit').click(function() {
                 $.ajax({
                     url: '/admin/service',
                     type: 'POST',
                     data: {
                         name: name,
                     },
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data);
                     }
                 })
             })
         });
-        
     </script>
 @endsection

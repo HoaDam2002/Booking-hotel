@@ -107,8 +107,8 @@
                     <div class="nav-menu">
                         <nav class="mainmenu">
                             <ul>
-                                <li class="active"><a href="/">Home</a></li>
-                                <li><a href="{{ url('/room') }}">Rooms</a></li>
+                                <li class="active"><a href="./">Home</a></li>
+                                <li ><a href="{{ url('./room') }}">Rooms</a></li>
                                 <li><a href="./about-us.html">About Us</a></li>
                                 <li><a href="#" disabled>Pages</a>
                                     <ul class="dropdown">
