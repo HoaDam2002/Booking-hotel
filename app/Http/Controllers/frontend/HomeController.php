@@ -5,12 +5,9 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
-<<<<<<< HEAD
-use App\Models\Typeroom;
-=======
 use App\Models\Service;
+use App\Models\Typeroom;
 
->>>>>>> b3ed6f8e747d9da4746b15828d55902a1c4c1f84
 use \Auth;
 
 // use Carbon\Carbon;
@@ -42,11 +39,7 @@ class HomeController extends Controller
         // dd(Auth::user());
         $service = Service::all()->toArray();
 
-<<<<<<< HEAD
-        return view('frontend.pages.home.home',compact('rooms', 'typeroom'));
-=======
-        return view('frontend.pages.home.home',compact('rooms','service'));
->>>>>>> b3ed6f8e747d9da4746b15828d55902a1c4c1f84
+        return view('frontend.pages.home.home',compact('rooms','service', 'typeroom'));
     }
 
     /**
