@@ -27,6 +27,7 @@ use App\Http\Controllers\frontend\LoginFEController;
 use App\Http\Controllers\frontend\LogoutFEController;
 use App\Http\Controllers\frontend\ProfileFEController;
 
+use App\Http\Controllers\frontend\SearchController;
 
 // use App\Http\Controllers\frontend\registrationcontroller;
 
@@ -49,6 +50,11 @@ Route::group([
     //room
     Route::get('room', [RoomFEController::class, 'index']);
     Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
+
+
+    Route::get('search/', [SearchController::class, 'index']);
+    Route::post('search/', [SearchController::class, 'search']);
+
 
     //blog
     Route::get('blog', [BlogFEController::class, 'index']);

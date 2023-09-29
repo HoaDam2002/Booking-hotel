@@ -16,31 +16,37 @@
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
-                        <form action="#">
+                        <form method="POST" action="/search">
+                            @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input" id="date-in">
+                                <input type="text" name="checkIn" readonly class="date-input" id="date-in">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input" id="date-out">
+                                <input readonly  name="checkOut"type="text" class="date-input" id="date-out">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest">
-                                    <option value="">2 Adults</option>
-                                    <option value="">3 Adults</option>
+                                <label for="room">TypeRoom:</label>
+                                <select id="room" name="typeroom">
+                                    <option value="">Choose</option>
+
+                                    @foreach ($typeroom as $value)
+                                        <option value="{{$value["id"]}}">{{$value["typeName"]}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select id="room">
-                                    <option value="">1 Room</option>
-                                    <option value="">2 Room</option>
+                                <label for="guest">Guests:</label>
+                                <select id="guest" name="people">
+                                    <option value="">Choose</option>
+                                    <option value="2">2 Adults</option>
+                                    <option value="3">3 Adults</option>
                                 </select>
                             </div>
+                            
                             <button type="submit">Check Availability</button>
                         </form>
                     </div>
@@ -186,6 +192,9 @@
                                                 <tr>
                                                     <td class="r-o">Description</td>
                                                     <td>
+<<<<<<< HEAD
+                                                        {!! Str::limit($item['description'], '40') !!}
+=======
                                                         {!! Str::limit($item['description'], '46') !!}
                                                     </td>
                                                 </tr>
@@ -198,6 +207,7 @@
                                                             @endfor
                                                         @endif
                                                         {{ "..." }}
+>>>>>>> b3ed6f8e747d9da4746b15828d55902a1c4c1f84
                                                     </td>
                                                 </tr>
                                             </tbody>

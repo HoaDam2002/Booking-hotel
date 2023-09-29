@@ -25,4 +25,9 @@ class Room extends Model
     public function typeRoom(){
         return $this->belongsto('App\Models\Typeroom','roomTypeId');
     }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Models\Bookings', 'idRoom');
+    }
 }
