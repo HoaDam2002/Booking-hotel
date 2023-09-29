@@ -15,7 +15,7 @@ class ProfileController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         $id = Auth::id();
         // $data = User::findOrFail($id);
         $data = User::where('id', $id)->get()->toArray();
@@ -43,13 +43,13 @@ class ProfileController extends Controller
         }else {
             $data['avatar'] = $user->avatar;
         }
-        
+
         if($data["password"]) {
             $data['password'] = bcrypt($data['password']);
         }else {
             $data['password'] = $user->password;
         }
-        
+
         // dd($user->avatar);
 
         if($user->update($data)) {
@@ -100,7 +100,7 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-   
+
 
     /**
      * Remove the specified resource from storage.

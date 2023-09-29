@@ -25,6 +25,8 @@ use App\Http\Controllers\frontend\RoomFEController;
 use App\Http\Controllers\frontend\BlogFEController;
 use App\Http\Controllers\frontend\LoginFEController;
 use App\Http\Controllers\frontend\LogoutFEController;
+use App\Http\Controllers\frontend\ProfileFEController;
+
 
 // use App\Http\Controllers\frontend\registrationcontroller;
 
@@ -61,6 +63,11 @@ Route::group([
 
     Route::group(['middleware' => 'member'], function () {
         //cái gì yêu cầu đăng nhập thì bỏ vô đây
+        Route::get('/profile', [ProfileFEController::class, 'index']);
+        Route::post('/profile/update', [ProfileFEController::class, 'updateProfile']);
+        Route::get('/profile/update/password', [ProfileFEController::class, 'ResetPassword']);
+        Route::post('/profile/update/password', [ProfileFEController::class, 'ResetPasswordPost']);
+
 
     });
 
