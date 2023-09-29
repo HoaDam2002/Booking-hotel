@@ -5,7 +5,11 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
+use App\Models\Typeroom;
 use \Auth;
+
+// use Carbon\Carbon;
+
 
 
 
@@ -20,9 +24,12 @@ class HomeController extends Controller
             Auth::logout();
         }
         $rooms = Room::with('typeRoom')->get()->toArray();
+        $typeroom = Typeroom::all()->toArray();
+
+        // dd($typeroom);
         // dd(Auth::user());
 
-        return view('frontend.pages.home.home',compact('rooms'));
+        return view('frontend.pages.home.home',compact('rooms', 'typeroom'));
     }
 
     /**
@@ -30,6 +37,20 @@ class HomeController extends Controller
      */
     public function renderRoom()
     {
+
+    }
+
+
+    public function search() {
+
+        return view('frontend.pages.search.search');
+    }
+
+    public function actionSearch(Request $request) {
+        $data = $request->all();
+        
+
+                
 
     }
 

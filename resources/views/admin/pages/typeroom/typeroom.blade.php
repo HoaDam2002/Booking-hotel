@@ -8,7 +8,7 @@
         @if (session('success'))
         <div class="alert alert-success alert-dismissble">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            <h4><i class="icon fa fa-check">Thông báo</i></h4>
+            <h4><i class="fa-solid fa-check"></i>Thông báo</h4>
             {{session('success')}}
         </div>
         @endif
@@ -51,14 +51,14 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
-                                <th><strong>ID</strong></th>
+                                {{-- <th><strong>ID</strong></th> --}}
                                 <th><strong>Tên loại phòng</strong></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $value)
                                 <tr>
-                                    <td><strong>{{$value['id']}}</strong></td>
+                                    {{-- <td><strong>{{$value['id']}}</strong></td> --}}
                                     <td><strong>{{$value['typeName']}}</strong></td>
                                     <td>
                                         <div class="d-flex">

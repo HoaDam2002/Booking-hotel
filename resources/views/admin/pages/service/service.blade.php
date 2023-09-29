@@ -9,7 +9,7 @@
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissble">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                        <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                        <h4><i class="fa-solid fa-check"></i>Thông báo</h4>
                         {{ session('success') }}
                     </div>
                 @endif
