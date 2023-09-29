@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Booking</h4>
+                    <h4 class="card-title">BOOKING</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -12,13 +12,13 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Tên khách hàng</strong></th>
-                                    <th><strong>Số điện thoại</strong></th>
+                                    <th><strong>Name user</strong></th>
+                                    <th><strong>Phone</strong></th>
                                     <th><strong>Email</strong></th>
                                     <th><strong>Checkin</strong></th>
                                     <th><strong>Checkout</strong></th>
-                                    <th><strong>Hinh Ảnh</strong></th>
-                                    <th><strong>Tùy chọn</strong></th>
+                                    <th><strong>Image</strong></th>
+                                    <th><strong>Action</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,13 +70,13 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Tên khách hàng</label>
+                                                            <label class="text-label">Name user</label>
                                                             <input type="text" name="firstName" class="form-control" required="">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Số điện thoại</label>
+                                                            <label class="text-label">Phone</label>
                                                             <input type="text" name="lastName" class="form-control" required="">
                                                         </div>
                                                     </div>
@@ -101,7 +101,7 @@
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Hình ảnh</label>
+                                                            <label class="text-label">Image</label>
                                                             <input type="text" class="form-control" required="">
                                                         </div>
                                                     </div>

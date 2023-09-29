@@ -21,55 +21,54 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="room-details-item">
-                        <img src="img/room/room-details.jpg" alt="">
-                        <div class="rd-text">
-                            <div class="rd-title">
-                                <h3>Premium King Room</h3>
-                                <div class="rdt-right">
-                                    <div class="rating">
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star"></i>
-                                        <i class="icon_star-half_alt"></i>
+                        @if (isset($roomDetail))
+                            {{-- {{ dd($roomDetail) }} --}}
+                            <img src="{{ asset('upload/admin/room/hinh750'. $roomDetail[0]['image'] ) }}" alt="">
+                            <div class="rd-text">
+                                <div class="rd-title">
+                                    <h3>{{ $roomDetail[0]['nameRoom'] }}</h3>
+                                    <div class="rdt-right">
+                                        <div class="rating">
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star"></i>
+                                            <i class="icon_star-half_alt"></i>
+                                        </div>
+                                        <p href="#" style="color:red;"><i class="fa-solid fa-wifi"></i> Now</p>
                                     </div>
-                                    <a href="#">Booking Now</a>
                                 </div>
+                                <h2>{{ $roomDetail[0]['price'] }}$<span>/Pernight</span></h2>
+                                <table>
+                                    <tbody>
+
+                                        <tr>
+                                            <td class="r-o">Capacity:</td>
+                                            <td>Max persion {{ $roomDetail[0]['Capacity'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Type Room:</td>
+                                            <td>{{ $roomDetail[0]['type_room']['typeName'] }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="r-o">Service:</td>
+                                            <td>
+                                                @if(isset($service))
+                                                    @for($i = 0; $i < 2; $i++)
+                                                        {{ $service[$i]['name'] . ', ' }}
+                                                    @endfor
+                                                @endif
+                                                {{ "..." }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p>
+                                    {{ $roomDetail[0]['description'] }}
+                                </p>
                             </div>
-                            <h2>159$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <p class="f-para">Motorhome or Trailer that is the question for you. Here are some of the
-                                advantages and disadvantages of both, so you will be confident when purchasing an RV.
-                                When comparing Rvs, a motorhome or a travel trailer, should you buy a motorhome or fifth
-                                wheeler? The advantages and disadvantages of both are studied so that you can make your
-                                choice wisely when purchasing an RV. Possessing a motorhome or fifth wheel is an
-                                achievement of a lifetime. It can be similar to sojourning with your residence as you
-                                search the various sites of our great land, America.</p>
-                            <p>The two commonly known recreational vehicle classes are the motorized and towable.
-                                Towable rvs are the travel trailers and the fifth wheel. The rv travel trailer or fifth
-                                wheel has the attraction of getting towed by a pickup or a car, thus giving the
-                                adaptability of possessing transportation for you when you are parked at your campsite.
-                            </p>
-                        </div>
+                        @endif
                     </div>
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
@@ -141,42 +140,40 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="room-booking">
-                        <h3>Your Reservation</h3>
-                        <form action="#">
+                    <div class="booking-form">
+                        <h3>Booking Your Hotel</h3>
+                        <form method="POST" action="/search">
+                            @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" class="date-input hasDatepicker" id="date-in">
+                                <input type="text" name="checkin" readonly class="date-input" id="date-in">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="text" class="date-input hasDatepicker" id="date-out">
+                                <input readonly name="checkout"type="text" class="date-input" id="date-out">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest" style="display: none;">
-                                    <option value="">3 Adults</option>
+                                <label for="room">TypeRoom:</label>
+                                <select id="room" name="typeroom">
+                                    <option value="">Choose</option>
+
+                                    {{-- @foreach ($typeroom as $value)
+                                        <option value="{{ $value['id'] }}">{{ $value['typeName'] }}</option>
+                                    @endforeach --}}
                                 </select>
-                                <div class="nice-select" tabindex="0"><span class="current">3 Adults</span>
-                                    <ul class="list">
-                                        <li data-value="" class="option selected">3 Adults</li>
-                                    </ul>
-                                </div>
                             </div>
                             <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select id="room" style="display: none;">
-                                    <option value="">1 Room</option>
+                                <label for="guest">Guests:</label>
+                                <select id="guest" name="people">
+                                    <option value="">Choose</option>
+                                    <option value="2">2 Adults</option>
+                                    <option value="3">3 Adults</option>
                                 </select>
-                                <div class="nice-select" tabindex="0"><span class="current">1 Room</span>
-                                    <ul class="list">
-                                        <li data-value="" class="option selected">1 Room</li>
-                                    </ul>
-                                </div>
                             </div>
-                            <button type="submit">Check Availability</button>
+
+                            <button type="submit">Booking Now</button>
                         </form>
                     </div>
                 </div>

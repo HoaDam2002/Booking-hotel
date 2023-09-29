@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">THÊM BLOG</h4>
+                <h4 class="card-title">ADD BLOG</h4>
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Tên blog</label>
+                                <label class="text-label">Name blog</label>
                                 <input type="text" name="title" class="form-control" >
                             </div>
                         </div>
@@ -42,14 +42,14 @@
                         </div> --}}
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Hình ảnh</label>
+                                <label class="text-label">Image</label>
                                 <input type="file" name="image" class="form-control" id="inputGroupPrepend2"
                                     aria-describedby="inputGroupPrepend2">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Nội dung</label>
+                                <label class="text-label">Content</label>
                                 <textarea class="form-control" id="" name="description"></textarea>
                             </div>
                         </div>
@@ -139,14 +139,14 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Tên blog</label>
+                                                            <label class="text-label">Name blog</label>
                                                             <input type="text" name="title" class="form-control editNameBlog"
                                                                 7>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Hình ảnh</label>
+                                                            <label class="text-label">Image</label>
                                                             <input type="file" name="image" class="form-control editImageBlog"
                                                                 id="inputGroupPrepend2"
                                                                 aria-describedby="inputGroupPrepend2"
@@ -155,7 +155,7 @@
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Nội dung</label>
+                                                            <label class="text-label">Content</label>
                                                             <textarea class="form-control editDescriptionBlog" id="" name="editor"></textarea>
                                                         </div>
                                                     </div>

@@ -631,11 +631,9 @@
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
                     <div class="dashboard_bar">
-                        Dashboard
+                        ADMIN
                     </div>
                 </div>
-
-
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link dz-fullscreen" href="#">
@@ -655,11 +653,7 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="nav-item dropdown notification_dropdown">
-                        <a class="nav-link bell bell-link" href="#">
-                            <i class="flaticon-381-pad"></i>
-                        </a>
-                    </li>
+
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link  ai-icon" href="#" role="button" data-toggle="dropdown">
                             <i class="flaticon-381-ring"></i>
@@ -797,45 +791,50 @@
         <ul class="metismenu" id="menu">
             <li><a class="" href="{{ url('admin/typeroom') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">Loại phòng</span>
+                    <span class="nav-text">TYPE ROOM</span>
                 </a>
             </li>
             </li>
             <li><a class="" href="{{ url('admin/room') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-solid fa-bed"></i>
-                    <span class="nav-text">Phòng</span>
+                    <span class="nav-text">ROOM</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/booking') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-solid fa-calendar-days"></i>
-                    <span class="nav-text">Booking</span>
+                    <span class="nav-text">BOOKING</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/user') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-solid fa-user"></i>
-                    <span class="nav-text">Khách hàng</span>
+                    <span class="nav-text">USER</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-solid fa-utensils"></i>
-                    <span class="nav-text">Dịch vụ</span>
+                    <span class="nav-text">SERVICE</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/blogs') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-brands fa-blogger-b"></i>
-                    <span class="nav-text">Blog</span>
+                    <span class="nav-text">BLOG</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/review') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">Đánh giá</span>
+                    <span class="nav-text">EVALUATE</span>
                 </a>
             </li>
+            <li><a class="" href="{{ url('admin/statiѕtic') }}" aria-expanded="false">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="nav-text">Statiѕtic</span>
+            </a>
+        </li>
 
 
         </ul>

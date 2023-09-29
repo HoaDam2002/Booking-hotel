@@ -177,7 +177,7 @@
                                 <div class="hp-room-item set-bg" data-setbg="{{ asset('upload/admin/room/' . $item['image']) }}">
                                     <div class="hr-text">
                                         <h3>{{ $item['nameRoom'] }}</h3>
-                                        <h2>{{ $item['price'] }} VND<span>/Pernight</span></h2>
+                                        <h2>{{ $item['price'] }} $<span>/Pernight</span></h2>
                                         <table>
                                             <tbody>
 
@@ -186,20 +186,33 @@
                                                     <td>Max persion {{ $item['Capacity'] }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="r-o">Kiểu phòng</td>
+                                                    <td class="r-o">Type Room</td>
                                                     <td>{{ $item['type_room']['typeName'] }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="r-o">Mô tả</td>
+                                                    <td class="r-o">Description</td>
                                                     <td>
+<<<<<<< HEAD
                                                         {!! Str::limit($item['description'], '40') !!}
+=======
+                                                        {!! Str::limit($item['description'], '46') !!}
                                                     </td>
-
                                                 </tr>
-
+                                                <tr>
+                                                    <td class="r-o">Service:</td>
+                                                    <td>
+                                                        @if(isset($service))
+                                                            @for($i = 0; $i < 2; $i++)
+                                                                {{ $service[$i]['name'] . ', ' }}
+                                                            @endfor
+                                                        @endif
+                                                        {{ "..." }}
+>>>>>>> b3ed6f8e747d9da4746b15828d55902a1c4c1f84
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
-                                        <a href="#" class="primary-btn">More Details</a>
+                                        <a href="{{ url('/room/detail/' . $item['id']) }}" class="primary-btn">More Details</a>
                                     </div>
                                 </div>
                             </div>

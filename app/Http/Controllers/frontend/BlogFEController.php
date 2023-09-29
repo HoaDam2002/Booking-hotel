@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class BlogFEController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            session(['module_active' => 'blog']);
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      */

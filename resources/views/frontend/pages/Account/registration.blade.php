@@ -119,7 +119,7 @@
 							</label> --}}
                     </div>
                     <div class="button-holder">
-                        <button type="submit">Register Now</button>
+                        <button type="submit">Register</button>
                     </div>
 
                 </div>

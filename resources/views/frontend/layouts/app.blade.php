@@ -11,6 +11,8 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" type="text/css">
@@ -41,5 +43,7 @@
     <script src="{{asset('frontend/js/jquery.slicknav.js')}}"></script>
     <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('frontend/js/main.js')}}"></script>
+
+
 </body>
 </html>

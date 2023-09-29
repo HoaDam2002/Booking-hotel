@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">THÊM PHÒNG</h4>
+                <h4 class="card-title">ADD ROOM</h4>
             </div>
             @if (session('success'))
                 <div class="alert alert-success alert-dismissble">
@@ -31,25 +31,25 @@
                     <div class="row">
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Tên phòng</label>
+                                <label class="text-label">Name room</label>
                                 <input type="text" name="nameRoom" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Giá phòng</label>
+                                <label class="text-label">Price room</label>
                                 <input type="text" name="price" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Số người</label>
+                                <label class="text-label">People</label>
                                 <input type="text" name="Capacity" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Nội dung</label>
+                                <label class="text-label">Content</label>
 
                                 <textarea class="form-control" name="description"></textarea>
 
@@ -59,7 +59,7 @@
 
                         <div class="col-lg-12 mb-3">
                             <div class="form-group">
-                                <label>Loại phòng</label>
+                                <label>Type Room</label>
                                 <select class="form-control" name="roomTypeId">
                                     <option value=""></option>
                                     @if (isset($typeroom))
@@ -72,7 +72,7 @@
                         </div>
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Hình ảnh</label>
+                                <label class="text-label">Image</label>
                                 <input type="file" name="image" class="form-control">
                             </div>
                         </div>
@@ -94,12 +94,12 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Tên phòng</strong></th>
-                                    <th><strong>Hình ảnh</strong></th>
-                                    <th><strong>Số người</strong></th>
-                                    <th><strong>Loại phòng</strong></th>
-                                    <th><strong>Nội dung</strong></th>
-                                    <th><strong>Giá</strong></th>
+                                    <th><strong>Name room</strong></th>
+                                    <th><strong>Image</strong></th>
+                                    <th><strong>People</strong></th>
+                                    <th><strong>Type room</strong></th>
+                                    <th><strong>Content</strong></th>
+                                    <th><strong>Price</strong></th>
 
                                 </tr>
                             </thead>
@@ -168,28 +168,28 @@
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Tên phòng</label>
+                                                            <label class="text-label">Name room</label>
                                                             <input type="text" name="nameRoom" class="form-control"
                                                                 value="" id="nameRoom">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Giá phòng</label>
+                                                            <label class="text-label">Price room</label>
                                                             <input type="text" name="price" class="form-control"
                                                                 id="price">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Số người</label>
+                                                            <label class="text-label">People</label>
                                                             <input type="text" name="Capacity" class="form-control"
                                                                 id="Capacity">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Nội dung</label>
+                                                            <label class="text-label">Content</label>
 
                                                             <textarea class="form-control description" id="" name="description"></textarea>
 
@@ -198,7 +198,7 @@
                                                     </div>
                                                     <div class="col-lg-12 mb-3">
                                                         <div class="form-group">
-                                                            <label>Loại phòng</label>
+                                                            <label>Type room</label>
                                                             <select name="roomTypeId" class="form-control"
                                                                 id="roomTypeId">
 
@@ -213,7 +213,7 @@
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
-                                                            <label class="text-label">Hình ảnh</label>
+                                                            <label class="text-label">Image</label>
 
                                                             <input type="file" name="image"
                                                                 class="form-control editImageRoom" id="inputGroupPrepend2"

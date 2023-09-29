@@ -28,22 +28,33 @@
                                 <img src="{{ asset('upload/admin/room/hinh360' . $item->image) }}" alt="">
                                 <div class="ri-text">
                                     <h4>{{ $item->nameRoom }}</h4>
-                                    <h3>{{ $item->price }}VND<span>/Pernight</span></h3>
+                                    <h3>{{ $item->price }}$<span>/Pernight</span></h3>
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td class="r-o">Loại phòng:</td>
+                                                <td class="r-o">Type Room:</td>
                                                 <td>{{ $item->typeRoom->typeName }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="r-o">Số người:</td>
+                                                <td class="r-o">Capacity:</td>
                                                 <td>Tối đa {{ $item->Capacity }}</td>
                                             </tr>
                                             <tr>
-                                                <td class="r-o">Mô tả:</td>
+                                                <td class="r-o">Description:</td>
                                                 <td>
                                                     {!! Str::limit($item->description, '60') !!}
 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="r-o">Service:</td>
+                                                <td>
+                                                    @if (isset($service))
+                                                        @for ($i = 0; $i < 2; $i++)
+                                                            {{ $service[$i]['name'] . ', ' }}
+                                                        @endfor
+                                                        {{ '...' }}
+                                                    @endif
                                                 </td>
                                             </tr>
                                         </tbody>

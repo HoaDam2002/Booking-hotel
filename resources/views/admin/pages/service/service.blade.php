@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">THÊM SERVICE</h4>
+                <h4 class="card-title">ADD SERVICE</h4>
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
-                                <label class="text-label">Tên dịch vụ</label>
+                                <label class="text-label">Name service</label>
                                 <input type="text" name="name" class="form-control" required="">
                             </div>
                         </div>
@@ -52,26 +52,26 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Tên dịch vụ</strong></th>
-                                    <th><strong>Tùy chọn</strong></th>
+                                    <th><strong>Name service</strong></th>
+                                    <th><strong>Action</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $key => $value)
-                                <tr >
-                                    <td><strong></strong>{{$value['name']}}</td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button
-                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                id="deleteButton" data-id={{$value['id']}}>
-                                                <i class="fa fa-trash">
+                                    <tr>
+                                        <td><strong></strong>{{ $value['name'] }}</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <button
+                                                    class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                    id="deleteButton" data-id={{ $value['id'] }}>
+                                                    <i class="fa fa-trash">
 
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -111,11 +111,11 @@
                             data: {
                                 id: id,
                             },
-                            success: function (data) {
+                            success: function(data) {
                                 //xóa thèn cha
                                 _this.remove();
                             },
-                            error: function (e) {
+                            error: function(e) {
                                 console.log(e.message);
                             }
                         })
@@ -129,23 +129,26 @@
                         // Thêm mã xử lý xóa tại đây
                     }
                 });
-            
+
             });
 
 
-            $('button#btn-submit').click(function () {
+            $('button#btn-submit').click(function() {
                 $.ajax({
                     url: '/admin/service',
                     type: 'POST',
                     data: {
                         name: name,
                     },
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data);
                     }
                 })
             })
         });
-        
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc7046b6625bf9f8a1e00d4794de2d19b51c763c
     </script>
 @endsection
