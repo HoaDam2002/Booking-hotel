@@ -1,3 +1,6 @@
+
+<!-- tuan demo  -->
+
 <?php
 
 use App\Http\Controllers\accoutuesrcontroller;
@@ -53,7 +56,7 @@ Route::group([
 
 
     Route::get('search/', [SearchController::class, 'index']);
-    Route::post('search/', [SearchController::class, 'search']);
+    Route::get('search/page', [SearchController::class, 'search']);
 
 
     //blog
@@ -71,10 +74,9 @@ Route::group([
         //cái gì yêu cầu đăng nhập thì bỏ vô đây
         Route::get('/profile', [ProfileFEController::class, 'index']);
         Route::post('/profile/update', [ProfileFEController::class, 'updateProfile']);
+
         Route::get('/profile/update/password', [ProfileFEController::class, 'ResetPassword']);
         Route::post('/profile/update/password', [ProfileFEController::class, 'ResetPasswordPost']);
-
-
     });
 
    // logout
@@ -134,7 +136,6 @@ Route::group([
     Route::get('/service', [ServiceController::class, 'index']);
     Route::post('/service', [ServiceController::class, 'insert']);
     Route::post('/service/delete', [ServiceController::class, 'delete']);
-
 
     Route::get('/reviewroom', [reviewroomcontroller::class, 'index']);
 

@@ -54,12 +54,15 @@
                         </div>
                     @endforeach
                 @endif
-                <div class="col-lg-12">
-                    <div class="room-pagination">
-                        {{ $availableRooms->links() }}
-                    </div>
-                </div>
+
             </div>
+            @if (isset($availableRooms))
+                <div class="pagination-area">
+                    <ul class="pagination">
+                        {{ $availableRooms->links() }}
+                    </ul>
+                </div>
+            @endif
         </div>
     </section>
 @endsection

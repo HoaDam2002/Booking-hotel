@@ -23,7 +23,8 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'password' => 'required',
-            'password_comfirm' => 'required|required_with:password|same:password',
+            'password_change' => 'required',
+            'password_comfirm' => 'required|required_with:password_change|same:password_change',
         ];
     }
 }

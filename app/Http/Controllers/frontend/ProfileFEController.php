@@ -72,7 +72,11 @@ class ProfileFEController extends Controller
      */
     public function ResetPasswordPost(ResetPasswordRequest $request)
     {
+        $user = Auth::user();
 
+        dd($user['password']);
+
+        dd($user);
     }
 
     /**

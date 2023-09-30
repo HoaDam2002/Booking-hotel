@@ -23,13 +23,11 @@
                 </div>
             @endif
             <h3>Reset Password</h3>
-            <form method="POST" action="/profile/update/password" enctype="multipart/form-data">
+            <form method="post" action="#">
                 @csrf
-                <input type="hidden" name="_token" value="qWs4UmMM2EXgvfwmQ0YLQmaYEVJovRVnXXSB4Hff">
-
                 <div class="check-date">
                     <label for="">Current password:</label>
-                    <input type="password" name="name" value="" class="">
+                    <input type="password" name="password" value="" class="">
                 </div>
                 <div class="check-date">
                     <label for="">Change password:</label>
@@ -40,9 +38,8 @@
                     <input name="password_comfirm" type="password" value="" class="">
                 </div>
                 <button type="submit">Reset Now</button>
-            </form>
+            </form>"
         </div>
 
     </div>
 @endsection
-

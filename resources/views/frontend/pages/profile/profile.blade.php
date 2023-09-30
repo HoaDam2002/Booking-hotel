@@ -60,7 +60,7 @@
                 <div class="row" style="margin-left: 100px;">
                     <button class="col-md-4 mr-3" type="submit">Update Now</button>
                     <button class="col-md-4 mr-3" type="">
-                        <a style="color:#e6ad74 " href="profile/update/password">Reset Password</a>
+                        <a style="color:#e6ad74 " href="/profile/update/password">Reset Password</a>
                     </button>
 
                 </div>

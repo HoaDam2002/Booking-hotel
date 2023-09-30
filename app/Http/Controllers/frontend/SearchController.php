@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Typeroom;
 use App\Models\Bookings;
+use Illuminate\Pagination\Paginator;
+
 
 use Illuminate\Support\Carbon;
 
@@ -16,19 +18,35 @@ class SearchController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {   
+    {
         return view('frontend.pages.search.search');
     }
 
     public function search(Request $request) {
         $search = $request->all();
-        $ngayCheckIn = $search["checkIn"];
-        $ngayCheckOut = $search["checkOut"];
 
-        $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
-        $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
-        $search["checkIn"] = $ngayCheckIn;
-        $search["checkOut"] = $ngayCheckOut;
+        $ngayCheckIn = "";
+        $ngayCheckOut = "";
+
+        // if(session()->has('checkin') && session()->has('checkout')) {
+        //     $ngayCheckIn = session()->get('checkin');
+        //     $ngayCheckOut = session()->get('checkout');;
+        // }else{
+        //     $ngayCheckIn = $search["checkIn"];
+        //     $ngayCheckOut = $search["checkOut"];
+
+        //     session()->push('checkin', $ngayCheckIn);
+        //     session()->push('checkout', $ngayCheckOut);
+
+        // }
+
+        if(!empty($search['checkIn']) && !empty($search['checkOut'])) {
+            $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
+            $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
+            $search["checkIn"] = $ngayCheckIn;
+            $search["checkOut"] = $ngayCheckOut;
+        }
+
 
 
         $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
@@ -43,18 +61,20 @@ class SearchController extends Controller
         });
 
         // Kiểm tra và áp dụng điều kiện lọc cho loại phòng (nếu có)
-        if ($search['typeroom']) {
+        if (!empty($search['typeroom'])) {
             $roomsQuery->where('roomTypeId', $search['typeroom']);
         }
 
         // Kiểm tra và áp dụng điều kiện lọc cho số lượng người (nếu có)
-        if ($search['people']) {
+        if (!empty($search['people'])) {
             $roomsQuery->where('Capacity', '>=', $search['people']);
         }
 
+        Paginator::useBootstrap();
+
         // Lấy danh sách các phòng thoả mãn các điều kiện đã áp dụng
         $availableRooms = $roomsQuery->paginate(1);
-        
+
         return view('frontend.pages.search.search', compact('availableRooms'));
     }
 
