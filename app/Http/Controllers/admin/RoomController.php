@@ -8,7 +8,7 @@ use App\Models\Room;
 use App\Models\Typeroom;
 use App\Http\Requests\RoomRequest;
 
-use \Image;
+use \Intervention\Image\Facades\Image;
 
 class RoomController extends Controller
 {
@@ -25,7 +25,7 @@ class RoomController extends Controller
     {
         $typeroom = Typeroom::all()->toArray();
         $rooms = Room::with('typeRoom')->get()->toArray();
-
+        // dd($rooms);
         // dd($rooms);
         return view('admin.pages.room.room',compact('typeroom','rooms'));
     }
@@ -33,6 +33,32 @@ class RoomController extends Controller
      * Show the form for creating a new resource.
      */
 
+    public function EditImage($array = [])
+    {
+        $id_user = \Auth::user()->id;
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $date = strtotime(date('Y-m-d H:i:s'));
+        $data = [];
+
+        foreach($array as $image)
+        {
+            $name = $date."_".$image->getClientOriginalName();
+            $name_2 = "hinh360".$date."_".$image->getClientOriginalName();
+            $name_3 = "hinh750".$date."_".$image->getClientOriginalName();
+
+            $path = public_path('upload/admin/room/' . $name);
+            $path2 = public_path('upload/admin/room/'. $name_2);
+            $path3 = public_path('upload/admin/room/'. $name_3);
+
+            Image::make($image->getRealPath())->save($path);
+            Image::make($image->getRealPath())->resize(85, 84)->save($path2);
+            Image::make($image->getRealPath())->resize(329, 380)->save($path3);
+
+            $data[] = $name;
+        }
+
+         return $data;
+    }
 
     public function create(RoomRequest $request)
     {
@@ -47,24 +73,15 @@ class RoomController extends Controller
             mkdir('upload/admin/room/');
         }
 
-        $name = $date."_".$image->getClientOriginalName();
-        $name_2 = "hinh360".$date."_".$image->getClientOriginalName();
-        $name_3 = "hinh750".$date."_".$image->getClientOriginalName();
+        $item = $this->EditImage($request->file('image'));
 
-        $path = public_path('upload/admin/room/' . $name);
-        $path2 = public_path('upload/admin/room/'. $name_2);
-        $path3 = public_path('upload/admin/room/'. $name_3);
-
-        // dd($data['image']);
-
-        $data['image'] = $name;
+        $data['image'] = json_encode($item);
 
         $data['idHotel'] = '1';
+
         // dd($data);
+
         if(Room::create($data)){
-            Image::make($image->getRealPath())->save($path);
-            Image::make($image->getRealPath())->resize(360, 460)->save($path2);
-            Image::make($image->getRealPath())->resize(750, 429)->save($path3);
             return redirect('admin/room')->with('success',__('Thêm phòng thành công.'));
         }else{
             return redirect('admin/room')->withErrors('Thêm phòng thất bại');
@@ -94,28 +111,22 @@ class RoomController extends Controller
         // $item = $roomFind->with('typeRoom')->get()->toArray();
         // dd($item);
         // dd($roomFind);
-        $oldImage = $roomFind->image;
-        // dd($roomFind->image);
+        $oldImage = json_decode($roomFind->image);
+
+
+
         if($request->hasfile('image')){
-            $image = $request->image;
 
-            $name = $date."_".$image->getClientOriginalName();
-            $name_2 = "hinh360".$date."_".$image->getClientOriginalName();
-            $name_3 = "hinh750".$date."_".$image->getClientOriginalName();
+            $item = $this->EditImage($request->file('image'));
 
-            $path = public_path('upload/admin/room/' . $name);
-            $path2 = public_path('upload/admin/room/'. $name_2);
-            $path3 = public_path('upload/admin/room/'. $name_3);
-            // dd($$roomFind->image);
-            $data['image'] = $name;
+            $data['image'] = json_encode($item);
 
             if($roomFind->update($data)){
-                unlink('upload/admin/room/'. $oldImage);
-                unlink('upload/admin/room/hinh360' . $oldImage);
-                unlink('upload/admin/room/hinh750'. $oldImage);
-                Image::make($image->getRealPath())->save($path);
-                Image::make($image->getRealPath())->resize(360, 234)->save($path2);
-                Image::make($image->getRealPath())->resize(750, 429)->save($path3);
+                foreach ($oldImage as $image) {
+                    unlink('upload/admin/room/'. $image);
+                    unlink('upload/admin/room/hinh360' . $image);
+                    unlink('upload/admin/room/hinh750'. $image);
+                }
                 $flag = 2;
             }
         }else {
@@ -130,7 +141,6 @@ class RoomController extends Controller
 
             $itemCon = $item[0]['type_room']['typeName'];
 
-
             return response()->json(['data' => json_encode($data),'room' => $itemCon]);
         }else{
             return response()->json(['errors' => 'lỗi']);
@@ -141,12 +151,14 @@ class RoomController extends Controller
         $data = $request->all();
 
         $roomFind = Room::findOrFail($data['id']);
-        $oldImage = $roomFind->image;
+        $oldImage = json_decode($roomFind['image'], true);
 
         if($roomFind->delete()){
-            unlink('upload/admin/room/'. $oldImage);
-            unlink('upload/admin/room/hinh360' . $oldImage);
-            unlink('upload/admin/room/hinh750'. $oldImage);
+            foreach ($oldImage as $image) {
+                unlink('upload/admin/room/'. $image);
+                unlink('upload/admin/room/hinh360' . $image);
+                unlink('upload/admin/room/hinh750'. $image);
+            }
             return response()->json(['success' => 'Xóa thành công']);
         }
     }

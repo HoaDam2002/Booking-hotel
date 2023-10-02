@@ -171,10 +171,14 @@
             <div class="hp-room-items">
                 <div class="row">
                     @if (isset($rooms))
-
+                    {{-- {{ dd($rooms) }} --}}
                         @foreach ($rooms as $item)
+
+                            @php
+                                $image = json_decode($item['image'], true);
+                            @endphp
                             <div class="col-lg-3 col-md-6">
-                                <div class="hp-room-item set-bg" data-setbg="{{ asset('upload/admin/room/' . $item['image']) }}">
+                                <div class="hp-room-item set-bg" data-setbg="{{ asset('upload/admin/room/' . $image[0]) }}">
                                     <div class="hr-text">
                                         <h3>{{ $item['nameRoom'] }}</h3>
                                         <h2>{{ $item['price'] }} $<span>/Pernight</span></h2>

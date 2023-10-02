@@ -74,9 +74,17 @@ class ProfileFEController extends Controller
     {
         $user = Auth::user();
 
-        dd($user['password']);
-
-        dd($user);
+        if(password_verify($request->password,$user['password'])){
+            $data = bcrypt($request->password_change);
+            // dd($data);
+            if($user->update(['password' => $data])){
+                return redirect()->back()->with('success',__('Reset Password Success'));
+            }else{
+                return redirect()->back()->withErrors('Reset Password Fail');
+            }
+        }else{
+            return redirect()->back()->withErrors('Password current not match !!!');
+        }
     }
 
     /**

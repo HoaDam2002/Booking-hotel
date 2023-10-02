@@ -27,7 +27,7 @@ class RoomRequest extends FormRequest
             'Capacity' => 'required',
             'roomTypeId' => 'required',
             'description' => 'required|min:100',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

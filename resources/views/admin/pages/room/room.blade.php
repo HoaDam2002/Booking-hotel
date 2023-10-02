@@ -73,7 +73,7 @@
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Image</label>
-                                <input type="file" name="image" class="form-control">
+                                <input type="file" name="image[]" class="form-control" multiple>
                             </div>
                         </div>
                     </div>
@@ -106,11 +106,16 @@
                             <tbody>
                                 @if (isset($rooms))
                                     @foreach ($rooms as $item)
+                                        @php
+                                            $image = json_decode($item['image']);
+
+                                            // dd($image)
+                                        @endphp
                                         <tr>
                                             <td><strong id="nameRoom">{{ $item['nameRoom'] }}</strong></td>
                                             <td>
-                                                <div class="d-flex align-items-center"><img
-                                                        src=" {{ asset('upload/admin/room/' . $item['image']) }}"
+                                                <div class="d-flex align-items-center">
+                                                    <img src=" {{ asset('upload/admin/room/' . $image[0])}}"
                                                         class="rounded-lg mr-2" width="24" alt=""
                                                         id="renderimg"> <span class="w-space-no"></span></div>
                                             </td>
@@ -215,9 +220,9 @@
                                                         <div class="form-group">
                                                             <label class="text-label">Image</label>
 
-                                                            <input type="file" name="image"
+                                                            <input type="file" name="image[]"
                                                                 class="form-control editImageRoom" id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2">
+                                                                aria-describedby="inputGroupPrepend2" multiple>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -325,17 +330,22 @@
                         .val()
                     var roomTypeId = $(this).closest('.modal-content').find('select#roomTypeId')
                         .val()
-                    var image = $(this).closest('.modal-content').find('input.editImageRoom')[0]
-                        .files[0] || '';
+                    var files = $(this).closest('.modal-content').find('input.editImageRoom')[0]
+                        .files;
+
                     var id = $(this).closest('.modal-content').find('input#nameRoom').attr(
                         'data-id');
                     let form = new FormData();
+
+                    for (var i = 0; i < files.length; i++) {
+                        form.append('image[]', files[i]);
+                    }
+
                     form.append('nameRoom', nameRoom);
                     form.append('price', price);
                     form.append('Capacity', Capacity);
                     form.append('description', description);
                     form.append('roomTypeId', roomTypeId);
-                    form.append('image', image);
                     form.append('id', id);
 
                     Swal.fire({

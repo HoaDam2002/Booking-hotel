@@ -23,7 +23,11 @@
                     <div class="room-details-item">
                         @if (isset($roomDetail))
                             {{-- {{ dd($roomDetail) }} --}}
-                            <img src="{{ asset('upload/admin/room/hinh750'. $roomDetail[0]['image'] ) }}" alt="">
+                            @php
+                                // dd($roomDetail)
+                                $image = json_decode($roomDetail[0]['image'], true);
+                            @endphp
+                            <img src="{{ asset('upload/admin/room/hinh720'. $image[0] ) }}" alt="">
                             <div class="rd-text">
                                 <div class="rd-title">
                                     <h3>{{ $roomDetail[0]['nameRoom'] }}</h3>
@@ -142,7 +146,7 @@
                 <div class="col-lg-4">
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
-                        <form method="POST" action="/search">
+                        <form method="post" action="/booking">
                             @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
@@ -154,28 +158,13 @@
                                 <input readonly name="checkout"type="text" class="date-input" id="date-out">
                                 <i class="icon_calendar"></i>
                             </div>
-                            <div class="select-option">
-                                <label for="room">TypeRoom:</label>
-                                <select id="room" name="typeroom">
-                                    <option value="">Choose</option>
 
-                                    {{-- @foreach ($typeroom as $value)
-                                        <option value="{{ $value['id'] }}">{{ $value['typeName'] }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                            <div class="select-option">
-                                <label for="guest">Guests:</label>
-                                <select id="guest" name="people">
-                                    <option value="">Choose</option>
-                                    <option value="2">2 Adults</option>
-                                    <option value="3">3 Adults</option>
-                                </select>
-                            </div>
-
-                            <button type="submit">Booking Now</button>
+                            <button type="submit">Check Availability</button>
                         </form>
                     </div>
+                    @php
+                        session()->flush();
+                    @endphp
                 </div>
             </div>
         </div>

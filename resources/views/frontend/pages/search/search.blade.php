@@ -22,10 +22,13 @@
                 @if (isset($availableRooms))
                     {{-- {{ dd($rooms) }} --}}
                     @foreach ($availableRooms as $item)
+                        @php
+                            $image = json_decode($item->image, true);
+                        @endphp
                         {{-- {{ dd($item->image) }} --}}
                         <div class="col-lg-4 col-md-6">
                             <div class="room-item">
-                                <img src="{{ asset('upload/admin/room/hinh360' . $item->image) }}" alt="">
+                                <img src="{{ asset('upload/admin/room/hinh360' . $image[0]) }}" alt="">
                                 <div class="ri-text">
                                     <h4>{{ $item->nameRoom }}</h4>
                                     <h3>{{ $item->price }}VND<span>/Pernight</span></h3>
@@ -48,7 +51,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <a href="{{ url('room/detail/' . $item->id) }}" class="primary-btn">More Details</a>
+                                    <a href="{{ url('pay/' . $item->id) }}" class="primary-btn">More Details</a>
                                 </div>
                             </div>
                         </div>

@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{csrf_token()}}">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sona</title>
     <link rel="icon" type="image/png" sizes="16x16" href=" {{ asset('frontend/img/icon/favicon-16x16.png') }}">
@@ -26,7 +28,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
-    <style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {{-- <style>
         .pagination .pagination-next,
         .pagination .pagination-previous {
             font-size: 14px;
@@ -34,7 +37,7 @@
             padding: 5px 10px;
             /* Đặt kích thước phù hợp cho padding */
         }
-    </style>
+    </style> --}}
 </head>
 
 <body>
@@ -46,6 +49,7 @@
 
 
     <!-- Js Plugins -->
+
     <script src="{{ asset('frontend/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.magnific-popup.min.js') }}"></script>

@@ -1,6 +1,3 @@
-
-<!-- tuan demo  -->
-
 <?php
 
 use App\Http\Controllers\accoutuesrcontroller;
@@ -29,6 +26,7 @@ use App\Http\Controllers\frontend\BlogFEController;
 use App\Http\Controllers\frontend\LoginFEController;
 use App\Http\Controllers\frontend\LogoutFEController;
 use App\Http\Controllers\frontend\ProfileFEController;
+use App\Http\Controllers\frontend\PayController;
 
 use App\Http\Controllers\frontend\SearchController;
 
@@ -77,6 +75,10 @@ Route::group([
 
         Route::get('/profile/update/password', [ProfileFEController::class, 'ResetPassword']);
         Route::post('/profile/update/password', [ProfileFEController::class, 'ResetPasswordPost']);
+        Route::get('/pay/{id}', [PayController::class, 'index']);
+
+        Route::post('/pay/paying', [PayController::class, 'Paying']);
+
     });
 
    // logout

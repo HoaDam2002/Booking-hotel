@@ -23,31 +23,20 @@ class SearchController extends Controller
     }
 
     public function search(Request $request) {
+        // session()->flush();
+        session()->forget('timeBooking');
         $search = $request->all();
 
         $ngayCheckIn = "";
         $ngayCheckOut = "";
-
-        // if(session()->has('checkin') && session()->has('checkout')) {
-        //     $ngayCheckIn = session()->get('checkin');
-        //     $ngayCheckOut = session()->get('checkout');;
-        // }else{
-        //     $ngayCheckIn = $search["checkIn"];
-        //     $ngayCheckOut = $search["checkOut"];
-
-        //     session()->push('checkin', $ngayCheckIn);
-        //     session()->push('checkout', $ngayCheckOut);
-
-        // }
 
         if(!empty($search['checkIn']) && !empty($search['checkOut'])) {
             $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
             $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
             $search["checkIn"] = $ngayCheckIn;
             $search["checkOut"] = $ngayCheckOut;
+            session()->push('timeBooking',$search);
         }
-
-
 
         $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
             $query->where(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
@@ -73,7 +62,7 @@ class SearchController extends Controller
         Paginator::useBootstrap();
 
         // Lấy danh sách các phòng thoả mãn các điều kiện đã áp dụng
-        $availableRooms = $roomsQuery->paginate(1);
+        $availableRooms = $roomsQuery->paginate(6);
 
         return view('frontend.pages.search.search', compact('availableRooms'));
     }

@@ -34,6 +34,9 @@ class RoomFEController extends Controller
      */
     public function RenderBlogDetail(string $id)
     {
+        $ngayCheckIn = "";
+        $ngayCheckOut = "";
+
         $roomDetail = Room::with('typeRoom')->where('id',$id)->get()->toArray();
         $service = Service::all()->toArray();
         return view('frontend.pages.rooms.room-details',compact('roomDetail','service'));
