@@ -31,6 +31,7 @@ use App\Http\Controllers\Mail\MailController;
 
 
 use App\Http\Controllers\frontend\SearchController;
+use App\Http\Controllers\infobookingcontroller;
 
 // use App\Http\Controllers\frontend\registrationcontroller;
 
@@ -51,6 +52,7 @@ Route::group([
     Route::get('/', [HomeController::class, 'index']);
 
     //room
+    Route::get('/infobooking', [infobookingcontroller::class, 'index']);
     Route::get('room', [RoomFEController::class, 'index']);
     Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
 
@@ -118,7 +120,6 @@ Route::group([
     // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home', [Admincontroller::class, 'index']);
     //Blogs
-
     Route::get('/blogs', [BlogsController::class, 'index']);
     Route::post('/blogs', [BlogsController::class, 'insert']);
 
