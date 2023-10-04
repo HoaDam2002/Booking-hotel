@@ -35,7 +35,7 @@
                     @endif
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
-                        <form method="get" action="/search/page">
+                        <form method="post" action="/search">
                             @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
@@ -61,8 +61,12 @@
                                 <label for="guest">Guests:</label>
                                 <select id="guest" name="people">
                                     <option value="">Choose</option>
-                                    <option value="2">2 Adults</option>
-                                    <option value="3">3 Adults</option>
+                                    <option value="1">1 person</option>
+                                    <option value="2">2 person</option>
+                                    <option value="3">3 person</option>
+                                    <option value="4">4 person</option>
+                                    <option value="5">5 person</option>
+                                    <option value="6">More person</option>
                                 </select>
                             </div>
 
@@ -196,7 +200,8 @@
                                 $image = json_decode($item['image'], true);
                             @endphp
                             <div class="col-lg-3 col-md-6">
-                                <div class="hp-room-item set-bg" data-setbg="{{ asset('upload/admin/room/' . $image[0]) }}">
+                                <div class="hp-room-item set-bg"
+                                    data-setbg="{{ asset('upload/admin/room/' . $image[0]) }}">
                                     <div class="hr-text">
                                         <h3>{{ $item['nameRoom'] }}</h3>
                                         <h2>{{ $item['price'] }} $<span>/Pernight</span></h2>

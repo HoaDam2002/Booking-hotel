@@ -32,16 +32,17 @@ class LoginFEController extends Controller
 
         $remember = false;
 
-        if($request->remeber_me){
+        if ($request->remeber_me) {
             $remember = true;
         }
 
-        if(Auth::attempt($login,$remember)){
-            return redirect('/');
-        }else{
+        if (Auth::attempt($login, $remember)) {
+            return redirect()->intended();
+        } else {
             return redirect()->back()->withErrors('Sai Email hoặc Mật khẩu');
         }
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -70,18 +71,18 @@ class LoginFEController extends Controller
 
         // dd($data);
 
-        if(!is_dir('upload/user/')){
+        if (!is_dir('upload/user/')) {
             mkdir('upload/user/');
         }
 
-        if(!is_dir('upload/user/avatar/')){
+        if (!is_dir('upload/user/avatar/')) {
             mkdir('upload/user/avatar/');
         }
 
-        if(User::create($data)){
-            $avatar->move('upload/user/avatar',$avatar->getClientOriginalName());
-            return redirect('login/user')->with('success',__('Đăng ký thành công.'));
-        }else{
+        if (User::create($data)) {
+            $avatar->move('upload/user/avatar', $avatar->getClientOriginalName());
+            return redirect('login/user')->with('success', __('Đăng ký thành công.'));
+        } else {
             return redirect()->back()->withErrors('Đăng ký thất bại');
         }
 

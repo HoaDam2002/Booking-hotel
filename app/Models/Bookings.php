@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Bookings extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'bookings';
-    
+
     protected $fillable = [
         'id',
         'idUser',
@@ -22,4 +22,8 @@ class Bookings extends Model
         'checkOut',
         'total'
     ];
+
+    public function room(){
+        return $this->belongsTo('App\Models\Room','idRoom');
+    }
 }

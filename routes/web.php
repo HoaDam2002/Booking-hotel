@@ -31,7 +31,7 @@ use App\Http\Controllers\Mail\MailController;
 
 
 use App\Http\Controllers\frontend\SearchController;
-use App\Http\Controllers\infobookingcontroller;
+use App\Http\Controllers\frontend\ListBookingUserController;
 
 // use App\Http\Controllers\frontend\registrationcontroller;
 
@@ -52,14 +52,14 @@ Route::group([
     Route::get('/', [HomeController::class, 'index']);
 
     //room
-    Route::get('/infobooking', [infobookingcontroller::class, 'index']);
+
     Route::get('room', [RoomFEController::class, 'index']);
     Route::get('room/detail/{id}', [RoomFEController::class, 'RenderBlogDetail']);
 
 
-    Route::get('search/', [SearchController::class, 'index']);
-    Route::get('search/page', [SearchController::class, 'search']);
-    Route::post('search/page', [SearchController::class, 'search']);
+    Route::get('search', [SearchController::class, 'index']);
+    Route::post('search', [SearchController::class, 'search']);
+    // Route::post('search/page', [SearchController::class, 'search']);
 
     Route::post('search/inSearchPage', [SearchController::class, 'searchAjax']);
     Route::get('search/roomdetail', [SearchController::class, 'searchRoomDetail']);
@@ -89,6 +89,8 @@ Route::group([
         Route::get('/pay/{id}', [PayController::class, 'index']);
 
         Route::post('/pay/paying', [PayController::class, 'Paying']);
+
+        Route::get('/infobooking', [ListBookingUserController::class, 'index']);
 
     });
 

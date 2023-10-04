@@ -67,8 +67,12 @@
                             <label for="guest">Guests:</label>
                             <select id="guest" name="people">
                                 <option value="">Choose</option>
-                                <option value="2">2 Adults</option>
-                                <option value="3">3 Adults</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 person</option>
+                                <option value="3">3 person</option>
+                                <option value="4">4 person</option>
+                                <option value="5">5 person</option>
+                                <option value="6">More person</option>
                             </select>
                         </div>
 
@@ -76,16 +80,28 @@
                     </form>
                 </div>
             </div>
-            <p style="margin: 50px; margin-left: 250px">
-                Your Search is
-                Check In: {{ $dateIn }}; Check Out: {{ $dateOut }}
-                {{ !empty($capacity) ? ';Max person: ' . $capacity : '' }}
-                {{ !empty($type) ? '; Type Room: ' . $type[0]['typeName'] : '' }}
-            </p>
+            <div style="margin: auto; margin-left: 150px; display: flex; flex-direction: row;">
+                <p style="margin-right: 10px;">
+                    Your Search is:
+                </p>
+                <p style="color: rgb(51, 14, 213); margin-right: 7px;" id="checkin">
+                    Check In: {{ $dateIn }};
+                </p>
+                <p style="color: rgb(206, 117, 23); margin-right: 7px;" id="checkout">
+                    Check Out: {{ $dateOut }}
+                </p>
+                <p style="color: rgb(7, 134, 45); margin-right: 7px;" id="capacity">
+                    {{ !empty($capacity) ? '; Max person: ' . $capacity : '' }}
+                </p>
+                <p style="color: rgb(84, 8, 150);" id="typeRoom">
+                    {{ !empty($type) ? '; Type Room: ' . $type[0]['typeName'] : '' }}
+                </p>
+            </div>
+
+
             <div id="render" class="row">
                 @if (isset($availableRooms))
                     @foreach ($availableRooms as $item)
-
                         @php
                             $image = json_decode($item->image, true);
                         @endphp
@@ -123,13 +139,7 @@
                 @endif
 
             </div>
-            @if (isset($availableRooms))
-                <div class="pagination-area">
-                    <ul class="pagination">
-                        {{ $availableRooms->links() }}
-                    </ul>
-                </div>
-            @endif
+
         </div>
     </section>
     <script>
@@ -148,6 +158,26 @@
                 let checkOut = $(this).closest('div.booking-form').find('input#date-out').val();
                 let people = $(this).closest('div.booking-form').find('select#guest').val();
                 let typeroom = $(this).closest('div.booking-form').find('select#room').val();
+
+                let nametype = $(this).closest('div.booking-form').find('select#guest option:selected').text();
+                let type = $(this).closest('div.booking-form').find('select#room option:selected').text();
+
+                $('p#checkin').text('Check In: ' + checkIn + ';')
+                $('p#checkout').text('Check In: '+ checkOut)
+
+                if(nametype != 'Choose' && type != ''){
+                    $('p#capacity').text('; Max person :' + nametype)
+                }else{
+                    $('p#capacity').text('')
+
+                }
+
+                if(type != 'Choose' && type != ''){
+                    $('p#typeRoom').text('; Type Room :' + type)
+                }else{
+                    $('p#typeRoom').text('')
+                }
+
 
                 $.ajax({
                     url: "{{ url('search/inSearchPage') }}", // Sử dụng route thay vì url

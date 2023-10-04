@@ -35,7 +35,7 @@ class SearchController extends Controller
             $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
             $search["checkIn"] = $ngayCheckIn;
             $search["checkOut"] = $ngayCheckOut;
-            session()->push('timeBooking', $search);
+            session()->put('timeBooking', $search);
         }
 
         $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
@@ -56,7 +56,11 @@ class SearchController extends Controller
 
         // Kiểm tra và áp dụng điều kiện lọc cho số lượng người (nếu có)
         if (!empty($search['people'])) {
-            $roomsQuery->where('Capacity', '>=', $search['people']);
+            if($search['people'] == 6){
+                $roomsQuery->where('Capacity', '>=', $search['people']);
+            }else{
+                $roomsQuery->where('Capacity', '<=', $search['people']);
+            }
         }
 
         // dd($roomsQuery);
@@ -68,53 +72,16 @@ class SearchController extends Controller
     {
         $search = $request->all();
 
+        // dd($search);
+
         $dateIn = $search["checkIn"];
         $dateOut = $search["checkOut"];
         $capacity = $search["people"];
         $type = $search["typeroom"];
 
         $type = Typeroom::where('id', $type)->get('typeName')->toArray();
-
-        // dd($type);
-
-        // $ngayCheckIn = "";
-        // $ngayCheckOut = "";
-
-        // if (!empty($search['checkIn']) && !empty($search['checkOut'])) {
-        //     $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
-        //     $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
-        //     $search["checkIn"] = $ngayCheckIn;
-        //     $search["checkOut"] = $ngayCheckOut;
-        //     session()->push('timeBooking', $search);
-        // }
-
-        // $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
-        //     $query->where(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
-        //         $query->whereBetween('checkIn', [$ngayCheckIn, $ngayCheckOut])
-        //             ->orWhereBetween('checkOut', [$ngayCheckIn, $ngayCheckOut])
-        //             ->orWhere(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
-        //                 $query->where('checkIn', '<', $ngayCheckIn)
-        //                     ->where('checkOut', '>', $ngayCheckOut);
-        //             });
-        //     });
-        // });
-
-        // // Kiểm tra và áp dụng điều kiện lọc cho loại phòng (nếu có)
-        // if (!empty($search['typeroom'])) {
-        //     $roomsQuery->where('roomTypeId', $search['typeroom']);
-        // }
-
-        // // Kiểm tra và áp dụng điều kiện lọc cho số lượng người (nếu có)
-        // if (!empty($search['people'])) {
-        //     $roomsQuery->where('Capacity', '>=', $search['people']);
-        // }
-
-
-
-        Paginator::useBootstrap();
-
         // Lấy danh sách các phòng thoả mãn các điều kiện đã áp dụng
-        $availableRooms = $this->doSearch($search)->paginate(6);
+        $availableRooms = $this->doSearch($search)->get();
 
         $roomType = Typeroom::all()->toArray();
         // dd($roomType);
