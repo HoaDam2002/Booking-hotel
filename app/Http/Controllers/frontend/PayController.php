@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotify;
+use Auth;
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Bookings;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -27,13 +31,15 @@ class PayController extends Controller
         $checkIn = "";
         $checkOut = "";
 
-        if(session()->has('timeBooking')){
+        if (session()->has('timeBooking')) {
+
             $timeBooking = session()->get('timeBooking');
             // dd($timeBooking);
-            $checkIn = $timeBooking[0]['checkIn'];
-            $checkOut = $timeBooking[0]['checkOut'];
+            $checkIn = $timeBooking['checkIn'];
+            $checkOut = $timeBooking['checkOut'];
         }
 
+        // dd($timeBooking);
         $checkInDate = \DateTime::createFromFormat('y-m-d H:i:s', $checkIn);
         $checkOutDate = \DateTime::createFromFormat('y-m-d H:i:s', $checkOut);
 
@@ -41,9 +47,7 @@ class PayController extends Controller
             $checkOutDate->modify('+1 day');
         }
 
-
         $interval = $checkInDate->diff($checkOutDate);
-
 
         $numberOfDays = $interval->days + 1;
 
@@ -55,7 +59,7 @@ class PayController extends Controller
         $room['checkIn'] = $checkIn;
         $room['checkOut'] = $checkOut;
 
-        return view('frontend.pages.pay.pay',compact('room','total'));
+        return view('frontend.pages.pay.pay', compact('room', 'total','numberOfDays'));
     }
 
     /**
@@ -63,8 +67,29 @@ class PayController extends Controller
      */
     public function Paying(Request $request)
     {
-        $data = $request->all();
-        Bookings::create($data);
+        $inforBooking = $request->all();
+
+        // dd($inforBooking);
+        $data = [
+            'subject' => 'Welcome to Sona Hotel',
+            'body' => $inforBooking
+        ];
+
+        $email = Auth::user()->email;
+
+        try {
+            Mail::to('phannhattuan1@dtu.edu.vn')->send(new MailNotify($data));
+            unset($inforBooking['nameRoom']);
+            unset($inforBooking['capacity']);
+            unset($inforBooking['typeroom']);
+            unset($inforBooking['price']);
+            unset($inforBooking['bookingduration']);
+
+            Bookings::create($inforBooking);
+            return response()->json(['data' => 'Great check your mail box !!!']);
+        } catch (Exception $e) {
+            return response()->json([$e->getMessage()]);
+        }
     }
 
     /**

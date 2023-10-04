@@ -3,6 +3,25 @@
 @section('content')
     <section class="contact-section spad">
         <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissble">
+                    {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissble">
+                    {{-- <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                    <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-5">
                     <div class="contact-text">
@@ -100,6 +119,11 @@
                 let emailUser = "{{ Auth::user()->email }}"
                 let checkIn = "{{ $room->checkIn }}"
                 let checkOut = "{{ $room->checkOut }}"
+                let nameRoom = "{{ $room->nameRoom }}"
+                let capacity = "{{ $room->Capacity }}"
+                let typeroom = "{{ $room->typeRoom->typeName }}"
+                let price = "{{ $room->price }}"
+                let bookingduration = "{{ $numberOfDays }}"
                 let total = $(this).closest('div.contact-text').find('h3#total').text()
                 total = parseInt(total.match(/\d+/)[0]);
 
@@ -114,13 +138,19 @@
                         emailUser: emailUser,
                         checkIn: checkIn,
                         checkOut: checkOut,
-                        total: total
+                        total: total,
+                        nameRoom: nameRoom,
+                        capacity: capacity,
+                        typeroom: typeroom,
+                        price: price,
+                        bookingduration: bookingduration,
                     },
-                    success: function(data) {
-                       alert('Success');
+                    success: function(res) {
+                        window.location.href = "{{ url('/') }}";
+                        alert(res.data);
                     },
                     error: function(e) {
-                        console.log(e.message);
+                        alert(e.message);
                     }
                 })
             })

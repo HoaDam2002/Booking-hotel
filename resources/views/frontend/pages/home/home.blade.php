@@ -14,6 +14,25 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissble">
+                            {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                            <h4>NOTEFICATION</h4>
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger alert-dismissble">
+                            {{-- <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
+                            <h4>NOTEFICATION</h4>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
                         <form method="get" action="/search/page">
@@ -25,7 +44,7 @@
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input readonly  name="checkOut"type="text" class="date-input" id="date-out">
+                                <input readonly name="checkOut"type="text" class="date-input" id="date-out">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="select-option">
@@ -34,7 +53,7 @@
                                     <option value="">Choose</option>
 
                                     @foreach ($typeroom as $value)
-                                        <option value="{{$value["id"]}}">{{$value["typeName"]}}</option>
+                                        <option value="{{ $value['id'] }}">{{ $value['typeName'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -171,9 +190,8 @@
             <div class="hp-room-items">
                 <div class="row">
                     @if (isset($rooms))
-                    {{-- {{ dd($rooms) }} --}}
+                        {{-- {{ dd($rooms) }} --}}
                         @foreach ($rooms as $item)
-
                             @php
                                 $image = json_decode($item['image'], true);
                             @endphp
@@ -202,17 +220,18 @@
                                                 <tr>
                                                     <td class="r-o">Service:</td>
                                                     <td>
-                                                        @if(isset($service))
-                                                            @for($i = 0; $i < 2; $i++)
+                                                        @if (isset($service))
+                                                            @for ($i = 0; $i < 2; $i++)
                                                                 {{ $service[$i]['name'] . ', ' }}
                                                             @endfor
                                                         @endif
-                                                        {{ "..." }}
+                                                        {{ '...' }}
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <a href="{{ url('/room/detail/' . $item['id']) }}" class="primary-btn">More Details</a>
+                                        <a href="{{ url('/room/detail/' . $item['id']) }}" class="primary-btn">More
+                                            Details</a>
                                     </div>
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ use App\Models\Room;
 use App\Models\Typeroom;
 use App\Models\Bookings;
 use Illuminate\Pagination\Paginator;
+use App\Http\Requests\SearchRequest;
 
 
 use Illuminate\Support\Carbon;
@@ -22,20 +23,19 @@ class SearchController extends Controller
         return view('frontend.pages.search.search');
     }
 
-    public function search(Request $request) {
-        // session()->flush();
-        session()->forget('timeBooking');
-        $search = $request->all();
-
+    public function doSearch($search = [])
+    {
         $ngayCheckIn = "";
         $ngayCheckOut = "";
 
-        if(!empty($search['checkIn']) && !empty($search['checkOut'])) {
+        // dd($search);
+
+        if (!empty($search['checkIn']) && !empty($search['checkOut'])) {
             $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
             $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
             $search["checkIn"] = $ngayCheckIn;
             $search["checkOut"] = $ngayCheckOut;
-            session()->push('timeBooking',$search);
+            session()->push('timeBooking', $search);
         }
 
         $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
@@ -59,30 +59,109 @@ class SearchController extends Controller
             $roomsQuery->where('Capacity', '>=', $search['people']);
         }
 
+        // dd($roomsQuery);
+
+        return $roomsQuery;
+    }
+
+    public function search(SearchRequest $request)
+    {
+        $search = $request->all();
+
+        $dateIn = $search["checkIn"];
+        $dateOut = $search["checkOut"];
+        $capacity = $search["people"];
+        $type = $search["typeroom"];
+
+        $type = Typeroom::where('id', $type)->get('typeName')->toArray();
+
+        // dd($type);
+
+        // $ngayCheckIn = "";
+        // $ngayCheckOut = "";
+
+        // if (!empty($search['checkIn']) && !empty($search['checkOut'])) {
+        //     $ngayCheckIn = Carbon::createFromFormat('d F, Y', $search["checkIn"])->format('y-m-d 14:00:00');
+        //     $ngayCheckOut = Carbon::createFromFormat('d F, Y', $search["checkOut"])->format('y-m-d 12:00:00');
+        //     $search["checkIn"] = $ngayCheckIn;
+        //     $search["checkOut"] = $ngayCheckOut;
+        //     session()->push('timeBooking', $search);
+        // }
+
+        // $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+        //     $query->where(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+        //         $query->whereBetween('checkIn', [$ngayCheckIn, $ngayCheckOut])
+        //             ->orWhereBetween('checkOut', [$ngayCheckIn, $ngayCheckOut])
+        //             ->orWhere(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+        //                 $query->where('checkIn', '<', $ngayCheckIn)
+        //                     ->where('checkOut', '>', $ngayCheckOut);
+        //             });
+        //     });
+        // });
+
+        // // Kiểm tra và áp dụng điều kiện lọc cho loại phòng (nếu có)
+        // if (!empty($search['typeroom'])) {
+        //     $roomsQuery->where('roomTypeId', $search['typeroom']);
+        // }
+
+        // // Kiểm tra và áp dụng điều kiện lọc cho số lượng người (nếu có)
+        // if (!empty($search['people'])) {
+        //     $roomsQuery->where('Capacity', '>=', $search['people']);
+        // }
+
+
+
         Paginator::useBootstrap();
 
         // Lấy danh sách các phòng thoả mãn các điều kiện đã áp dụng
-        $availableRooms = $roomsQuery->paginate(6);
+        $availableRooms = $this->doSearch($search)->paginate(6);
 
-        return view('frontend.pages.search.search', compact('availableRooms'));
+        $roomType = Typeroom::all()->toArray();
+        // dd($roomType);
+        return view('frontend.pages.search.search', compact('availableRooms', 'dateIn', 'dateOut', 'roomType', 'capacity', 'type'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function searchAjax(Request $request)
     {
-        //
+        $search = $request->all();
+
+        $availableRooms = $this->doSearch($search)->with('typeRoom')->get();
+
+        return response()->json(['data' => $availableRooms]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function searchRoomDetail(Request $request)
     {
-        //
-    }
+        $data = $request->all();
 
+        $roomId = $data['idRoom'];
+
+        $checkIn = Carbon::createFromFormat('d F, Y',  $data['checkIn'])->format('y-m-d 14:00:00');
+        $checkOut = Carbon::createFromFormat('d F, Y', $data['checkOut'])->format('y-m-d 12:00:00');
+
+        $availableRoomsCount = Bookings::where('idRoom', $roomId)
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->where('checkout', '<', $checkIn)
+                    ->orWhere('checkin', '>', $checkOut);
+            })
+            ->count();
+
+        if($availableRoomsCount == 0){
+
+            $search["checkIn"] = $checkIn;
+            $search["checkOut"] = $checkOut;
+            session()->put('timeBooking',$search);
+            return response()->json(['available' => 'This room is available']);
+        }else{
+            return response()->json(['notAvailable' => 'This room not available !!!']);
+        }
+    }
     /**
      * Display the specified resource.
      */

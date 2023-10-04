@@ -22,12 +22,11 @@
                 <div class="col-lg-8">
                     <div class="room-details-item">
                         @if (isset($roomDetail))
-                            {{-- {{ dd($roomDetail) }} --}}
+
                             @php
-                                // dd($roomDetail)
                                 $image = json_decode($roomDetail[0]['image'], true);
                             @endphp
-                            <img src="{{ asset('upload/admin/room/hinh720'. $image[0] ) }}" alt="">
+                            <img src="{{ asset('upload/admin/room/hinh750' . $image[0]) }}" alt="">
                             <div class="rd-text">
                                 <div class="rd-title">
                                     <h3>{{ $roomDetail[0]['nameRoom'] }}</h3>
@@ -39,7 +38,7 @@
                                             <i class="icon_star"></i>
                                             <i class="icon_star-half_alt"></i>
                                         </div>
-                                        <p href="#" style="color:red;"><i class="fa-solid fa-wifi"></i> Now</p>
+                                        {{-- <p href="#" style="color:red;"><i class="fa-solid fa-wifi"></i> Now</p> --}}
                                     </div>
                                 </div>
                                 <h2>{{ $roomDetail[0]['price'] }}$<span>/Pernight</span></h2>
@@ -58,12 +57,12 @@
                                         <tr>
                                             <td class="r-o">Service:</td>
                                             <td>
-                                                @if(isset($service))
-                                                    @for($i = 0; $i < 2; $i++)
+                                                @if (isset($service))
+                                                    @for ($i = 0; $i < 2; $i++)
                                                         {{ $service[$i]['name'] . ', ' }}
                                                     @endfor
                                                 @endif
-                                                {{ "..." }}
+                                                {{ '...' }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -146,25 +145,22 @@
                 <div class="col-lg-4">
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
-                        <form method="post" action="/booking">
+                        <form action="#">
                             @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="text" name="checkin" readonly class="date-input" id="date-in">
+                                <input type="text" name="checkIn" readonly class="date-input" id="date-in">
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input readonly name="checkout"type="text" class="date-input" id="date-out">
+                                <input readonly name="checkOut"type="text" class="date-input" id="date-out">
                                 <i class="icon_calendar"></i>
                             </div>
 
-                            <button type="submit">Check Availability</button>
+                            <button id="search" type="submit">Check Availability</button>
                         </form>
                     </div>
-                    @php
-                        session()->flush();
-                    @endphp
                 </div>
             </div>
         </div>
@@ -177,4 +173,48 @@
             </form>
         </div>
     </div>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            $('button#search').click(function(e) {
+                e.preventDefault();
+
+                let checkIn = $(this).closest('div.booking-form').find('input#date-in').val();
+                let checkOut = $(this).closest('div.booking-form').find('input#date-out').val();
+                let idRoom = "{{ $roomDetail[0]['id'] }}"
+
+                if (checkIn == '' && checkOut == '') {
+                    alert('Pease choose data Check In and Check Out');
+                } else {
+                    $.ajax({
+                        url: "{{ url('search/roomdetail') }}",
+                        type: 'POST',
+                        data: {
+                            checkIn: checkIn,
+                            checkOut: checkOut,
+                            idRoom: idRoom,
+                            people: '',
+                            typeroom: '',
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(res) {
+                            if (res.available) {
+                                window.location.href = "{{ url('/pay/') }}" + "/" + idRoom;
+                            } else {
+                                alert(res.notAvailable);
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error(textStatus, errorThrown);
+                        }
+                    });
+                }
+            });
+        })
+    </script>
 @endsection

@@ -23,9 +23,12 @@
                     {{-- {{ dd($rooms) }} --}}
                     @foreach ($rooms as $item)
                         {{-- {{ dd($item->image) }} --}}
+                        @php
+                            $image = json_decode($item->image, true);
+                        @endphp
                         <div class="col-lg-4 col-md-6">
                             <div class="room-item">
-                                <img src="{{ asset('upload/admin/room/hinh360' . $item->image) }}" alt="">
+                                <img src="{{ asset('upload/admin/room/hinh360' . $image[0]) }}" alt="">
                                 <div class="ri-text">
                                     <h4>{{ $item->nameRoom }}</h4>
                                     <h3>{{ $item->price }}$<span>/Pernight</span></h3>
@@ -37,7 +40,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="r-o">Capacity:</td>
-                                                <td>Tối đa {{ $item->Capacity }}</td>
+                                                <td>Max persion {{ $item->Capacity }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="r-o">Description:</td>

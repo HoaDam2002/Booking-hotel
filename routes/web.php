@@ -27,6 +27,8 @@ use App\Http\Controllers\frontend\LoginFEController;
 use App\Http\Controllers\frontend\LogoutFEController;
 use App\Http\Controllers\frontend\ProfileFEController;
 use App\Http\Controllers\frontend\PayController;
+use App\Http\Controllers\Mail\MailController;
+
 
 use App\Http\Controllers\frontend\SearchController;
 
@@ -55,6 +57,13 @@ Route::group([
 
     Route::get('search/', [SearchController::class, 'index']);
     Route::get('search/page', [SearchController::class, 'search']);
+    Route::post('search/page', [SearchController::class, 'search']);
+
+    Route::post('search/inSearchPage', [SearchController::class, 'searchAjax']);
+    Route::get('search/roomdetail', [SearchController::class, 'searchRoomDetail']);
+
+    Route::post('search/roomdetail', [SearchController::class, 'searchRoomDetail']);
+
 
 
     //blog

@@ -51,8 +51,8 @@ class RoomController extends Controller
             $path3 = public_path('upload/admin/room/'. $name_3);
 
             Image::make($image->getRealPath())->save($path);
-            Image::make($image->getRealPath())->resize(85, 84)->save($path2);
-            Image::make($image->getRealPath())->resize(329, 380)->save($path3);
+            Image::make($image->getRealPath())->resize(360, 234)->save($path2);
+            Image::make($image->getRealPath())->resize(750, 429)->save($path3);
 
             $data[] = $name;
         }
