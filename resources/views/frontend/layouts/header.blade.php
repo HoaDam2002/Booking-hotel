@@ -74,7 +74,7 @@
                     <div class="tn-right">
                         <div class="top-social">
 
-                            <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                            <a href="{{ url('/infobooking') }}"><i class="fa fa-tripadvisor"></i></a>
 
                         </div>
                         <a href="#" class="bk-btn">Booking Now</a>

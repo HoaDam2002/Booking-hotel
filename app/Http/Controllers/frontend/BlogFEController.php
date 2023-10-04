@@ -14,6 +14,7 @@ class BlogFEController extends Controller
             return $next($request);
         });
     }
+
     /**
      * Display a listing of the resource.
      */
