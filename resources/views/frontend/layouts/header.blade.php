@@ -12,10 +12,10 @@
     <div class="canvas-close">
         <i class="icon_close"></i>
     </div>
-    <div class="search-icon  search-switch">
+    {{-- <div class="search-icon  search-switch">
         <i class="icon_search"></i>
-    </div>
-    <div class="header-configure-area">
+    </div> --}}
+    {{-- <div class="header-configure-area">
         <div class="language-option">
             <img src="{{ asset('frontend/img/flag.jpg') }}" alt="">
             <span>EN <i class="fa fa-angle-down"></i></span>
@@ -27,22 +27,33 @@
             </div>
         </div>
         <a href="#" class="bk-btn">Booking Now</a>
-    </div>
+    </div> --}}
     <nav class="mainmenu mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="{{ url('/room') }}">Rooms</a></li>
-            <li><a href="./about-us.html">About Us</a></li>
-            <li><a href="./pages.html">Pages</a>
+            {{-- <li><a href="./about-us.html">About Us</a></li> --}}
+            {{-- <li><a href="./pages.html">Pages</a>
                 <ul class="dropdown">
                     <li><a href="./room-details.html">Room Details</a></li>
                     <li><a href="#">Deluxe Room</a></li>
                     <li><a href="#">Family Room</a></li>
                     <li><a href="#">Premium Room</a></li>
                 </ul>
-            </li>
-            <li><a href="./blog.html">News</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            </li> --}}
+            <li><a href="{{ url('/blog') }}">Blogs</a></li>
+            {{-- <li><a href="./contact.html">Contact</a></li> --}}
+            @if (Auth::check())
+                <li class="{{ session('module_active') == 'infobooking' ? 'active' : '' }}"><a
+                        href="{{ url('/infobooking') }}">My Bookings</a></li>
+                <li><a href="{{ url('/profile') }}">Profile</a></li>
+                <li><a href="{{ url('/logout/user') }}">Logout</a></li>
+            @else
+                <li>
+                    <a href="{{ url('/register/user') }}">Register</a>
+                </li>
+                <li><a href="{{ url('/login/user') }}">Login</a></li>
+            @endif
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -98,7 +109,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="/">
                             <img src="{{ asset('frontend/img/logo.png') }}" alt="">
                         </a>
                     </div>
