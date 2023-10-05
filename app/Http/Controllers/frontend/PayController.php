@@ -40,8 +40,8 @@ class PayController extends Controller
         }
 
         // dd($timeBooking);
-        $checkInDate = \DateTime::createFromFormat('y-m-d H:i:s', $checkIn);
-        $checkOutDate = \DateTime::createFromFormat('y-m-d H:i:s', $checkOut);
+        $checkInDate = \DateTime::createFromFormat('Y-m-d H:i:s', $checkIn);
+        $checkOutDate = \DateTime::createFromFormat('Y-m-d H:i:s', $checkOut);
 
         if ($checkOutDate < $checkInDate) {
             $checkOutDate->modify('+1 day');
@@ -53,8 +53,8 @@ class PayController extends Controller
 
         $total = $numberOfDays * $room->price;
 
-        $room['checkInView'] = Carbon::parse($checkIn)->format('d-m-y h:i a');
-        $room['checkOutView'] = Carbon::parse($checkOut)->format('d-m-y h:i a');
+        $room['checkInView'] = Carbon::parse($checkIn)->format('d-m-Y h:i a');
+        $room['checkOutView'] = Carbon::parse($checkOut)->format('d-m-Y h:i a');
 
         $room['checkIn'] = $checkIn;
         $room['checkOut'] = $checkOut;

@@ -109,16 +109,21 @@ class SearchController extends Controller
 
         $roomId = $data['idRoom'];
 
-        $checkIn = Carbon::createFromFormat('d F, Y',  $data['checkIn'])->format('y-m-d 14:00:00');
-        $checkOut = Carbon::createFromFormat('d F, Y', $data['checkOut'])->format('y-m-d 12:00:00');
+        $checkIn = Carbon::createFromFormat('d F, Y', $data["checkIn"])->format('Y-m-d 14:00:00');
+
+        $checkOut = Carbon::createFromFormat('d F, Y', $data["checkOut"])->format('Y-m-d 12:00:00');
 
         $availableRoomsCount = Bookings::where('idRoom', $roomId)
             ->where(function ($query) use ($checkIn, $checkOut) {
-                $query->where('checkout', '<', $checkIn)
-                    ->orWhere('checkin', '>', $checkOut);
+                $query->whereBetween('checkIn', [$checkIn, $checkOut])
+                    ->orWhereBetween('checkOut', [$checkIn, $checkOut])
+                    ->orWhere(function ($query) use ($checkIn, $checkOut) {
+                        $query->where('checkIn', '<', $checkIn)
+                            ->where('checkOut', '>', $checkOut);
+                    });
             })
             ->count();
-
+            
         if($availableRoomsCount == 0){
 
             $search["checkIn"] = $checkIn;
@@ -128,6 +133,8 @@ class SearchController extends Controller
         }else{
             return response()->json(['notAvailable' => 'This room not available !!!']);
         }
+
+
     }
     /**
      * Display the specified resource.
