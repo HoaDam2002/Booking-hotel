@@ -12,43 +12,48 @@
                             <thead>
                                 <tr>
 
-                                    <th><strong>Name user</strong></th>
+                                    <th><strong>UserName</strong></th>
                                     <th><strong>Phone</strong></th>
                                     <th><strong>Email</strong></th>
-                                    <th><strong>Image></th>
+                                    <th><strong>Avatar</th>
+                                    <th><strong>Address</th>
                                     <th><strong>Action</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><strong>542</strong></td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><img src="/assets_admin/images/avatar/2.jpg"
-                                                class="rounded-lg mr-2" width="24" alt=""> <span
-                                                class="w-space-no">Dr. Jackson</span></div>
-                                    </td>
+                                @if (!empty($data))
+                                    @foreach ($data as $value)
+                                        <tr>
+                                            <td><strong>{{ $value['name'] }}</strong></td>
+                                            <td>{{ $value['phone'] }}</td>
+                                            <td>{{ $value['email'] }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center"><img
+                                                        src="/upload/user/avatar/{{ $value['avatar'] }}"
+                                                        class="rounded-lg mr-2" width="24" alt=""></div>
+                                            </td>
 
-                                    <td>01 August 2020</td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><i class="fa fa-circle text-danger mr-1"></i>
-                                            Canceled</div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                                data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button
-                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                id="deleteButton">
-                                                <i class="fa fa-trash">
+                                            <td>{{ $value['street'] }}</td>
 
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            <td>
+                                                <div class="d-flex">
+                                                    {{-- <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
+                                                        data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button> --}}
+                                                    <button
+                                                        class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                        id="deleteButton" data-id={{ $value['id'] }}>
+                                                        <i class="fa fa-trash">
+
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </tbody>
                         </table>
                         {{-- modal --}}
@@ -111,4 +116,53 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("button#deleteButton").click(function() {
+                let _this = $(this).closest('tr');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let id = $(this).attr('data-id');
+
+                        $.ajax({
+                            url: '/admin/user/delete',
+                            type: 'POST',
+                            data: {
+                                id: id,
+                            },
+                            success: function(data) {
+                                _this.remove();
+                            },
+                            error: function(e) {
+                                e.message();
+                            }
+                        })
+
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+            });
+        })
+    </script>
 @endsection

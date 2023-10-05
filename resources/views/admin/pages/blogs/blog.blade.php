@@ -9,7 +9,7 @@
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissble">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                        <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                        <h4><i class="fa-solid fa-check"></i>Thông báo</h4>
                         {{ session('success') }}
                     </div>
                 @endif
@@ -31,7 +31,7 @@
                         <div class="col-lg-12 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Name blog</label>
-                                <input type="text" name="title" class="form-control" >
+                                <input type="text" name="title" class="form-control">
                             </div>
                         </div>
                         {{-- <div class="col-lg-6 mb-2">
@@ -88,37 +88,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    foreach ($data as $key => $value) {
-                                @endphp
-                                <tr>
-                                    <td ><strong class="idBlogs">{{$value['id']}}</strong></td>
-                                    <td class="titleBlogs">{!!Str::limit($value['title'], 25, '...')!!}</td>
-                                    <td>
-                                        <div class="d-flex align-items-center"><img src={{"/upload/admin/blogs/".$value['image']}}
-                                                class="rounded-lg mr-2 imgBlogs" width="24" alt=""></div>
-                                    </td>
+                                @if (!empty($data))
+                                    @foreach ($data as $value)
+                                        <tr>
+                                            <td><strong class="idBlogs">{{ $value['id'] }}</strong></td>
+                                            <td class="titleBlogs">{!! Str::limit($value['title'], 25, '...') !!}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center"><img
+                                                        src={{ '/upload/admin/blogs/' . $value['image'] }}
+                                                        class="rounded-lg mr-2 imgBlogs" width="24" alt="">
+                                                </div>
+                                            </td>
 
-                                    <td class="descBlogs">{!!Str::limit($value['description'], 40, '...')!!}</td>
-                                    <td>
-                                        <div class="d-flex actionButton" data-id={{$value['id']}} >
-                                            <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                                data-toggle="modal" data-target=".bd-example-modal-lg" id="editButton">
-                                                <i class="fa fa-pencil"></i>
-                                            </button>
-                                            <button
-                                                class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
-                                                id="deleteButton">
-                                                <i class="fa fa-trash">
+                                            <td class="descBlogs">{!! Str::limit($value['description'], 40, '...') !!}</td>
+                                            <td>
+                                                <div class="d-flex actionButton" data-id={{ $value['id'] }}>
+                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
+                                                        data-toggle="modal" data-target=".bd-example-modal-lg"
+                                                        id="editButton">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </button>
+                                                    <button
+                                                        class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
+                                                        id="deleteButton">
+                                                        <i class="fa fa-trash">
 
-                                                </i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @php
-                                    }
-                                @endphp
+                                                        </i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                             {{-- {{$data->links()}} --}}
                         </table>
@@ -134,23 +135,23 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="card-body">
-                                            <form method="POST" id="step-form-horizontal" class="step-form-horizontal form-edit" enctype="multipart/form-data" >
+                                            <form method="POST" id="step-form-horizontal"
+                                                class="step-form-horizontal form-edit" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Name blog</label>
-                                                            <input type="text" name="title" class="form-control editNameBlog"
-                                                                7>
+                                                            <input type="text" name="title"
+                                                                class="form-control editNameBlog" 7>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
                                                         <div class="form-group">
                                                             <label class="text-label">Image</label>
-                                                            <input type="file" name="image" class="form-control editImageBlog"
-                                                                id="inputGroupPrepend2"
-                                                                aria-describedby="inputGroupPrepend2"
-                                                                >
+                                                            <input type="file" name="image"
+                                                                class="form-control editImageBlog" id="inputGroupPrepend2"
+                                                                aria-describedby="inputGroupPrepend2">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 mb-2">
@@ -163,7 +164,8 @@
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-danger light"
                                                         data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary saveUpdateButton" data-id=''>Save changes</button>
+                                                    <button type="button" class="btn btn-primary saveUpdateButton"
+                                                        data-id=''>Save changes</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -179,9 +181,15 @@
 @endsection
 @section('js')
     <script>
-        $("button#deleteButton").click(function() {
-            //gọi thèn cha
-            let _this = $(this).closest('tr');
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $("button#deleteButton").click(function() {
+                //gọi thèn cha
+                let _this = $(this).closest('tr');
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -192,19 +200,19 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let id = $('button#deleteButton').parent('div.actionButton').attr('data-id');
-
+                        let id = $(this).closest('div.actionButton').attr(
+                            'data-id');
                         $.ajax({
                             url: '/admin/blogs/delete',
                             type: 'POST',
                             data: {
                                 id: id,
                             },
-                            success: function (data) {
+                            success: function(data) {
                                 //xóa thèn cha
                                 _this.remove();
                             },
-                            error: function (e) {
+                            error: function(e) {
                                 console.log(e.message);
                             }
                         })
@@ -220,15 +228,10 @@
 
 
 
-        $(document).ready(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
-            $('button#editButton').click(function () {
-                let id = $(this).parent('div.actionButton').attr('data-id');
+
+            $('button#editButton').click(function() {
+                let id = $(this).closest('div.actionButton').attr('data-id');
                 //ajax add blogs
                 $.ajax({
                     url: '/admin/blogs/edit',
@@ -237,13 +240,13 @@
                         id: id,
 
                     },
-                    success: function (data) {
+                    success: function(data) {
                         // console.log(data);
                         $('input.editNameBlog').val(data[0].title);
                         $('textarea.editDescriptionBlog').val(data[0].description);
                         $('button.saveUpdateButton').attr('data-id', data[0].id);
                     },
-                    error: function (e) {
+                    error: function(e) {
                         console.log(e.message);
                     }
                 })
@@ -251,15 +254,15 @@
                 let _this = $(this).closest('tr');
 
                 ///////click save update
-                $('button.saveUpdateButton').click(function () {
+                $('button.saveUpdateButton').click(function() {
                     Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, Update it!'
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, Update it!'
                     }).then((result) => {
                         if (result.isConfirmed) {
                             let image = $('input.editImageBlog')[0].files[0] || '';
@@ -267,7 +270,7 @@
                             let title = $('input.editNameBlog').val();
                             let description = $('textarea.editDescriptionBlog').val();
 
-                                    let form = new FormData();
+                            let form = new FormData();
                             form.append('image', image);
                             form.append('title', title);
                             form.append('id', id);
@@ -280,16 +283,18 @@
                                 mimeType: "multipart/form-data",
                                 contentType: false,
                                 data: form,
-                                success: function (data) {
+                                success: function(data) {
                                     data = JSON.parse(data);
 
                                     //render khi update
                                     _this.find('.idBlogs').text(data.id);
                                     _this.find('.titleBlogs').text(data.title);
-                                    _this.find('.descBlogs').text(data.description);
-                                    _this.find('.imgBlogs').attr('src', `/upload/admin/blogs/${data.image}`);
+                                    _this.find('.descBlogs').text(data
+                                        .description);
+                                    _this.find('.imgBlogs').attr('src',
+                                        `/upload/admin/blogs/${data.image}`);
                                 },
-                                error: function (e) {
+                                error: function(e) {
                                     console.log(e.message);
                                 }
                             })
@@ -301,9 +306,6 @@
                             );
                         }
                     })
-
-
-
                 })
             })
         })

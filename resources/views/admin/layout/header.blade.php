@@ -1,5 +1,5 @@
 <div class="nav-header">
-    <a href="index.html" class="brand-logo">
+    <a href="{{ url('/admin/home') }}" class="brand-logo">
         {{-- <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png') }}"> --}}
         <img class="brand-title" src="{{ asset('/frontend/img/logo.png') }}">
         {{-- <img class="logo-compact" src="{{ asset('/assets_admin/images/logo-text.png') }}"> --}}
@@ -19,7 +19,7 @@
 <!--**********************************
     Chat box start
 ***********************************-->
-<div class="chatbox">
+{{-- <div class="chatbox">
     <div class="chatbox-close"></div>
     <div class="custom-tab-1">
         <ul class="nav nav-tabs">
@@ -624,7 +624,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <div class="header">
     <div class="header-content">
         <nav class="navbar navbar-expand">
@@ -637,16 +637,16 @@
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link dz-fullscreen" href="#">
-                            <svg id="icon-full" viewBox="0 0 24 24" width="26" height="26"
-                                stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round" class="css-i6dzq1">
+                            <svg id="icon-full" viewBox="0 0 24 24" width="26" height="26" stroke="currentColor"
+                                stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                                class="css-i6dzq1">
                                 <path
                                     d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
                                 </path>
                             </svg>
-                            <svg id="icon-minimize" width="26" height="26" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-minimize">
+                            <svg id="icon-minimize" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-minimize">
                                 <path
                                     d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3">
                                 </path>
@@ -654,7 +654,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown notification_dropdown">
+                    {{-- <li class="nav-item dropdown notification_dropdown">
                         <a class="nav-link  ai-icon" href="#" role="button" data-toggle="dropdown">
                             <i class="flaticon-381-ring"></i>
                             <div class="pulse-css"></div>
@@ -735,14 +735,19 @@
                             <a class="all-notification" href="#">See all notifications <i
                                     class="ti-arrow-right"></i></a>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                             <div class="header-info">
-                                <span>David Morse</span>
+                                @if (!empty($name))
+                                    <span>{{ $name }}</span>
+                                @endif
                                 <small>ADMIN</small>
                             </div>
-                            <img src="/assets_admin/images/profile/pic1.jpg" width="20" alt="" />
+
+                            @if (!empty($avatar))
+                                <img src="/upload/admin/user/{{ $avatar }}" width="20" alt="" />
+                            @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ url('admin/profile') }}" class="dropdown-item ai-icon">
@@ -755,7 +760,7 @@
                                 </svg>
                                 <span class="ml-2">Profile </span>
                             </a>
-                            <a href="../assets_admin_admin/email-inbox.html" class="dropdown-item ai-icon">
+                            {{-- <a href="../assets_admin_admin/email-inbox.html" class="dropdown-item ai-icon">
                                 <svg id="icon-inbox" xmlns="http://www.w3.org/2000/svg" class="text-success"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -766,7 +771,7 @@
                                     <polyline points="22,6 12,13 2,6"></polyline>
                                 </svg>
                                 <span class="ml-2">Inbox </span>
-                            </a>
+                            </a> --}}
                             <a href="{{ url('admin/logout') }}" class="dropdown-item ai-icon">
                                 <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
                                     width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -831,10 +836,10 @@
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/statiѕtic') }}" aria-expanded="false">
-                <i class="fa-solid fa-chart-line"></i>
-                <span class="nav-text">Statiѕtic</span>
-            </a>
-        </li>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-text">Statiѕtic</span>
+                </a>
+            </li>
 
 
         </ul>

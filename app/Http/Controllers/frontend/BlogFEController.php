@@ -4,6 +4,9 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Blogs;
+use Illuminate\Pagination\Paginator;
+
 
 class BlogFEController extends Controller
 {
@@ -19,7 +22,20 @@ class BlogFEController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.blog.blog');
+        Paginator::useBootstrap();
+
+        $data = Blogs::paginate(9);
+
+        
+        return view('frontend.pages.blog.blog', compact('data'));
+    }
+
+
+    public function blogDetail(String $id) {
+
+        $data = Blogs::findOrFail($id)->toArray();
+        // dd($data);
+        return view('frontend.pages.blog.blog-details', compact('data'));
     }
 
     /**

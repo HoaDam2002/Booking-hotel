@@ -96,6 +96,7 @@ class BlogsController extends Controller
 
     public function delete(Request $request) {
         $data = $request->all();
+        // dd($data);
         $blog = Blogs::findOrFail($data['id']);
         // $dataBlog = Blogs::where('id',$data['id'])->get()->toArray();
         if(Blogs::where('id', $data['id'])->delete()) {

@@ -22,4 +22,9 @@ class Bookings extends Model
         'checkOut',
         'total'
     ];
+
+    public function room()
+    {
+        return $this->belongsTo('App\Models\Room', 'idRoom', 'id');
+    }
 }
