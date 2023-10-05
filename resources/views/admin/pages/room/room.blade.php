@@ -100,7 +100,6 @@
                                     <th><strong>Type room</strong></th>
                                     <th><strong>Content</strong></th>
                                     <th><strong>Price</strong></th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,23 +107,25 @@
                                     @foreach ($rooms as $item)
                                         @php
                                             $image = json_decode($item['image']);
-
+                                            
                                             // dd($image)
+                                            
                                         @endphp
                                         <tr>
                                             <td><strong id="nameRoom">{{ $item['nameRoom'] }}</strong></td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src=" {{ asset('upload/admin/room/' . $image[0])}}"
+                                                    <img src=" {{ asset('upload/admin/room/' . $image[0]) }}"
                                                         class="rounded-lg mr-2" width="24" alt=""
-                                                        id="renderimg"> <span class="w-space-no"></span></div>
+                                                        id="renderimg"> <span class="w-space-no"></span>
+                                                </div>
                                             </td>
                                             <td id="Capacity">{{ $item['Capacity'] }} </td>
                                             @if ($item['type_room'])
                                                 <td id="roomTypeId">{{ $item['type_room']['typeName'] }}</td>
                                             @endif
                                             <td id="description">
-                                                {{ $item['description'] }}
+                                                {{ Str::limit($item['description'], 100) }}
                                             </td>
 
                                             <td id="price">

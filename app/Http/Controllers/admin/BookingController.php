@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Bookings;
 
 class BookingController extends Controller
 {
@@ -17,12 +18,25 @@ class BookingController extends Controller
     
     public function index()
     {
-        return view('admin.pages.booking.booking');
+        $data = Bookings::with('room')->get()->toArray();
+        // dd($data);
+        return view('admin.pages.booking.booking', compact('data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
+    public function delete(Request $request) {
+        $data = $request->all();
+        $bookingData = Bookings::findOrFail($data['id']);
+
+        if($bookingData->delete()) {
+            return response()->json(['success' => 'Xóa thành công']);
+        }else {
+            return response()->json(['error' => 'Xóa thất bại']);
+        }
+    }
     public function create()
     {
         //

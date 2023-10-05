@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -11,8 +12,21 @@ class UserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view("admin.pages.user.user");
+    {   
+        $data = User::where('level', 0)->get()->toArray();
+        // dd($data);
+        return view("admin.pages.user.user", compact('data'));
+    }
+
+    public function delete(Request $request) {
+        $data = $request->all();
+        $userData = User::findOrFail($data['id']);
+
+        if($userData->delete()) {
+            return response()->json(['success' => 'Xóa thành công']);
+        }else {
+            return response()->json(['error' => 'Xóa thất bại']);
+        }
     }
 
     /**

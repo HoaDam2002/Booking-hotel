@@ -13,6 +13,7 @@ class Admincontroller extends Controller
      }
 
     public function index(){
+
         return view('admin.layout.app');
     }
 

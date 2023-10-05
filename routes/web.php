@@ -70,6 +70,7 @@ Route::group([
 
     //blog
     Route::get('blog', [BlogFEController::class, 'index']);
+    Route::get('blog/detail/{id}', [BlogFEController::class, 'blogDetail']);
 
     //login
     Route::get('/login/user', [LoginFEController::class, 'index']);
@@ -146,6 +147,7 @@ Route::group([
 
 
     Route::get('/booking', [BookingController::class, 'index']);
+    Route::post('/booking/delete', [BookingController::class, 'delete']);
 
     Route::get('/service', [ServiceController::class, 'index']);
     Route::post('/service', [ServiceController::class, 'insert']);
@@ -157,6 +159,7 @@ Route::group([
     Route::post('/profile', [ProfileController::class, 'update']);
 
     Route::get('/user', [UserController::class, 'index']);
+    Route::post('/user/delete', [UserController::class, 'delete']);
 
 });
 

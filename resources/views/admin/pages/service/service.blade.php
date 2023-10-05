@@ -91,7 +91,8 @@
                 }
             });
 
-            $("button#deleteButton").click(function() {
+            $('button#deleteButton').click(function() {
+
                 let _this = $(this).closest('tr');
                 Swal.fire({
                     title: 'Are you sure?',
@@ -103,7 +104,7 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        let id = $('button#deleteButton').attr('data-id');
+                        let id = $(this).attr('data-id');
 
                         $.ajax({
                             url: '/admin/service/delete',
@@ -146,9 +147,5 @@
                 })
             })
         });
-<<<<<<< HEAD
-=======
-
->>>>>>> dc7046b6625bf9f8a1e00d4794de2d19b51c763c
     </script>
 @endsection

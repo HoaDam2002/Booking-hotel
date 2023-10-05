@@ -23,7 +23,8 @@ class Bookings extends Model
         'total'
     ];
 
-    public function room(){
-        return $this->belongsTo('App\Models\Room','idRoom');
+    public function room()
+    {
+        return $this->belongsTo('App\Models\Room', 'idRoom', 'id');
     }
 }
