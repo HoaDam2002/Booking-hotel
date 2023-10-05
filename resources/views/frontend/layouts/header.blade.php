@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="./index.html">
+                        <a href="{{ url('/') }}">
                             <img src="{{ asset('frontend/img/logo.png') }}" alt="">
                         </a>
                     </div>
@@ -117,7 +117,7 @@
                                 @if (Auth::check())
                                     <li class="{{ session('module_active') == 'infobooking' ? 'active' : '' }}"><a
                                             href="{{ url('/infobooking') }}">My Bookings</a></li>
-                                    <li><a href="{{ url('/profile') }}">Profile</a></li>
+                                    <li class="{{ session('module_active') == 'profile' ? 'active' : '' }}"><a href="{{ url('/profile') }}">Profile</a></li>
                                     <li><a href="{{ url('/logout/user') }}">Logout</a></li>
                                 @else
                                     <li>

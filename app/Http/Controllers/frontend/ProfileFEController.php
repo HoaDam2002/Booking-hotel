@@ -19,6 +19,13 @@ class ProfileFEController extends Controller
         $user = Auth::user();
         return view('frontend.pages.profile.profile',compact('user'));
     }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            session(['module_active' => 'profile']);
+            return $next($request);
+        });
+    }
 
     /**
      * Show the form for creating a new resource.

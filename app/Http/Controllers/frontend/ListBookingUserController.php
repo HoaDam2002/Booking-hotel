@@ -20,6 +20,13 @@ class ListBookingUserController extends Controller
 
         return view('frontend.pages.booking.infobooking',compact('booking'));
     }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            session(['module_active' => 'infobooking']);
+            return $next($request);
+        });
+    }
 
     /**
      * Show the form for creating a new resource.

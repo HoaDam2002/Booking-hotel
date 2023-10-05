@@ -27,7 +27,7 @@ class BlogFEController extends Controller
 
         $data = Blogs::paginate(9);
 
-        
+
         return view('frontend.pages.blog.blog', compact('data'));
     }
 
