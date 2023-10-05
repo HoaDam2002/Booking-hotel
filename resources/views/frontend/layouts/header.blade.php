@@ -77,8 +77,8 @@
                             <a href="{{ url('/infobooking') }}"><i class="fa fa-tripadvisor"></i></a>
 
                         </div>
-                        <a href="#" class="bk-btn">Booking Now</a>
-                        <div class="language-option">
+
+                        {{-- <div class="language-option">
                             <img src="{{ asset('frontend/img/flag.jpg') }}" alt="">
                             <span>EN <i class="fa fa-angle-down"></i></span>
                             <div class="flag-dropdown">
@@ -87,7 +87,7 @@
                                     <li><a href="#">Fr</a></li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -129,9 +129,9 @@
 
                             </ul>
                         </nav>
-                        <div class="nav-right search-switch">
+                        {{-- <div class="nav-right search-switch">
                             <i class="icon_search"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
