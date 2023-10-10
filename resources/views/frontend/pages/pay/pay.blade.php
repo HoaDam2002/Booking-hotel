@@ -1,6 +1,9 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+    <div id="custom-preloader">
+        <div class="custom-loader"></div>
+    </div>
     <section class="contact-section spad">
         <div class="container">
             @if (session('success'))
@@ -49,6 +52,10 @@
                                 <tr>
                                     <td class="c-o">Check Out:</td>
                                     <td>{{ $room->checkOutView }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="c-o">Duration:</td>
+                                    <td>{{ $numberOfDays }}</td>
                                 </tr>
                                 <tr>
                                     <td class="c-o">Price:</td>
@@ -112,47 +119,84 @@
             });
 
             $('button#booking').click(function() {
-                let idUser = "{{ Auth::user()->id }}"
-                let nameUser = "{{ Auth::user()->name }}"
-                let idRoom = "{{ $room->id }}"
-                let phone = "{{ Auth::user()->phone }}"
-                let emailUser = "{{ Auth::user()->email }}"
-                let checkIn = "{{ $room->checkIn }}"
-                let checkOut = "{{ $room->checkOut }}"
-                let nameRoom = "{{ $room->nameRoom }}"
-                let capacity = "{{ $room->Capacity }}"
-                let typeroom = "{{ $room->typeRoom->typeName }}"
-                let price = "{{ $room->price }}"
-                let bookingduration = "{{ $numberOfDays }}"
-                let total = $(this).closest('div.contact-text').find('h3#total').text()
-                total = parseInt(total.match(/\d+/)[0]);
 
-                $.ajax({
-                    url: "{{ url('/pay/paying') }}",
-                    type: 'POST',
-                    data: {
-                        idUser: idUser,
-                        nameUser: nameUser,
-                        idRoom: idRoom,
-                        phone: phone,
-                        emailUser: emailUser,
-                        checkIn: checkIn,
-                        checkOut: checkOut,
-                        total: total,
-                        nameRoom: nameRoom,
-                        capacity: capacity,
-                        typeroom: typeroom,
-                        price: price,
-                        bookingduration: bookingduration,
-                    },
-                    success: function(res) {
-                        window.location.href = "{{ url('/') }}";
-                        alert(res.data);
-                    },
-                    error: function(e) {
-                        alert(e.message);
-                    }
-                })
+                window.location.href = "{{ url('/payment') }}";
+
+                // let idUser = "{{ Auth::user()->id }}"
+                // let nameUser = "{{ Auth::user()->name }}"
+                // let idRoom = "{{ $room->id }}"
+                // let phone = "{{ Auth::user()->phone }}"
+                // let emailUser = "{{ Auth::user()->email }}"
+                // let checkIn = "{{ $room->checkIn }}"
+                // let checkOut = "{{ $room->checkOut }}"
+                // let nameRoom = "{{ $room->nameRoom }}"
+                // let capacity = "{{ $room->Capacity }}"
+                // let typeroom = "{{ $room->typeRoom->typeName }}"
+                // let price = "{{ $room->price }}"
+                // let bookingduration = "{{ $numberOfDays }}"
+                // let total = $(this).closest('div.contact-text').find('h3#total').text()
+                // total = parseInt(total.match(/\d+/)[0]);
+
+                // Swal.fire({
+                //     title: 'Are you sure?',
+                //     text: "You going to booking the " + nameRoom,
+                //     icon: 'warning',
+                //     showCancelButton: true,
+                //     confirmButtonColor: '#3085d6',
+                //     cancelButtonColor: '#d33',
+                //     confirmButtonText: 'Yes!!!'
+                // }).then((result) => {
+                //     if (result.isConfirmed) {
+                //         // Hiển thị xoay tròn trước khi ajax thực hiện
+                //         $('#custom-preloader').show();
+
+                //         $.ajax({
+                //             url: "{{ url('/pay/paying') }}",
+                //             type: 'POST',
+                //             data: {
+                //                 idUser: idUser,
+                //                 nameUser: nameUser,
+                //                 idRoom: idRoom,
+                //                 phone: phone,
+                //                 emailUser: emailUser,
+                //                 checkIn: checkIn,
+                //                 checkOut: checkOut,
+                //                 total: total,
+                //                 nameRoom: nameRoom,
+                //                 capacity: capacity,
+                //                 typeroom: typeroom,
+                //                 price: price,
+                //                 bookingduration: bookingduration,
+                //             },
+
+                //             success: function(res) {
+                //                 // Ẩn xoay tròn sau khi ajax thực hiện
+                //                 $('#custom-preloader').hide();
+
+                //                 Swal.fire({
+                //                     title: 'Success!!!',
+                //                     text: res.data,
+                //                     icon: 'success',
+                //                     showCancelButton: false,
+                //                     confirmButtonColor: '#3085d6',
+                //                     cancelButtonColor: '#d33',
+                //                     confirmButtonText: 'OK'
+                //                 }).then((result) => {
+                //                     window.location.href =
+                //                         "{{ url('/infobooking') }}";
+                //                 })
+                //             },
+                //             error: function(e) {
+                //                 // Ẩn xoay tròn sau khi ajax thực hiện
+                //                 $('#custom-preloader').hide();
+                //                 alert(e.message);
+                //             }
+                //         })
+                //     } else {
+                //         // Ẩn xoay tròn khi người dùng hủy bỏ đặt phòng
+                //         $('#custom-preloader').hide();
+                //     }
+                // });
             })
         })
     </script>

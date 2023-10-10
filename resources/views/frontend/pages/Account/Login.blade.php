@@ -17,8 +17,14 @@
 <body>
     <div class="wrapper" style="background-image: url('/asset_accout/images/1.jpg')">
         <div class="inner">
-            <div class="button-holder">
-                <a href="{{ url('/') }}" class="button-holder">Trang Chủ</a>
+            <div class="row">
+
+                <button class="btn btn-primary col-lg-6" >
+                    <a href="{{ url('/register/user/') }}" style="text-decoration: none; color: inherit;">REGISTER</a>
+                </button>
+                <button class="btn btn-primary col-lg-6" style="margin-right: 2px" >
+                    <a href="{{ url('/') }}" style="text-decoration: none; color: inherit;">HOME</a>
+                </button>
             </div>
             <form action="" method="POST">
                 @if (session('success'))
@@ -41,7 +47,7 @@
                     </div>
                 @endif
                 @csrf
-                <h3>Đăng Nhập</h3>
+                <h3>LOGIN</h3>
                 <div class="form-group">
                     <div class="form-wrapper">
                         <label for="">Email:</label>

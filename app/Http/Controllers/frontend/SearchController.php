@@ -123,7 +123,7 @@ class SearchController extends Controller
                     });
             })
             ->count();
-            
+
         if($availableRoomsCount == 0){
 
             $search["checkIn"] = $checkIn;
@@ -131,7 +131,7 @@ class SearchController extends Controller
             session()->put('timeBooking',$search);
             return response()->json(['available' => 'This room is available']);
         }else{
-            return response()->json(['notAvailable' => 'This room not available !!!']);
+            return response()->json(['notAvailable' => 'This room not available']);
         }
 
 
