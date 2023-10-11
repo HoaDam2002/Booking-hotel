@@ -16,7 +16,7 @@ class ProfileFEController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::user()->toArray();
         return view('frontend.pages.profile.profile',compact('user'));
     }
     public function __construct()

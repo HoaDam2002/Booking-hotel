@@ -23,25 +23,24 @@
                 </div>
             @endif
             <h3>Your Profile</h3>
+
             <form method="POST" action="profile/update" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="_token" value="qWs4UmMM2EXgvfwmQ0YLQmaYEVJovRVnXXSB4Hff">
-
                 <div class="check-date">
                     <label for="">Name:</label>
-                    <input type="text" name="name" value={{ $user->name }} class="">
+                    <input type="text" name="name" value="{{ $user['name'] }}" class="">
                 </div>
                 <div class="check-date">
                     <label for="">Email:</label>
-                    <input name="email" type="email" value={{ $user->email }} class="">
+                    <input name="email" type="email" value="{{ $user['email'] }}" class="">
                 </div>
                 <div class="check-date">
                     <label for="">Phone:</label>
-                    <input name="phone" type="text" value={{ $user->phone }} class="">
+                    <input name="phone" type="text" value="{{ $user['phone'] }}" class="">
                 </div>
                 <div class="check-date">
                     <label for="">Street:</label>
-                    <input name="street" type="text" value={{ $user->street }} class="">
+                    <input name="street" type="text" value="{{ $user['street'] }}" class="">
                 </div>
 
                 <div class="check-date">
@@ -52,9 +51,10 @@
                 <div class="select-option">
                     <label for="">Gender:</label>
                     <select id="room" name="gender">
-                        <option value={{ $user->gender }}>Choose Gender</option>
+                        <option value="{{ $user['gender'] }}">Choose Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
                 <div class="row" style="margin-left: 100px;">
@@ -62,7 +62,6 @@
                     <button class="col-md-4 mr-3" type="">
                         <a style="color:#e6ad74 " href="/profile/update/password">Reset Password</a>
                     </button>
-
                 </div>
             </form>
         </div>
