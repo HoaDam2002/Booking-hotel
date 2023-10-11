@@ -794,6 +794,11 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
+            <li><a class="" href="{{ url('admin/home') }}" aria-expanded="false">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span class="nav-text">DASHBOARD</span>
+                </a>
+            </li>
             <li><a class="" href="{{ url('admin/typeroom') }}" aria-expanded="false">
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">TYPE ROOM</span>
@@ -835,11 +840,7 @@
                     <span class="nav-text">EVALUATE</span>
                 </a>
             </li>
-            <li><a class="" href="{{ url('admin/statiѕtic') }}" aria-expanded="false">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <span class="nav-text">Statiѕtic</span>
-                </a>
-            </li>
+
 
 
         </ul>
