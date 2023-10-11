@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\MailNotify;
+use App\Models\HistoryBooking;
 use Auth;
 use Exception;
 use Illuminate\Http\Request;
@@ -59,6 +60,8 @@ class PayController extends Controller
         $room['checkIn'] = $checkIn;
         $room['checkOut'] = $checkOut;
 
+        session()->put(['payment' => ['room' => $room->toArray(),'total' => $total, 'numberOfDays' => $numberOfDays]]);
+
         return view('frontend.pages.pay.pay', compact('room', 'total','numberOfDays'));
     }
 
@@ -85,7 +88,12 @@ class PayController extends Controller
             unset($inforBooking['price']);
             unset($inforBooking['bookingduration']);
 
+            $his = $inforBooking;
+            $his['status'] = 1;
+
             Bookings::create($inforBooking);
+            HistoryBooking::create($his);
+
             return response()->json(['data' => 'Great check your mail box !!!']);
         } catch (Exception $e) {
             return response()->json([$e->getMessage()]);

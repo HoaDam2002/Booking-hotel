@@ -17,10 +17,16 @@ class checkMemberLevel
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( Auth::check() && Auth::user()->level == 0 ){
+        if (Auth::check() && Auth::user()->level == 0) {
             return $next($request);
-        }else{
-            return redirect('/login/user')->with('pleaseLogin','Please login to use this function');
+        } else {
+            $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https://' : 'http://';
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = $_SERVER['REQUEST_URI'];
+
+            $currentURL = $protocol . $host . $uri;
+            session()->put('url', $currentURL);
+            return redirect('/login/user')->with('pleaseLogin', 'Please login to use this function');
         }
     }
 }

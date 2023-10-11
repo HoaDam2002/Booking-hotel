@@ -8,36 +8,34 @@
                     <div class="breadcrumb-text">
                         <h2>Our Rooms</h2>
                         <div class="bt-option">
-                            <a href="./home.html">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                             <span>Rooms</span>
                         </div>
+                    </div>
+                    <div style="margin: auto; margin-left: 150px; display: flex; flex-direction: row; margin-top: 50px">
+                        <p style="margin-right: 10px;">
+                            Your Search is:
+                        </p>
+                        <p style="color: rgb(51, 14, 213); margin-right: 7px;" id="checkin">
+                            Check In: {{ $dateIn }};
+                        </p>
+                        <p style="color: rgb(206, 117, 23); margin-right: 7px;" id="checkout">
+                            Check Out: {{ $dateOut }}
+                        </p>
+                        <p style="color: rgb(7, 134, 45); margin-right: 7px;" id="capacity">
+                            {{ !empty($capacity) ? '; Max person: ' . $capacity : '' }}
+                        </p>
+                        <p style="color: rgb(84, 8, 150);" id="typeRoom">
+                            {{ !empty($type) ? '; Type Room: ' . $type[0]['typeName'] : '' }}
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <section class="rooms-section spad">
-        <div class="container">
-            <div style="width: 50%; margin: auto;">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissble">
-                        {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
-                        <h4>NOTEFICATION</h4>
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissble">
-                        {{-- <button type="button"F class="close" data-dismiss="alert" aria-hidden="true">x</button> --}}
-                        <h4>NOTEFICATION</h4>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+    <section class="rooms-section spad" style="margin: 50px">
+        <div class="row">
+            <div class="col-md-3">
                 <div class="booking-form">
                     <h3>Booking Your Hotel</h3>
                     <form action="">
@@ -80,67 +78,51 @@
                     </form>
                 </div>
             </div>
-            <div style="margin: auto; margin-left: 150px; display: flex; flex-direction: row;">
-                <p style="margin-right: 10px;">
-                    Your Search is:
-                </p>
-                <p style="color: rgb(51, 14, 213); margin-right: 7px;" id="checkin">
-                    Check In: {{ $dateIn }};
-                </p>
-                <p style="color: rgb(206, 117, 23); margin-right: 7px;" id="checkout">
-                    Check Out: {{ $dateOut }}
-                </p>
-                <p style="color: rgb(7, 134, 45); margin-right: 7px;" id="capacity">
-                    {{ !empty($capacity) ? '; Max person: ' . $capacity : '' }}
-                </p>
-                <p style="color: rgb(84, 8, 150);" id="typeRoom">
-                    {{ !empty($type) ? '; Type Room: ' . $type[0]['typeName'] : '' }}
-                </p>
-            </div>
+            <div class="col-md-9">
+                <div id="render" class="row">
+                    @if (isset($availableRooms))
+                        @foreach ($availableRooms as $item)
+                            @php
+                                $image = json_decode($item->image, true);
+                            @endphp
+                            <div class="col-lg-4 col-md-6">
+                                {{-- {{ dd($item->image) }} --}}
+                                <div class="room-item">
+                                    <img src="{{ asset('upload/admin/room/hinh360' . $image[0]) }}" alt="">
+                                    <div class="ri-text">
+                                        <h4>{{ $item->nameRoom }}</h4>
+                                        <h3>{{ $item->price }}VND<span>/Pernight</span></h3>
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="r-o">Type Room:</td>
+                                                    <td>{{ $item->typeRoom->typeName }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="r-o">Capacity:</td>
+                                                    <td>Max persion {{ $item->Capacity }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="r-o">Description:</td>
+                                                    <td>
+                                                        {!! Str::limit($item->description, '60') !!}
 
-
-            <div id="render" class="row">
-                @if (isset($availableRooms))
-                    @foreach ($availableRooms as $item)
-                        @php
-                            $image = json_decode($item->image, true);
-                        @endphp
-                        <div class="col-lg-4 col-md-6">
-                            {{-- {{ dd($item->image) }} --}}
-                            <div class="room-item">
-                                <img src="{{ asset('upload/admin/room/hinh360' . $image[0]) }}" alt="">
-                                <div class="ri-text">
-                                    <h4>{{ $item->nameRoom }}</h4>
-                                    <h3>{{ $item->price }}VND<span>/Pernight</span></h3>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td class="r-o">Type Room:</td>
-                                                <td>{{ $item->typeRoom->typeName }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="r-o">Capacity:</td>
-                                                <td>Max persion {{ $item->Capacity }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="r-o">Description:</td>
-                                                <td>
-                                                    {!! Str::limit($item->description, '60') !!}
-
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <a href="{{ url('pay/' . $item->id) }}" class="primary-btn">More Details</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <a href="{{ url('pay/' . $item->id) }}" class="primary-btn">More Details</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
 
+                </div>
             </div>
 
         </div>
+
     </section>
     <script>
         $(document).ready(function() {
@@ -159,22 +141,23 @@
                 let people = $(this).closest('div.booking-form').find('select#guest').val();
                 let typeroom = $(this).closest('div.booking-form').find('select#room').val();
 
-                let nametype = $(this).closest('div.booking-form').find('select#guest option:selected').text();
+                let nametype = $(this).closest('div.booking-form').find('select#guest option:selected')
+                    .text();
                 let type = $(this).closest('div.booking-form').find('select#room option:selected').text();
 
                 $('p#checkin').text('Check In: ' + checkIn + ';')
-                $('p#checkout').text('Check In: '+ checkOut)
+                $('p#checkout').text('Check In: ' + checkOut)
 
-                if(nametype != 'Choose' && type != ''){
+                if (nametype != 'Choose' && type != '') {
                     $('p#capacity').text('; Max person :' + nametype)
-                }else{
+                } else {
                     $('p#capacity').text('')
 
                 }
 
-                if(type != 'Choose' && type != ''){
+                if (type != 'Choose' && type != '') {
                     $('p#typeRoom').text('; Type Room :' + type)
-                }else{
+                } else {
                     $('p#typeRoom').text('')
                 }
 

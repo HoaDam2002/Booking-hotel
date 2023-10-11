@@ -107,9 +107,9 @@
                                     @foreach ($rooms as $item)
                                         @php
                                             $image = json_decode($item['image']);
-                                            
+
                                             // dd($image)
-                                            
+
                                         @endphp
                                         <tr>
                                             <td><strong id="nameRoom">{{ $item['nameRoom'] }}</strong></td>

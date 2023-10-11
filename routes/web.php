@@ -27,6 +27,8 @@ use App\Http\Controllers\frontend\LoginFEController;
 use App\Http\Controllers\frontend\LogoutFEController;
 use App\Http\Controllers\frontend\ProfileFEController;
 use App\Http\Controllers\frontend\PayController;
+use App\Http\Controllers\StripePaymentsController;
+
 use App\Http\Controllers\Mail\MailController;
 
 
@@ -92,6 +94,11 @@ Route::group([
         Route::post('/pay/paying', [PayController::class, 'Paying']);
 
         Route::get('/infobooking', [ListBookingUserController::class, 'index']);
+
+        Route::get('/payment', [StripePaymentsController::class, 'index']);
+        Route::post('/payment', [StripePaymentsController::class, 'payment']);
+
+
 
     });
 

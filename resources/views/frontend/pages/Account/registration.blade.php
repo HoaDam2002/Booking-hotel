@@ -18,8 +18,13 @@
 
     <div class="wrapper" style="background-image: url('/asset_accout/images/1.jpg');">
         <div class="inner">
-            <div class="button-holder">
-                <a href="{{ url('/') }}" class="button-holder">Trang Chủ</a>
+            <div class="row">
+                <button class="btn btn-primary col-lg-6" >
+                    <a href="{{ url('/login/user/') }}" style="text-decoration: none; color: inherit;">Login</a>
+                </button>
+                <button class="btn btn-primary col-lg-6" style="margin-right: 2px" >
+                    <a href="{{ url('/') }}" style="text-decoration: none; color: inherit;">HOME</a>
+                </button>
             </div>
             <form action="" method="POST" enctype="multipart/form-data">
                 @if (session('success'))

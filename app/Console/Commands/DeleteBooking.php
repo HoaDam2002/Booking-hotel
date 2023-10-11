@@ -27,6 +27,7 @@ class DeleteBooking extends Command
      */
     public function handle()
     {
-        Bookings::where('checkOut', '<', now())->delete();
+        $currentTime = now()->format('Y-m-d H:i:s');
+        Bookings::where('checkOut', '<', $currentTime)->delete();
     }
 }

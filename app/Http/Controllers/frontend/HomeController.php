@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::check() && Auth::user()->level == 1){
+        if (Auth::check() && Auth::user()->level == 1) {
             Auth::logout();
         }
         $rooms = Room::with('typeRoom')->get()->toArray();
@@ -39,7 +39,8 @@ class HomeController extends Controller
         // dd(Auth::user());
         $service = Service::all()->toArray();
 
-        return view('frontend.pages.home.home',compact('rooms','service', 'typeroom'));
+
+        return view('frontend.pages.home.home', compact('rooms', 'service', 'typeroom'));
     }
 
     /**
@@ -51,16 +52,18 @@ class HomeController extends Controller
     }
 
 
-    public function search() {
+    public function search()
+    {
 
         return view('frontend.pages.search.search');
     }
 
-    public function actionSearch(Request $request) {
+    public function actionSearch(Request $request)
+    {
         $data = $request->all();
-        
 
-                
+
+
 
     }
 

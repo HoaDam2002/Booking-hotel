@@ -26,6 +26,8 @@ class RoomFEController extends Controller
     {
         $rooms = Room::with('typeRoom')->paginate(6);
         $service = Service::all()->toArray();
+        $service = Service::all()->toArray();
+
         return view('frontend.pages.rooms.room',compact('rooms','service'));
     }
 

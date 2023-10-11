@@ -16,9 +16,16 @@ class ListBookingUserController extends Controller
     public function index()
     {
         $idUser = Auth::id();
-        $booking = Bookings::with(['room','room.typeRoom'])->where('idUser', $idUser )->get()->toArray();
+        $booking = Bookings::with(['room', 'room.typeRoom'])->where('idUser', $idUser)->get()->toArray();
 
-        return view('frontend.pages.booking.infobooking',compact('booking'));
+        return view('frontend.pages.booking.infobooking', compact('booking'));
+    }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            session(['module_active' => 'infobooking']);
+            return $next($request);
+        });
     }
 
     /**

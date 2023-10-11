@@ -51,13 +51,8 @@
                     <table class="table table-responsive-md">
                         <thead>
                             <tr>
-<<<<<<< HEAD
-                                {{-- <th><strong>ID</strong></th> --}}
-                                <th><strong>Tên loại phòng</strong></th>
-=======
-                                <th><strong>ID</strong></th>
                                 <th><strong>Name</strong></th>
->>>>>>> b3ed6f8e747d9da4746b15828d55902a1c4c1f84
+                                <th><strong>Delete</strong></th>
                             </tr>
                         </thead>
                         <tbody>

@@ -206,7 +206,17 @@
                             if (res.available) {
                                 window.location.href = "{{ url('/pay/') }}" + "/" + idRoom;
                             } else {
-                                alert(res.notAvailable);
+                                Swal.fire({
+                                    title: 'Oopss!!!',
+                                    text: res.notAvailable + " please choose other time !!!",
+                                    icon: 'error',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    //
+                                })
                             }
                         },
                         error: function(jqXHR, textStatus, errorThrown) {

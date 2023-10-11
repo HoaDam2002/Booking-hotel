@@ -11,6 +11,7 @@
                         <table class="table table-responsive-md">
                             <thead>
                                 <tr>
+                                    <th><strong>Number</strong></th>
                                     <th><strong>Name Customer</strong></th>
                                     <th><strong>Capacity</strong></th>
                                     <th><strong>Name Room</strong></th>
@@ -18,17 +19,24 @@
                                     <th><strong>Type Room</strong></th>
                                     <th><strong>Check-In</strong></th>
                                     <th><strong>Check-Out</strong></th>
+                                    <th><strong>Booked At</strong></th>
                                     <th><strong>Total</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $number = 0
+                                @endphp
                                 @if (isset($booking))
                                     @foreach ($booking as $item)
                                         @php
-                                            $checkIn = date('d-m-y h:i a', strtotime($item['checkIn']));
-                                            $checkOut = date('d-m-y h:i a', strtotime($item['checkOut']));
+                                            $number++;
+                                            $checkIn = date('d-m-y H:i a', strtotime($item['checkIn']));
+                                            $checkOut = date('d-m-y H:i a', strtotime($item['checkOut']));
+                                            $booktime = date('d-m-y H:i a', strtotime($item['created_at']));
                                         @endphp
                                         <tr>
+                                            <td class="descBlogs">{{ $number }}</td>
                                             <td class="descBlogs">{{ $item['nameUser'] }}</td>
                                             <td class="descBlogs">Max persion {{ $item['room']['Capacity'] }}</td>
                                             <td class="descBlogs">{{ $item['room']['nameRoom'] }}</td>
@@ -36,6 +44,7 @@
                                             <td class="descBlogs">{{ $item['room']['type_room']['typeName'] }}</td>
                                             <td class="descBlogs">{{ $checkIn }}</td>
                                             <td class="descBlogs">{{ $checkOut }}</td>
+                                            <td class="descBlogs">{{ $booktime }}</td>
                                             <td class="descBlogs">{{ $item['total'] }}$</td>
                                         </tr>
                                     @endforeach

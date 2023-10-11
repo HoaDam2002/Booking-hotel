@@ -25,8 +25,7 @@ class RoomController extends Controller
     {
         $typeroom = Typeroom::all()->toArray();
         $rooms = Room::with('typeRoom')->get()->toArray();
-        // dd($rooms);
-        // dd($rooms);
+
         return view('admin.pages.room.room',compact('typeroom','rooms'));
     }
     /**
