@@ -41,6 +41,7 @@ class LoginFEController extends Controller
             if(session()->has('url')){
                 $url = session()->get('url');
             }
+            session()->forget('url');
             return redirect()->intended($url);
         } else {
             return redirect()->back()->withErrors('Sai Email hoặc Mật khẩu');
