@@ -24,8 +24,8 @@
                                 <thead>
                                     <tr>
                                         <th style="width:80px;"><strong>#</strong></th>
-                                        <th><strong>PATIENT</strong></th>
-                                        <th><strong>DR NAME</strong></th>
+                                        <th><strong>Name</strong></th>
+
                                         <th><strong>DATE</strong></th>
                                         <th><strong>STATUS</strong></th>
                                         <th><strong>PRICE</strong></th>
@@ -35,8 +35,8 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>01</strong></td>
-                                        <td>Mr. Bobby</td>
-                                        <td>Dr. Jackson</td>
+                                        <td>Paris</td>
+
                                         <td>01 August 2020</td>
                                         <td><span class="badge light badge-success">Successful</span></td>
                                         <td>$21.56</td>
@@ -67,8 +67,8 @@
                                     </tr>
                                     <tr>
                                         <td><strong>02</strong></td>
-                                        <td>Mr. Bobby</td>
-                                        <td>Dr. Jackson</td>
+                                        <td>Toronto</td>
+
                                         <td>01 August 2020</td>
                                         <td><span class="badge light badge-danger">Canceled</span></td>
                                         <td>$21.56</td>
@@ -99,8 +99,8 @@
                                     </tr>
                                     <tr>
                                         <td><strong>03</strong></td>
-                                        <td>Mr. Bobby</td>
-                                        <td>Dr. Jackson</td>
+                                        <td>New York</td>
+
                                         <td>01 August 2020</td>
                                         <td><span class="badge light badge-warning">Pending</span></td>
                                         <td>$21.56</td>
@@ -157,7 +157,7 @@
                 type: "bar",
                 data: {
                     defaultFontFamily: "Poppins",
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Jul", "Jul", "Jul", "Jul", "Jul"],
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                     datasets: [{
                         label: "Total revenue",
                         data: revenue,
