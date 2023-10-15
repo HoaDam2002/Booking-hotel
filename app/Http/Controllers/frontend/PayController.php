@@ -89,7 +89,7 @@ class PayController extends Controller
             unset($inforBooking['bookingduration']);
 
             $his = $inforBooking;
-            $his['status'] = 1;
+            $his['status'] = 0;
 
             Bookings::create($inforBooking);
             HistoryBooking::create($his);

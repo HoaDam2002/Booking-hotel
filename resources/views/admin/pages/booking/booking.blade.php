@@ -41,10 +41,10 @@
                                             <td><strong>${{ $value['total'] }}</strong></td>
                                             <td>
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
-                                                        data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </button>
+                                                    {{-- <button type="button" class="btn btn-primary shadow btn-xs sharp mr-1"
+                                                            data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </button> --}}
                                                     <button
                                                         class="btn btn-danger shadow btn-xs sharp btn btn-warning btn sweet-confirm"
                                                         id="deleteButton" data-id={{ $value['id'] }}>

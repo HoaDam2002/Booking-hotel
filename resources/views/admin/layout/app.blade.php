@@ -20,12 +20,24 @@
     <link rel="stylesheet" href=" {{ asset('assets_admin/vendor/chartist/css/chartist.min.css') }}">
     <link href=" {{ asset('assets_admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}"
         rel="stylesheet">
+
     <link href=" {{ asset('assets_admin/css/style.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10" rel="stylesheet">
     <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('assets_admin/css/style.css') }}" rel="stylesheet">
+
+    <link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+    <!-- Sử dụng Bootstrap 4 CSS và JavaScript thay vì Bootstrap 5 -->
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
     {{-- Phân trang --}}
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
@@ -50,10 +62,10 @@
         @include('admin.layout.footer')
     </div>
 
-    <script src="{{ asset('assets_admin/vendor/global/global.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets_admin/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('assets_admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets_admin/js/custom.min.js') }}"></script>
-    <script src="{{ asset('assets_admin/js/deznav-init.js') }}"></script>
+    <script src="{{ asset('assets_admin/js/deznav-init.js') }}"></script> --}}
     <!-- Apex Chart -->
     {{-- <script src="{{ asset('assets_admin/vendor/apexchart/apexchart.js') }}"></script> --}}
 
@@ -79,18 +91,21 @@
             });
     </script>
 
-    // <!-- Required vendors -->
+    <!-- Required vendors -->
     <script src="{{ asset('assets_admin/vendor/global/global.min.js') }}"></script>
     <script src="{{ asset('assets_admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script>
     <script src="{{ asset('assets_admin/vendor/chart.js/Chart.bundle.min.js') }}"></script>
     <script src="{{ asset('assets_admin/js/custom.min.js') }}"></script>
     <script src="{{ asset('assets_admin/js/deznav-init.js') }}"></script>
-    // <!-- Apex Chart -->
+    <!-- Apex Chart -->
     <script src="{{ asset('assets_admin/vendor/apexchart/apexchart.js') }}"></script>
 
-    // <!-- Chart ChartJS plugin files -->
-    <script src="{{ asset('assets_admin/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+    <!-- Chart ChartJS plugin files -->
+    {{-- <script src="{{ asset('assets_admin/vendor/chart.js/Chart.bundle.min.js') }}"></script> --}}
     <script src="{{ asset('assets_admin/js/plugins-init/chartjs-init.js') }}"></script>
+    {{-- <script src="{{ asset('assets_admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script> --}}
+
+
 
     @yield('js')
 </body>

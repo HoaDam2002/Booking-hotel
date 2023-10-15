@@ -109,7 +109,7 @@
                                                     <div class="alert alert-danger alert-dismissble">
                                                         <button type="button" class="close" data-dismiss="alert"
                                                             aria-hidden="true">x</button>
-                                                        <h4><i class="icon fa fa-check">Thông báo</i></h4>
+                                                        <h4><i class="icon fa fa-check"></i>Thông báo</h4>
                                                         <ul>
                                                             @foreach ($errors->all() as $error)
                                                                 <li>{{ $error }}</li>
