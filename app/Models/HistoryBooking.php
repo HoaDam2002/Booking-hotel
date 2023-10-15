@@ -9,6 +9,8 @@ class HistoryBooking extends Model
 {
     use HasFactory;
 
+    protected $table = 'historybooking';
+
     protected $fillable = [
         'id',
         'idUser',
@@ -18,7 +20,12 @@ class HistoryBooking extends Model
         'emailUser',
         'checkIn',
         'checkOut',
-        'total',
         'status',
+        'total',
     ];
+
+    public function room()
+    {
+        return $this->belongsTo('App\Models\Room', 'idRoom', 'id');
+    }
 }
