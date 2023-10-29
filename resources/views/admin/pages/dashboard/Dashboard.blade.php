@@ -198,9 +198,9 @@
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                            max: 100000,
+                            max: 1000,
                             min: 0,
-                            stepSize: 10000,
+                            stepSize: 50,
                             padding: 5,
                         },
                     }, ],

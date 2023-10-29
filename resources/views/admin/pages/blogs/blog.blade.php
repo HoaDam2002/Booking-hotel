@@ -88,10 +88,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $stt = 1;
+                                @endphp
                                 @if (!empty($data))
                                     @foreach ($data as $value)
                                         <tr>
-                                            <td><strong class="idBlogs">{{ $value['id'] }}</strong></td>
+                                            <td><strong class="idBlogs">{{ $stt }}</strong></td>
                                             <td class="titleBlogs">{!! Str::limit($value['title'], 25, '...') !!}</td>
                                             <td>
                                                 <div class="d-flex align-items-center"><img
@@ -118,6 +121,9 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        @php
+                                            $stt++;
+                                        @endphp
                                     @endforeach
                                 @endif
                             </tbody>
