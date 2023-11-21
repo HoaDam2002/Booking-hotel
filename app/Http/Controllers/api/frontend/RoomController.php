@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -32,9 +33,10 @@ class RoomController extends Controller
      */
     public function getRoomDetail(string $id)
     {
-        $room = Room::findOrFail($id)->with('typeRoom')->get();
+        $room = Room::with('typeRoom')->where('id', $id)->get()->toArray();
+        $service = Service::all();
 
-        return response()->json(['roomDetail'=> $room],$this->successStatus);
+        return response()->json(['roomDetail'=> $room,'service' => $service],$this->successStatus);
     }
 
     /**

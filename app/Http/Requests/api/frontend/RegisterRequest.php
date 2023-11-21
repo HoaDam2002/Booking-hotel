@@ -23,12 +23,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>'required|max:191',
-            'password'=>'required',
+            'password'=>'required|confirmed|min:6',
             'email' => 'required|email|unique:users',
-            'street'=>'required',
-            'phone'=>'required',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'gender' => 'required',
         ];
     }
 
@@ -37,11 +33,6 @@ class RegisterRequest extends FormRequest
             'name' => 'Your name',
             'email' => 'Your email address',
             'password' => 'Password',
-            'avatar' => 'Avatar',
-            'street' => 'Address',
-            'gender' => 'Gender',
-            'phone'=>'Your Phone Number',
-
         ];
     }
 }

@@ -31,7 +31,7 @@ class UserController extends Controller
         $login = [
             'email' => $request->email,
             'password' => $request->password,
-            'level' => 0
+            'level' => $request->level,
         ];
 
         $remember = false;
@@ -77,22 +77,24 @@ class UserController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $user = User::All()->toArray();
         $data = $request->all();
-        $file = $request->get('avatar');
-        if ($file) {
-            $image = $file;
-            $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
-            $data['avatar'] = $name;
-        }
+        // $file = $request->get('avatar');
+        // if ($file) {
+        //     $image = $file;
+        //     $name = time() . '.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+        //     $data['avatar'] = $name;
+        // }
 
         $data['level'] = 0;
 
         $data['password'] = bcrypt($data['password']);
+
+        unset($data['password_confirmation']);
+
         if ($getUser = User::create($data)) {
-            if ($file) {
-                Image::make($file)->save(public_path('upload/user/avatar/') . $data['avatar']);
-            }
+            // if ($file) {
+            //     Image::make($file)->save(public_path('upload/user/avatar/') . $data['avatar']);
+            // }
             return response()->json([
                 'message' => 'success',
                 $getUser
