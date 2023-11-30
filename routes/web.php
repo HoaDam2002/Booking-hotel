@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\accoutuesrcontroller;
 use App\Http\Controllers\admin\Admincontroller;
+use App\Http\Controllers\tichhop\ChucVuController;
+use App\Http\Controllers\tichhop\LuongController;
+use App\Http\Controllers\tichhop\NhanVienController;
+use App\Http\Controllers\tichhop\PhongBanController;
 use Illuminate\Support\Facades\Route;
 
 ///admin
@@ -102,8 +106,8 @@ Route::group([
 
     });
 
-   // logout
-   Route::get('/logout/user', [LogoutFEController::class, 'logout']);
+    // logout
+    Route::get('/logout/user', [LogoutFEController::class, 'logout']);
 });
 //home
 
@@ -117,8 +121,8 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Auth'
 ], function () {
-    Route::get('/login',[LoginController::class, 'showLoginForm'])->name('admin/login');
-    Route::post('/login',[LoginController::class, 'login']);
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin/login');
+    Route::post('/login', [LoginController::class, 'login']);
     Route::get('/logout', [LogoutController::class, 'logout']);
 });
 
@@ -141,6 +145,35 @@ Route::group([
     Route::get('/chart', [Chartcontroller::class, 'index']);
 
     //room
+
+    Route::get('/nhanvien', [NhanVienController::class, 'index']);
+    Route::post('/nhanvien/them', [NhanVienController::class, 'insert']);
+    Route::post('/nhanvien/xoa', [NhanVienController::class, 'delete']);
+    Route::post('/nhanvien/sua', [NhanVienController::class, 'edit']);
+
+
+
+    Route::get('/luong', [LuongController::class, 'index']);
+    Route::post('/luong/them', [LuongController::class, 'insert']);
+    Route::post('/luong/xoa', [LuongController::class, 'delete']);
+    Route::post('/luong/sua', [LuongController::class, 'edit']);
+
+
+    Route::get('/chucvu', [ChucVuController::class, 'index']);
+    Route::post('/chucvu/them', [ChucVuController::class, 'insert']);
+    Route::post('/chucvu/xoa', [ChucVuController::class, 'delete']);
+    Route::post('/chucvu/sua', [ChucVuController::class, 'edit']);
+
+
+
+    Route::get('/phongban', [PhongBanController::class, 'index']);
+    Route::post('/phongban/them', [PhongBanController::class, 'insert']);
+    Route::post('/phongban/xoa', [PhongBanController::class, 'delete']);
+    Route::post('/phongban/sua', [PhongBanController::class, 'edit']);
+
+
+
+
     Route::get('/room', [RoomController::class, 'index']);
     Route::post('/room', [RoomController::class, 'create']);
     Route::get('/room/edit/', [RoomController::class, 'edit']);

@@ -1,7 +1,7 @@
 <div class="nav-header">
     <a href="{{ url('/admin/home') }}" class="brand-logo">
         {{-- <img class="logo-abbr" src="{{ asset('/assets_admin/images/logo.png') }}"> --}}
-        <img class="brand-title" src="{{ asset('/frontend/img/logo.png') }}">
+        {{-- <img class="brand-title" src="{{ asset('/frontend/img/logo.png') }}"> --}}
         {{-- <img class="logo-compact" src="{{ asset('/assets_admin/images/logo-text.png') }}"> --}}
         {{-- <img class="brand-title" src="{{ asset('/assets_admin/images/logo-text.png') }}"> --}}
     </a>
@@ -631,7 +631,7 @@
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
                     <div class="dashboard_bar">
-                        ADMIN
+                        ACME
                     </div>
                 </div>
                 <ul class="navbar-nav header-right">
@@ -799,38 +799,37 @@
                     <span class="nav-text">DASHBOARD</span>
                 </a>
             </li>
-            <li><a class="" href="{{ url('admin/typeroom') }}" aria-expanded="false">
-                    <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">TYPE ROOM</span>
+            <li><a class="" href="{{ url('admin/luong') }}" aria-expanded="false">
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa fa-university" aria-hidden="true"></i>
+                    <span class="nav-text">SALARY</span>
                 </a>
             </li>
-            </li>
-            <li><a class="" href="{{ url('admin/room') }}" aria-expanded="false">
-                    {{-- <i class="flaticon-381-networking"></i> --}}
-                    <i class="fa-solid fa-bed"></i>
-                    <span class="nav-text">ROOM</span>
+
+            <li><a class="" href="{{ url('admin/nhanvien') }}" aria-expanded="false">
+                    {{-- <i class="fa-solid fa-bed"></i> --}}
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <span class="nav-text">STAFF</span>
                 </a>
             </li>
-            <li><a class="" href="{{ url('admin/booking') }}" aria-expanded="false">
-                    {{-- <i class="flaticon-381-networking"></i> --}}
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <span class="nav-text">BOOKING</span>
+            <li><a class="" href="{{ url('admin/phongban') }}" aria-expanded="false">
+                    {{-- <i class="fa-solid fa-calendar-days"></i> --}}
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span class="nav-text">DEPARTMENT</span>
                 </a>
             </li>
-            <li><a class="" href="{{ url('admin/user') }}" aria-expanded="false">
-                    {{-- <i class="flaticon-381-networking"></i> --}}
-                    <i class="fa-solid fa-user"></i>
-                    <span class="nav-text">USER</span>
+            <li><a class="" href="{{ url('admin/chucvu') }}" aria-expanded="false">
+                    {{-- <i class="fa-solid fa-user"></i> --}}
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    <span class="nav-text">POSITION</span>
                 </a>
             </li>
-            <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
-                    {{-- <i class="flaticon-381-networking"></i> --}}
+            {{-- <li><a class="" href="{{ url('admin/service') }}" aria-expanded="false">
                     <i class="fa-solid fa-utensils"></i>
                     <span class="nav-text">SERVICE</span>
                 </a>
             </li>
             <li><a class="" href="{{ url('admin/blogs') }}" aria-expanded="false">
-                    {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-brands fa-blogger-b"></i>
                     <span class="nav-text">BLOG</span>
                 </a>
@@ -839,7 +838,7 @@
                     <i class="flaticon-381-networking"></i>
                     <span class="nav-text">EVALUATE</span>
                 </a>
-            </li>
+            </li> --}}
 
 
 

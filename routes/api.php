@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group([
     'namespace' => 'Api',
-    'prefix' => 'frontend',
+    'prefix' => 'frontend', 
 ], function () {
 
     route::post('/login',[UserController::class,'login']);
@@ -39,6 +39,9 @@ Route::group([
     route::post('/listBooking',[BookingController::class,'listBooking']);
 
     route::post('/search',[SearchController::class,'search']);
+
+    route::post('/checkAvailable',[SearchController::class,'checkAvailableRoom']);
+
 
 });
 
