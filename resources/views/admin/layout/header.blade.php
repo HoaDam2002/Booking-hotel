@@ -811,6 +811,12 @@
                     <span class="nav-text">ROOM</span>
                 </a>
             </li>
+            <li><a class="" href="{{ url('admin/bookingroom') }}" aria-expanded="false">
+                    {{-- <i class="flaticon-381-networking"></i> --}}
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="nav-text">BOOK ROOM</span>
+                </a>
+            </li>
             <li><a class="" href="{{ url('admin/booking') }}" aria-expanded="false">
                     {{-- <i class="flaticon-381-networking"></i> --}}
                     <i class="fa-solid fa-calendar-days"></i>

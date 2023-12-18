@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\TyperoomController;
 use App\Http\Controllers\admin\LogoutController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\BookingRoomController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
@@ -167,6 +168,9 @@ Route::group([
 
     Route::get('/user', [UserController::class, 'index']);
     Route::post('/user/delete', [UserController::class, 'delete']);
+
+    Route::get('/bookingroom', [BookingRoomController::class, 'index']);
+    Route::get('/infopayment', [BookingRoomController::class, 'InfoPayment']);
 
 });
 

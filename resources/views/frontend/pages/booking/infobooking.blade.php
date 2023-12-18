@@ -21,11 +21,12 @@
                                     <th><strong>Check-Out</strong></th>
                                     <th><strong>Booked At</strong></th>
                                     <th><strong>Total</strong></th>
+                                    <th><strong>Status</strong></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
-                                    $number = 0
+                                    $number = 0;
                                 @endphp
                                 @if (isset($booking))
                                     @foreach ($booking as $item)
@@ -46,6 +47,7 @@
                                             <td class="descBlogs">{{ $checkOut }}</td>
                                             <td class="descBlogs">{{ $booktime }}</td>
                                             <td class="descBlogs">{{ $item['total'] }}$</td>
+                                            <td class="descBlogs" style="color: red">Not Checked In</td>
                                         </tr>
                                     @endforeach
                                 @endif
