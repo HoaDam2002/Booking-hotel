@@ -6,6 +6,7 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <div class="card">
+
                 <div class="card-header">
                     <h4 class="card-title">BOOKING</h4>
                 </div>
