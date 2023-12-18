@@ -72,8 +72,6 @@ class SearchController extends Controller
     {
         $search = $request->all();
 
-        dd($search);
-
         $dateIn = $search["checkIn"];
         $dateOut = $search["checkOut"];
         $capacity = $search["people"];

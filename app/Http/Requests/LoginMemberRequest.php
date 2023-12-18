@@ -27,17 +27,10 @@ class LoginMemberRequest extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [
-            'required' => ':attribute không được để trống',
-            'email' => ':attribute sai định dạng'
-        ];
-    }
-
     public function attributes() {
         return [
             'email' => 'Email',
-            'password' => 'Mật khẩu',
+            'password' => 'Password',
         ];
     }
 

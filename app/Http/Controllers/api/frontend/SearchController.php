@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bookings;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -69,9 +70,32 @@ class SearchController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function checkAvailableRoom(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $roomId = $data['idRoom'];
+
+        $checkIn = Carbon::createFromFormat('d F, Y', $data["checkIn"])->format('Y-m-d 14:00:00');
+
+        $checkOut = Carbon::createFromFormat('d F, Y', $data["checkOut"])->format('Y-m-d 12:00:00');
+
+        $availableRoomsCount = Bookings::where('idRoom', $roomId)
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->whereBetween('checkIn', [$checkIn, $checkOut])
+                    ->orWhereBetween('checkOut', [$checkIn, $checkOut])
+                    ->orWhere(function ($query) use ($checkIn, $checkOut) {
+                        $query->where('checkIn', '<', $checkIn)
+                            ->where('checkOut', '>', $checkOut);
+                    });
+            })
+            ->count();
+
+        if($availableRoomsCount == 0){
+            return response()->json(['request' => 'This room is available'],200);
+        }else{
+            return response()->json(['request' => 'This room not available'],200);
+        }
     }
 
     /**
