@@ -17,6 +17,7 @@ use App\Http\Controllers\admin\LogoutController;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\BookingRoomController;
+use App\Http\Controllers\admin\InvoiceController;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
@@ -170,7 +171,9 @@ Route::group([
     Route::post('/user/delete', [UserController::class, 'delete']);
 
     Route::get('/bookingroom', [BookingRoomController::class, 'index']);
+    Route::post('/bookingroom', [BookingRoomController::class, 'search']);
     Route::get('/infopayment', [BookingRoomController::class, 'InfoPayment']);
+
 
 });
 

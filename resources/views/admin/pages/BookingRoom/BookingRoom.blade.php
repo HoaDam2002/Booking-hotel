@@ -3,122 +3,32 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <div class="card">
-
                 <div class="card-header">
                     <h4 class="card-title">BOOKING ROOM</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-5 mb-6">
+                        <div class="col-xl-8 mb-6">
                             <div class="example">
                                 <p class="mb-1">Choose Checkin - Checkout Day</p>
-                                <form style="display: flex">
-                                    <input class="form-control input-daterange-datepicker" type="text" name="daterange"
-                                        value={{ $dayNow . '-' . $nextDay }} min={{ $currentDay }}>
-                                    {{-- <a class="btn btn-outline-info" style="margin-left: 10px">Search</a> --}}
-                                    <button type="submit" class="btn btn-outline-info"
+
+                                <form id="form" style="display: flex">
+                                    <input type="date" name="checkin" class="form-control checkin" id="datepicker"
+                                        placeholder="CheckIn" />
+                                    <input type="date" name="checkout" class="form-control checkout" id="datepicker"
+                                        placeholder="CheckOut" />
+
+                                    <button type="submit" class="btn btn-outline-info btn-submit"
                                         style="margin-left: 10px">Search</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="card-body">
-                    <div style='text-align: center'>
-                        <h3>Room Not Found</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row m-b-30">
-                                        <div class="col-md-5 col-xxl-12">
-                                            <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                                <div class="new-arrivals-img-contnent">
-                                                    <img class="img-fluid"
-                                                        src="https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg"
-                                                        alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7 col-xxl-12">
-                                            <div class="new-arrival-content position-relative">
-                                                <h4>Solid Women's V-neck Dark T-Shirt</h4>
-                                                <p class="price">$320.00</p>
-                                                <p>Availability: <span class="item"> In stock <i
-                                                            class="fa fa-check-circle text-success"></i></span></p>
-                                                <p>Product code: <span class="item">0405689</span> </p>
-                                                <p>Brand: <span class="item">Lee</span></p>
-                                                <p class="text-content">There are many variations of passages of Lorem Ipsum
-                                                    available, but the majority have suffered alteration in some form, by
-                                                    injected humour, or randomised words which don't look even slightly
-                                                    believable. If you are going to use a passage of Lorem Ipsum.</p>
-                                                <div class="comment-review star-rating text-right">
-                                                    <ul>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                                    </ul>
-                                                    <span class="review-text">(34 reviews) / </span><a
-                                                        class="product-review" href="">Write a review?</a>
-                                                </div>
-                                                <button class="btn btn-primary"><a href="/admin/infopayment"
-                                                        style="color: inherit">BOOK
-                                                        NOW</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row m-b-30">
-                                        <div class="col-md-5 col-xxl-12">
-                                            <div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">
-                                                <div class="new-arrivals-img-contnent">
-                                                    <img class="img-fluid"
-                                                        src="https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg"
-                                                        alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7 col-xxl-12">
-                                            <div class="new-arrival-content position-relative">
-                                                <h4>Solid Women's V-neck Dark T-Shirt</h4>
-                                                <p class="price">$325.00</p>
-                                                <p>Availability: <span class="item"> In stock <i
-                                                            class="fa fa-check-circle text-success"></i></span></p>
-                                                <p>Product code: <span class="item">0405689</span> </p>
-                                                <p>Brand: <span class="item">Lee</span></p>
-                                                <p class="text-content">There are many variations of passages of Lorem Ipsum
-                                                    available, but the majority have suffered alteration in some form, by
-                                                    injected humour, or randomised words which don't look even slightly
-                                                    believable. If you are going to use a passage of Lorem Ipsum.</p>
-                                                <div class="comment-review star-rating text-right">
-                                                    <ul>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star"></i></li>
-                                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                                        <li><i class="fa fa-star-half-empty"></i></li>
-                                                    </ul>
-                                                    <span class="review-text">(34 reviews) / </span><a
-                                                        class="product-review" href="">Write a review?</a>
-                                                </div>
-                                                <button class="btn btn-primary"><a href="/admin/infopayment"
-                                                        style="color: inherit">BOOK
-                                                        NOW</a></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    <div class="row " id="list-room">
+
                     </div>
                 </div>
             </div>
@@ -195,4 +105,93 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+
+            const currentDate = new Date();
+            var formattedDate = currentDate.toISOString().slice(0, 10);
+            console.log(formattedDate)
+            $('.checkin').attr('min', formattedDate)
+            $('.checkout').attr('min', formattedDate)
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#form').submit(function(e) {
+                e.preventDefault();
+
+                let checkin = $('.checkin').val();
+                let checkout = $('.checkout').val();
+                console.log(checkin)
+                $.ajax({
+                    url: "{{ url('admin/bookingroom') }}",
+                    type: 'POST',
+                    data: {
+                        checkin: checkin,
+                        checkout: checkout,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: (res) => {
+                        let html = "";
+                        if (res.data.length > 0) {
+                            Object.keys(res.data).map(value => {
+                                let data = res.data[value]
+                                let image = JSON.parse(data.image);
+                                image = image[0];
+                                image = "{{ asset('upload/admin/room/hinh360') }}" +
+                                    image;
+
+                                let des = '';
+                                if (data.description.length > 200) {
+                                    des = data.description.substring(0, 200) + "...";
+                                } else {
+                                    des = data.description
+                                }
+
+                                html += '<div class="col-lg-12 col-xl-6">' +
+                                    '<div class="card">' +
+                                    '<div class="card-body">' +
+                                    '<div class="row m-b-30">' +
+                                    '<div class="col-md-5 col-xxl-12">' +
+                                    '<div class="new-arrival-product mb-4 mb-xxl-4 mb-md-0">' +
+                                    '<div class="new-arrivals-img-contnent">' +
+                                    '<img class="img-fluid"' +
+                                    'src=' + image +
+                                    ' alt=""/>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="col-md-7 col-xxl-12">' +
+                                    '<div class="new-arrival-content position-relative">' +
+                                    '<h4>' + data.nameRoom + '</h4>' +
+                                    '<span class="price">' + data.price +
+                                    '$</span><span> / pernight</span>' +
+                                    // '<p>Capacity:' + data.Capacity + '</p>' +
+                                    '<p class="text-content">' + des + '</p>' +
+                                    '<button class="btn btn-primary"><a href="/admin/infopayment"' +
+                                    'style="color: inherit">BOOK' +
+                                    'NOW</a></button>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>';
+                            });
+
+                            $('#list-room').html(html);
+                        } else {
+                            $('#list-room').html(
+                                '<div style="margin: auto"><h3>Room Not Found</h3></div>'
+                            );
+
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

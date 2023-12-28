@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Models\Room;
+use App\Models\Bookings;
+
 class BookingRoomController extends Controller
 {
     /**
@@ -38,9 +41,35 @@ class BookingRoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $ngayCheckIn = $request->checkin;
+        // $ngayCheckIn = Carbon::parse($ngayCheckIn);
+        // $ngayCheckIn = $ngayCheckIn->format('Y-m-d 14:00:00');
+
+        $ngayCheckOut = $request->checkout;
+        // $ngayCheckOut = Carbon::parse($ngayCheckOut);
+        // $ngayCheckOut = $ngayCheckOut->format('Y-m-d 14:00:00');
+
+        $ngayCheckIn = Carbon::parse($ngayCheckIn)->format('y-m-d 14:00:00');
+        $ngayCheckOut =  Carbon::parse($ngayCheckOut)->format('y-m-d 12:00:00');
+
+        // dd($ngayCheckIn, $ngayCheckOut);
+        $roomsQuery = Room::whereDoesntHave('bookings', function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+            $query->where(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+                $query->whereBetween('checkIn', [$ngayCheckIn, $ngayCheckOut])
+                    ->orWhereBetween('checkOut', [$ngayCheckIn, $ngayCheckOut])
+                    ->orWhere(function ($query) use ($ngayCheckIn, $ngayCheckOut) {
+                        $query->where('checkIn', '<', $ngayCheckIn)
+                            ->where('checkOut', '>', $ngayCheckOut);
+                    });
+            });
+        });
+
+        $value = $roomsQuery->with('typeRoom')->get();
+
+
+        return response()->json(['data' => $value]);
     }
 
     /**
